@@ -335,14 +335,14 @@ bool FlexibleEnrichment::ValidReq_(const cyclus::Material::Ptr req_mat) {
 
   // Here, we assume that only the uranium gets enriched (which is a valid
   // assumption for UF6.
-  double u_235 = mq.atom_frac(922350000) / uranium_frac;
-  double u_238 = mq.atom_frac(922380000) / uranium_frac;
+  double u235 = mq.atom_frac(922350000) / uranium_frac;
+  double u238 = mq.atom_frac(922380000) / uranium_frac;
 
-  bool u_238_present = u_238 > 0;
-  bool not_depleted = u_235 > tails_assay;
-  bool possible_enrichment = u_235 < max_enrich;
+  bool u238_present = u238 > 0;
+  bool not_depleted = u235 > tails_assay;
+  bool possible_enrichment = u235 < max_enrich;
 
-  return u_238_present && not_depleted && possible_enrichment;
+  return u238_present && not_depleted && possible_enrichment;
 };
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -388,18 +388,18 @@ void FlexibleEnrichment::AdjustMatlPrefs(
     // The bids vector has already been sorted starting with lowest (or
     // zero) U235 content. The following loop sets the preferences for
     // every request with 0 U235 content to -1 such that they are ignored.
-    bool u_235_mass = false;
+    bool u235_mass = false;
     // `bid_i` is an index, *not* an iterator over the bids!
     for (int bid_i = 0; bid_i < bids_vector.size(); bid_i++) {
       int new_pref = bid_i + 1;
 
-      if (!u_235_mass) {
+      if (!u235_mass) {
         cyclus::Material::Ptr mat = bids_vector[bid_i]->offer();
         cyclus::toolkit::MatQuery mq(mat);
         if (mq.mass(922350000) == 0.) {
           new_pref = -1;
-        } else {
-          u_235_mass = true;
+        }else {
+          u235_mass = true;
         }
       }
       (reqit->second)[bids_vector[bid_i]] = new_pref;
