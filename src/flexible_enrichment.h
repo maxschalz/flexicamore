@@ -106,7 +106,7 @@ class FlexibleEnrichment : public cyclus::Facility,
 
   ~FlexibleEnrichment();
 
-  // TODO if needed insert friend class FlexibleEnrichmentTest here!
+  friend class FlexibleEnrichmentTest;
 
   // Prime directive below. It *must* have a blank line before it, do not
   // remove it!
