@@ -1,4 +1,4 @@
-#include "flexible_enrichment.h"
+#include "enrichment.h"
 
 #include <sstream>
 #include <string>
@@ -25,7 +25,7 @@ FlexibleEnrichment::FlexibleEnrichment(cyclus::Context* ctx)
       current_swu_capacity(1e299),
       swu_capacity_times(std::vector<int>({})),
       swu_capacity_vals(std::vector<double>({})),
-      swu_flexible(FlexibleInput<double>()),
+      flexible_swu(FlexibleInput<double>()),
       intra_timestep_feed(0.),
       intra_timestep_swu(0.) {}
 
@@ -55,9 +55,9 @@ void FlexibleEnrichment::EnterNotify() {
   cyclus::Facility::EnterNotify();
 
   if (swu_capacity_times[0]==-1) {
-    swu_flexible = FlexibleInput<double>(this, swu_capacity_vals);
+    flexible_swu = FlexibleInput<double>(this, swu_capacity_vals);
   } else {
-    swu_flexible = FlexibleInput<double>(this, swu_capacity_vals,
+    flexible_swu = FlexibleInput<double>(this, swu_capacity_vals,
                                          swu_capacity_times);
   }
 
@@ -149,17 +149,18 @@ int FlexibleEnrichment::ResBufIdx_(const cyclus::Composition::Ptr& in_comp) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleEnrichment::Tick() {
-  // TODO This was the case in MIsoEnrichment. Maybe check if this has changed
-  // (for whatever reason) here in FlexibleEnrichment?
   // For an unknown reason, 'UpdateValue' has to be called with a copy of
   // the 'this' pointer. When directly using 'this', the address passed to
   // the function is increased by 8 bits resulting later on in a
   // segmentation fault.
+  // TODO The problem described above has not been checked in FlexibleEnrichment
+  // but it was the case in MIsoEnrichment. Maybe check if this has changed
+  // (for whatever reason) here in FlexibleEnrichment?
   cyclus::Agent* copy_ptr;
   cyclus::Agent* source_ptr = this;
   std::memcpy((void*) &copy_ptr, (void*) &source_ptr, sizeof(cyclus::Agent*));
 
-  swu_capacity = swu_flexible.UpdateValue(copy_ptr);
+  swu_capacity = flexible_swu.UpdateValue(copy_ptr);
   current_swu_capacity = swu_capacity;
 }
 

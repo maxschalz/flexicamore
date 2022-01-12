@@ -1,4 +1,4 @@
-#include "flexible_enrichment_tests.h"
+#include "enrichment_tests.h"
 
 #include <set>
 

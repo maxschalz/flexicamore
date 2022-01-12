@@ -1,5 +1,5 @@
-#ifndef FLEXICAMORE_SRC_FLEXIBLE_ENRICHMENT_TESTS_H_
-#define FLEXICAMORE_SRC_FLEXIBLE_ENRICHMENT_TESTS_H_
+#ifndef FLEXICAMORE_SRC_ENRICHMENT_TESTS_H_
+#define FLEXICAMORE_SRC_ENRICHMENT_TESTS_H_
 
 #include <gtest/gtest.h>
 #include <string>
@@ -7,7 +7,7 @@
 
 #include "mock_sim.h"
 
-#include "flexible_enrichment.h"
+#include "enrichment.h"
 
 namespace flexicamore {
 
@@ -62,4 +62,4 @@ class FlexibleEnrichmentTest : public ::testing::Test {
 
 }  // namespace flexicamore
 
-#endif  // FLEXICAMORE_SRC_FLEXIBLE_ENRICHMENT_TESTS_H_
+#endif  // FLEXICAMORE_SRC_ENRICHMENT_TESTS_H_

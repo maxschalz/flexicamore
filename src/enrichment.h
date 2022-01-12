@@ -1,14 +1,11 @@
-#ifndef FLEXICAMORE_SRC_FLEXIBLE_ENRICHMENT_H_
-#define FLEXICAMORE_SRC_FLEXIBLE_ENRICHMENT_H_
+#ifndef FLEXICAMORE_SRC_ENRICHMENT_H_
+#define FLEXICAMORE_SRC_ENRICHMENT_H_
 
 #include <string>
 
 #include "cyclus.h"
 
 #include "flexible_input.h"
-//#include "flexible_input.cc"
-
-// TODO include flexible_input stuff!
 
 namespace flexicamore {
 
@@ -310,7 +307,7 @@ class FlexibleEnrichment : public cyclus::Facility,
            "facility (kg SWU / month)" \
   }
   std::vector<double> swu_capacity_vals;
-  FlexibleInput<double> swu_flexible;
+  FlexibleInput<double> flexible_swu;
 
   double intra_timestep_feed;
   double intra_timestep_swu;
@@ -330,4 +327,4 @@ class FlexibleEnrichment : public cyclus::Facility,
 
 }  // namespace flexicamore
 
-#endif  // FLEXICAMORE_SRC_FLEXIBLE_ENRICHMENT_H_
+#endif  // FLEXICAMORE_SRC_ENRICHMENT_H_

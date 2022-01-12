@@ -114,6 +114,11 @@ void FlexibleInput<T>::CheckInput_(cyclus::Agent* parent,
   }
 }
 
+// Explicit instantiations of the `FlexibleInput` template class using some
+// possibly relevant template arguments. This has to be done, see, e.g.,
+// https://isocpp.org/wiki/faq/templates#separate-template-fn-defn-from-decl
+// and/or https://stackoverflow.com/a/495056/15268739 .
+// Feel free to add your own or reach out and I will add them!
 template class FlexibleInput<double>;
 template class FlexibleInput<int>;
 template class FlexibleInput<std::string>;
