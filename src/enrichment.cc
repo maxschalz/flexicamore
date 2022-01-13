@@ -1,5 +1,6 @@
 #include "enrichment.h"
 
+#include <cstring>  // std::memcpy
 #include <sstream>
 #include <string>
 #include <vector>

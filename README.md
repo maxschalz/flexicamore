@@ -39,8 +39,11 @@ At the moment, it depends on the archetype which of both methods is used.
 
 ### FlexibleEnrichment
 Flexible variables:
-- SWU capacity. Currently uses method 1.
+- SWU capacity. Currently allows using both methods (kind of).
+  To use method 2, set `swu_capacity_times` to `-1` and indicate *all* SWU
+  values in `swu_capacity_vals`.
 
 ### FlexibleSource
 Flexible variables:
-- Throughput (the production rate). Currently uses method 2.
+- Throughput (the production rate). Currently allows using both methods, similar
+  to [`FlexibleEnrichment`](#flexibleenrichment).

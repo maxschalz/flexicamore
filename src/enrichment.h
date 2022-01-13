@@ -288,23 +288,26 @@ class FlexibleEnrichment : public cyclus::Facility,
   double current_swu_capacity;
 
   #pragma cyclus var { \
-    "default": [0], \
+    "default": [-1], \
     "tooltip": "SWU capacity change times in timesteps from beginning " \
                "of deployment", \
     "uilabel": "SWU capacity change times", \
-    "doc": "list of timesteps where the SWU is changed. The first " \
-           "timestep has to be 0 as it sets the initial value and all " \
-           "timesteps are measured from the moment of deployment of the " \
-           "facility, not from the start of the simulation." \
+    "doc": "list of timesteps where the SWU is changed. If the list contains " \
+           "`-1` as only element, method 2 (see README) is used. This means " \
+           "that `swu_capacity_vals` contains all SWU values, and not only " \
+           "the changes. \n"\
+           "Else, the first timestep has to be `0`, which sets the initial " \
+           "value and all timesteps are measured from the moment of " \
+           "deployment of the facility, not from the start of the simulation." \
   }
   std::vector<int> swu_capacity_times;
 
   #pragma cyclus var { \
-    "default": [1e299], \
+    "default": [], \
     "tooltip": "SWU capacity list (kg SWU / month)", \
     "uilabel": "SWU Capacity List", \
     "doc": "list of separative work unit (SWU) capacity of enrichment " \
-           "facility (kg SWU / month)" \
+           "facility (kg SWU / month). Also see `doc` of `swu_capacity_times`" \
   }
   std::vector<double> swu_capacity_vals;
   FlexibleInput<double> flexible_swu;

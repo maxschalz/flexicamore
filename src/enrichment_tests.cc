@@ -322,7 +322,9 @@ TEST_F(FlexibleEnrichmentTest, NoBidPrefs) {
     "   <tails_commod>tails</tails_commod> "
     "   <tails_assay>0.003</tails_assay> "
     "   <max_feed_inventory>2.0</max_feed_inventory> "
-    "   <order_prefs>0</order_prefs> ";
+    "   <order_prefs>0</order_prefs> "
+    "   <swu_capacity_times><val>0</val></swu_capacity_times> "
+    "   <swu_capacity_vals><val>10000</val></swu_capacity_vals> ";
 
   int simdur = 1;
   cyclus::MockSim sim(cyclus::AgentSpec
