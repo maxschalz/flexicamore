@@ -272,21 +272,6 @@ class FlexibleEnrichment : public cyclus::Facility,
   double longitude;
   cyclus::toolkit::Position coordinates;
 
-  // TODO check if this variable is actually needed or if it can be replaced
-  // entirely by the FlexibleInput SWU variable.
-  #pragma cyclus var { \
-    "default": 1e299, \
-    "tooltip": "SWU capacity (kgSWU/timestep)", \
-    "uilabel": "SWU capacity", \
-    "uitype": "range", \
-    "range": [0.0, 1e299], \
-    "doc": "Separative work unit (SWU) capacity of the enrichment facility" \
-           "in kgSWU/timestep). Note that this variable will only be used at " \
-           "the beginning of the simulation." \
-  }
-  double swu_capacity;
-  double current_swu_capacity;
-
   #pragma cyclus var { \
     "default": [-1], \
     "tooltip": "SWU capacity change times in timesteps from beginning " \
@@ -311,6 +296,10 @@ class FlexibleEnrichment : public cyclus::Facility,
   }
   std::vector<double> swu_capacity_vals;
   FlexibleInput<double> flexible_swu;
+  // TODO check if this variable is actually needed or if it can be replaced
+  // entirely by the FlexibleInput SWU variable.
+  double swu_capacity;
+  double current_swu_capacity;
 
   double intra_timestep_feed;
   double intra_timestep_swu;

@@ -172,8 +172,7 @@ TEST_F(FlexibleEnrichmentTest, CheckSWUConstraint) {
     "   <tails_assay>0.003</tails_assay> "
     "   <initial_feed>1000</initial_feed> "
     "   <swu_capacity_times><val>0</val></swu_capacity_times> "
-    "   <swu_capacity_vals><val>195</val></swu_capacity_vals> "
-    "   <swu_capacity>195</swu_capacity> ";
+    "   <swu_capacity_vals><val>195</val></swu_capacity_vals> ";
   int simdur = 1;
   cyclus::MockSim sim(cyclus::AgentSpec(":flexicamore:FlexibleEnrichment"),
                       config, simdur);
@@ -205,8 +204,7 @@ TEST_F(FlexibleEnrichmentTest, CheckCapConstraint) {
     "   <tails_assay>0.003</tails_assay> "
     "   <initial_feed>10</initial_feed> "
     "   <swu_capacity_times><val>0</val></swu_capacity_times> "
-    "   <swu_capacity_vals><val>195</val></swu_capacity_vals> "
-    "   <swu_capacity>195</swu_capacity> ";
+    "   <swu_capacity_vals><val>195</val></swu_capacity_vals> ";
   int simdur = 1;
   cyclus::MockSim sim(cyclus::AgentSpec(":flexicamore:FlexibleEnrichment"),
                       config, simdur);
