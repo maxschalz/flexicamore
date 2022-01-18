@@ -222,7 +222,13 @@ FlexibleEnrichment::GetMatlBids(
 
   std::set<BidPortfolio<Material>::Ptr> ports;
 
-  RecordTimeSeries<double>("supply" + feed_commod, this,
+  // Please note that the function below may not be entirely right. I copied
+  // this from cycamore's enrichment facility and, the way *I* understand it,
+  // is that it saves the current feed quantity as *product supply*. Clearly,
+  // this is not correct as the product supply will be smaller or much smaller
+  // than the feed quantity. I might think about a better implementation at some
+  // later point in time. (minor TODO)
+  RecordTimeSeries<double>("supply" + product_commod, this,
                            feed_inv[feed_idx].quantity());
   RecordTimeSeries<double>("supply" + tails_commod, this,
                            tails_inv.quantity());
