@@ -13,6 +13,26 @@ This repository is developed by the
 from RWTH Aachen University, Germany.
 
 ## How to use Flexicamore
+### Hands on: example input file
+An input file and the corresponding output using both `FlexibleSource` and
+`FlexibleEnrichment` facilities can be found in the `input` directory.
+The input file has been tested successfully on Fedora35 using the following
+versions:
+```
+$ cyclus --version
+Cyclus Core 1.5.5 (1.5.5-57-gc1910b90)
+
+Dependencies:
+   Boost    1_74
+   Coin-Cbc 2.9.9
+   Coin-Clp 1.16.11
+   Hdf5     1.10.6-
+   Sqlite3  3.35.5
+   xml2     2.9.10
+   xml++    2.40.1
+```
+
+### A bit more in-depth
 The underlying class, `FlexibleInput`, can be used in two ways:
 1. Define a `std::vector` of values and a `std::vector<int>` containing the
    changing times, or,
