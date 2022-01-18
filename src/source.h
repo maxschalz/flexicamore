@@ -54,10 +54,6 @@ class FlexibleSource : public cyclus::Facility,
   // the flexicamore authors, or check the source code of the corresponding
   // Cycamore archetype which can be found here:
   // https://github.com/cyclus/cycamore/blob/master/src/source.h
-  //
-  // Also note that the `InitFrom(cyclus::QueryableBackend)` function has been
-  // removed. I do not know how to integrate flexible throughput into it and
-  // neither do I actually what this function is used for.
   std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr> GetMatlBids(
       cyclus::CommodMap<cyclus::Material>::type& commod_requests);
 
@@ -68,6 +64,7 @@ class FlexibleSource : public cyclus::Facility,
       const std::vector< cyclus::Trade<cyclus::Material> >& trades,
       std::vector<std::pair<cyclus::Trade<cyclus::Material>,
                             cyclus::Material::Ptr> >& responses);
+  void InitFrom(cyclus::QueryableBackend* b);
   void InitFrom(FlexibleSource* m);
   void Tick();
   void Tock();

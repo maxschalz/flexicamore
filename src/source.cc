@@ -30,6 +30,14 @@ void FlexibleSource::InitFrom(FlexibleSource* m) {
   RecordPosition_();
 }
 
+void FlexibleSource::InitFrom(cyclus::QueryableBackend* b) {
+  #pragma cyclus impl initfromdb flexicamore::FlexibleSource
+  cyclus::toolkit::CommodityProducer::Add(
+      cyclus::toolkit::Commodity(out_commod),
+      cyclus::toolkit::CommodInfo(current_throughput, current_throughput));
+  RecordPosition_();
+}
+
 std::string FlexibleSource::str() {
   std::stringstream ss;
   std::string ans;
@@ -42,11 +50,8 @@ std::string FlexibleSource::str() {
   ss << cyclus::Facility::str()
      << " supplies commodity '" << out_commod
      << "' with recipe '" << out_recipe
-     << "' at a throughput of [";
-  for (double throughput : throughput_vals) {
-    ss << throughput << ", ";
-  }
-  ss << "] kg per time step. commod producer members: "
+     << "' at a current throughput of " << current_throughput
+     << " kg per time step. commod producer members: "
      << " produces " << out_commod << "?: " << ans
      << " throughput: " << cyclus::toolkit::CommodityProducer::Capacity(out_commod)
      << " cost: " << cyclus::toolkit::CommodityProducer::Cost(out_commod);
@@ -54,6 +59,8 @@ std::string FlexibleSource::str() {
 }
 
 void FlexibleSource::EnterNotify() {
+  namespace tk = cyclus::toolkit;
+
   cyclus::Facility::EnterNotify();
 
   if (throughput_times[0]==-1) {
@@ -62,6 +69,11 @@ void FlexibleSource::EnterNotify() {
     flexible_throughput = FlexibleInput<double>(this, throughput_vals,
                                                 throughput_times);
   }
+  current_throughput = throughput_vals[0];
+  tk::CommodityProducer::SetCapacity(tk::Commodity(out_commod),
+                                     current_throughput);
+  tk::CommodityProducer::SetCost(tk::Commodity(out_commod), current_throughput);
+
   LOG(cyclus::LEV_DEBUG2, "FlxSrc") << "FlexibleSource entering the "
                                     << "simulation: ";
   LOG(cyclus::LEV_DEBUG2, "FlxSrc") << str();
@@ -69,6 +81,8 @@ void FlexibleSource::EnterNotify() {
 }
 
 void FlexibleSource::Tick() {
+  namespace tk = cyclus::toolkit;
+
   // For an unknown reason, 'UpdateValue' has to be called with a copy of
   // the 'this' pointer. When directly using 'this', the address passed to
   // the function is increased by 8 bits resulting later on in a
@@ -80,6 +94,9 @@ void FlexibleSource::Tick() {
   cyclus::Agent* source_ptr = this;
   std::memcpy((void*) &copy_ptr, (void*) &source_ptr, sizeof(cyclus::Agent*));
   current_throughput = flexible_throughput.UpdateValue(copy_ptr);
+  tk::CommodityProducer::SetCapacity(tk::Commodity(out_commod),
+                                     current_throughput);
+  tk::CommodityProducer::SetCost(tk::Commodity(out_commod), current_throughput);
 }
 
 void FlexibleSource::Tock() {}
