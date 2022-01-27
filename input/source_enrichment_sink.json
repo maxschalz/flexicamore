@@ -15,6 +15,10 @@
      "name": "Sink"
     },
     {
+     "lib": "cycamore",
+     "name": "Source"
+    },
+    {
      "lib": "flexicamore",
      "name": "FlexibleEnrichment"
     },
@@ -27,6 +31,10 @@
   "commodity": [
    {
     "name": "NaturalU",
+    "solution_priority": 1
+   },
+   {
+    "name": "LEU",
     "solution_priority": 1
    },
    {
@@ -56,6 +64,17 @@
    "startyear": 2022
   },
   "facility": [
+   {
+    "name": "LEUStorage",
+    "lifetime": 1,
+    "config": {
+     "Source": {
+      "outcommod": "LEU",
+      "outrecipe": "LEURecipe",
+      "throughput": 50
+     }
+    }
+   },
    {
     "name": "UraniumMine",
     "config": {
@@ -89,15 +108,13 @@
     "name": "EnrichmentFacility",
     "config": {
      "FlexibleEnrichment": {
-      "feed_commod": "NaturalU",
-      "feed_recipe": "NaturalURecipe",
+      "feed_commods": {"val": ["NaturalU", "LEU"]},
       "product_commod": "EnrichedU",
       "tails_commod": "DepletedU",
       "tails_assay": 0.003,
-      "initial_feed": 0,
       "max_feed_inventory": 1e+299,
       "max_enrich": 1.0,
-      "order_prefs": true,
+      "order_prefs": false,
       "swu_capacity_times": {
        "val": [
         0,
@@ -107,7 +124,7 @@
       },
       "swu_capacity_vals": {
        "val": [
-         20000.,
+         200.,
          100.,
          100000.
        ]
@@ -158,6 +175,20 @@
     ]
    },
    {
+    "name": "LEURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.03
+     },
+     {
+      "id": "U238",
+      "comp": 0.97
+     }
+    ]
+   },
+   {
     "name": "WeapongradeURecipe",
     "basis": "atom",
     "nuclide": [
@@ -203,6 +234,10 @@
         {
          "number": 1,
          "prototype": "UraniumMine"
+        },
+        {
+         "number": 1,
+         "prototype": "LEUStorage"
         },
         {
          "number": 1,
