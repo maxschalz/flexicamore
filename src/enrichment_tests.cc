@@ -228,8 +228,8 @@ TEST_F(FlexibleEnrichmentTest, Enrich) {
 TEST_F(FlexibleEnrichmentTest, GetMatlBids) {
   // Test the bidding. At first no bids are expected because there are
   // neither feed nor tails present. Then, feed is added and one bid for
-  // the product is expected. A second feed is added, resulting in two bids.
-  // Finally, an enrichment is performed and three bids are expected (two for
+  // the product is expected. A second feed is added, resulting in one bid.
+  // Finally, an enrichment is performed and two bids are expected (one for
   // the product, one for the tails).
   using cyclus::Material;
 
@@ -258,11 +258,11 @@ TEST_F(FlexibleEnrichmentTest, GetMatlBids) {
   DoAddFeedMat(cyclus::Material::CreateUntracked(
         inv_size, test::LowEnrichedU()), feed_commods[1]);
   bids = flex_enrich_facility->GetMatlBids(out_requests);
-  EXPECT_EQ(2, bids.size());
+  EXPECT_EQ(1, bids.size());
 
   DoEnrich(product, product->quantity());
   bids = flex_enrich_facility->GetMatlBids(out_requests);
-  EXPECT_EQ(3, bids.size());
+  EXPECT_EQ(2, bids.size());
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

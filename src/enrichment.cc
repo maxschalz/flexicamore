@@ -254,14 +254,13 @@ FlexibleEnrichment::GetMatlBids(
     ports.insert(tails_port);
   }
 
-  // Bid on product requests if available. Note that one request may receive
-  // multiple bids if multiple feed commodities are available.
+  // Bid on product requests if available. Note that one request receives at
+  // most on bid (even if multiple feed commodities were available).
   if (out_requests.count(product_commod) > 0) {
     std::vector<Request<Material>*>& commod_requests =
         out_requests[product_commod];
-    std::vector<CapacityConstraint<Material> > swu_constraints;
-    std::vector<std::set<BidPortfolio<Material>::Ptr>::iterator> ports_positions;
-    // Iterate through feed inventory.
+    // Iterate through feed inventory, use only the highest-preference but non-
+    // empty inventory.
     for (int feed_idx : feed_idx_by_pref) {
       if (feed_inv[feed_idx].quantity() > 0) {
         BidPortfolio<Material>::Ptr commod_port(new BidPortfolio<Material>());
@@ -275,12 +274,15 @@ FlexibleEnrichment::GetMatlBids(
           }
         }
         double feed_assay = FeedAssay_(feed_idx);
-        // Calculate SWU constraint and store it.
+        // Add SWU constraint.
         cyclus::Converter<Material>::Ptr swu_converter(
             new SwuConverter(feed_assay, tails_assay));
         CapacityConstraint<Material> swu_constraint(swu_capacity,
                                                     swu_converter);
-        swu_constraints.push_back(swu_constraint);
+        commod_port->AddConstraint(swu_constraint);
+        LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+                                         << " adding a SWU constraint of "
+                                         << swu_constraint.capacity();
 
         // Add feed constraint.
         cyclus::Converter<Material>::Ptr feed_converter(
@@ -291,17 +293,8 @@ FlexibleEnrichment::GetMatlBids(
         LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
                                          << " adding a feed constraint of "
                                          << feed_constraint.capacity();
-        ports_positions.push_back(ports.insert(commod_port).first);
-      }
-    }
-    // Add all SWU constraints to all bids (we don't want to use more SWU than
-    // is available).
-    for (CapacityConstraint<Material> swu_constraint : swu_constraints) {
-      for (std::set<BidPortfolio<Material>::Ptr>::iterator it : ports_positions) {
-        (*it)->AddConstraint(swu_constraint);
-        LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
-                                         << " adding a SWU constraint of "
-                                         << swu_constraint.capacity();
+        ports.insert(commod_port);
+        break;
       }
     }
   }
