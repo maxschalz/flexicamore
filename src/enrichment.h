@@ -247,9 +247,14 @@ class FlexibleEnrichment : public cyclus::Facility,
     "default": 1,	\
     "userlevel": 10, \
     "tooltip": "Rank Material Requests by U235 Content", \
-    "uilabel": "Prefer feed with higher U235 content", \
+    "uilabel": "Prefer feed with higher U235 content, *RECOMMENDED TO SET IT TO FALSE*", \
     "doc": "Turn on preference ordering for input material so that the " \
-           "enrichment facility chooses higher U235 content first." \
+           "enrichment facility chooses higher U235 content first. " \
+           "**PLEASE NOTE:** we advise you to set `order_prefs` to `false` " \
+           "due to an existing bug, see " \
+           "https://git.rwth-aachen.de/nvd/fuel-cycle/flexicamore/-/issues/4 ." \
+           "This is especially important if you are using non-unity " \
+           "`feed_commod_prefs`." \
   }
   bool order_prefs;
 
