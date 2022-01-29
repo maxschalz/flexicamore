@@ -14,8 +14,8 @@ from RWTH Aachen University, Germany.
 
 ## How to use Flexicamore
 ### Hands on: example input file
-An input file and the corresponding output using both `FlexibleSource` and
-`FlexibleEnrichment` facilities can be found in the `input` directory.
+An input file and the corresponding output using all `flexicamore` archetypes
+can be found in the `input` directory.
 The input file has been tested successfully on Fedora35 using the following
 versions:
 ```
@@ -55,11 +55,10 @@ FlexibleInput<double> flexible_production(&my_source, new_throughputs, change_ti
 std::vector<double> throughputs({1, 1, 1, 2, 2, 2, 3, 3, 3});
 FlexibleInput<double> flexible_production(&my_source, throughputs);
 ```
-At the moment, it depends on the archetype which of both methods is used.
 
 ### FlexibleEnrichment
 Flexible variables:
-- SWU capacity. Currently allows using both methods (kind of).
+- SWU capacity.
   To use method 2, set `swu_capacity_times` to `-1` and indicate *all* SWU
   values in `swu_capacity_vals`.
 - Multiple feed commodities can be specified (at the same time, including
@@ -73,3 +72,8 @@ Flexible variables:
 Flexible variables:
 - Throughput (the production rate). Currently allows using both methods, similar
   to [`FlexibleEnrichment`](#flexibleenrichment).
+
+### FlexibleStorage
+Flexible variables:
+- inventory size: total amount of material present in the facility at a given
+  moment.

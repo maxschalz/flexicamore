@@ -1,6 +1,7 @@
 ### DO NOT DELETE THIS COMMENT: INSERT_ARCHETYPES_HERE ###
 USE_CYCLUS("flexicamore" "enrichment")
 USE_CYCLUS("flexicamore" "source")
+USE_CYCLUS("flexicamore" "storage")
 USE_CYCLUS("flexicamore" "flexible_input")
 
 INSTALL_CYCLUS_MODULE("flexicamore" "")
