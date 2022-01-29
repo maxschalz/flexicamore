@@ -26,10 +26,14 @@ class FlexibleEnrichmentTest : public ::testing::Test {
 
   FlexibleEnrichment* flex_enrich_facility;
 
-  double initial_feed, inv_size, max_enrich, swu_capacity, tails_assay;
+  double inv_size, max_enrich, swu_capacity, tails_assay;
   const double kEpsCompMap = 1e-9;
 
-  std::string feed_commod, feed_recipe, product_commod, tails_commod;
+  std::string product_commod, tails_commod;
+  std::string nu_recipe, leu_recipe, wgu_recipe, du_recipe;
+
+  std::vector<double> feed_prefs;
+  std::vector<std::string> feed_commods;
 
   std::vector<double> swu_vals;
   std::vector<int> swu_times;
@@ -46,17 +50,20 @@ class FlexibleEnrichmentTest : public ::testing::Test {
   inline bool DoValidReq(const cyclus::Material::Ptr mat) {
     return flex_enrich_facility->ValidReq_(mat);
   }
-  inline cyclus::Material::Ptr DoRequest() {
-    return flex_enrich_facility->Request_();
-  }
-  inline void DoAddMat(cyclus::Material::Ptr mat) {
-    flex_enrich_facility->AddMat_(mat);
-  }
-  inline void DoAddFeedMat(cyclus::Material::Ptr mat) {
-    flex_enrich_facility->AddFeedMat_(mat);
+  inline void DoAddFeedMat(cyclus::Material::Ptr mat, std::string commodity) {
+    flex_enrich_facility->AddFeedMat_(mat, commodity);
   }
   inline void DoEnrich(cyclus::Material::Ptr mat, double qty) {
     flex_enrich_facility->Enrich_(mat, qty);
+  }
+  inline double DoFeedQty(int idx) {
+    return flex_enrich_facility->feed_inv[idx].quantity();
+  }
+  inline std::vector<int> DoFeedIdxByPref() {
+    return flex_enrich_facility->feed_idx_by_pref;
+  }
+  inline double DoIntraTimestepSWU() {
+    return flex_enrich_facility->intra_timestep_swu;
   }
 };
 

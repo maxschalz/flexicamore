@@ -1,6 +1,9 @@
 #include "enrichment.h"
 
 #include <cstring>  // std::memcpy
+
+#include <algorithm>  // std::stable_sort, std::sort
+#include <numeric>  // std::iota
 #include <sstream>
 #include <string>
 #include <vector>
@@ -10,12 +13,11 @@ namespace flexicamore {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 FlexibleEnrichment::FlexibleEnrichment(cyclus::Context* ctx)
     : cyclus::Facility(ctx),
-      feed_commod(""),
-      feed_recipe(""),
+      feed_commods(std::vector<std::string>({})),
+      feed_commod_prefs(std::vector<double>({})),
       product_commod(""),
       tails_commod(""),
       tails_assay(0.003),
-      initial_feed(0.),
       max_feed_inventory(1e299),
       max_enrich(0.99),
       order_prefs(true),
@@ -27,7 +29,7 @@ FlexibleEnrichment::FlexibleEnrichment(cyclus::Context* ctx)
       swu_capacity_times(std::vector<int>({})),
       swu_capacity_vals(std::vector<double>({})),
       flexible_swu(FlexibleInput<double>()),
-      intra_timestep_feed(0.),
+      intra_timestep_feed(std::vector<double>({})),
       intra_timestep_swu(0.) {}
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -42,10 +44,13 @@ std::string FlexibleEnrichment::str() {
     ss << "     (" << swu_capacity_vals[i] << ", " << swu_capacity_times[i]
        << ")\n";
   }
-  ss << " * Tails assay: " << tails_assay
-     << " * Input cyclus::Commodity: " << feed_commod
-     << " * Output cyclus::Commodity: " << product_commod
-     << " * Tails cyclus::Commodity: " << tails_commod;
+  ss << " * Tails assay: " << tails_assay << "\n"
+     << " * Input cyclus::Commodities: ";
+  for (std::string commod : feed_commods) {
+    ss << commod << ", ";
+  }
+  ss << "\n * Output cyclus::Commodity: " << product_commod << "\n"
+     << " * Tails cyclus::Commodity: " << tails_commod << "\n";
   return ss.str();
 }
 
@@ -55,6 +60,20 @@ void FlexibleEnrichment::EnterNotify() {
 
   cyclus::Facility::EnterNotify();
 
+  if (feed_commod_prefs.size() == 0) {
+    for (int i = 0; i < feed_commods.size(); ++i) {
+      feed_commod_prefs.push_back(cyclus::kDefaultPref);
+    }
+  } else if (feed_commod_prefs.size() != feed_commods.size()) {
+    std::stringstream ss;
+    ss << "feed_commod_prefs has " << feed_commod_prefs.size()
+       << " values, but expected " << feed_commods.size() << " values.";
+    throw cyclus::ValueError(ss.str());
+  }
+  FeedIdxByPreference_();
+  // Needs to be initialised here, else one may get a segmentation fault.
+  intra_timestep_feed = std::vector<double>(feed_commods.size(), 0.);
+
   if (swu_capacity_times[0]==-1) {
     flexible_swu = FlexibleInput<double>(this, swu_capacity_vals);
   } else {
@@ -62,15 +81,9 @@ void FlexibleEnrichment::EnterNotify() {
                                          swu_capacity_times);
   }
 
-  if (initial_feed > 0) {
-    Material::Ptr mat = Material::Create(
-        this, initial_feed, context()->GetRecipe(feed_recipe));
-    AddFeedMat_(mat);
-  } else {
+  for (int i = 0; i < feed_commods.size(); ++i) {
     feed_inv.push_back(cyclus::toolkit::ResBuf<cyclus::Material>());
     feed_inv.back().capacity(max_feed_inventory);
-    feed_inv_comp.push_back(context()->GetRecipe(feed_recipe));
-    feed_idx = 0;  // set current feed idx to the only existing inventory
   }
 
   LOG(cyclus::LEV_DEBUG2, "FlxEnr") << "Flexible Enrichment Facility "
@@ -80,72 +93,46 @@ void FlexibleEnrichment::EnterNotify() {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void FlexibleEnrichment::AddFeedMat_(cyclus::Material::Ptr mat) {
-  cyclus::Composition::Ptr comp = mat->comp();
-  int push_idx = ResBufIdx_(comp);
-
-  // Either directly try pushing material to the right feed inventory or
-  // create a corresponding feed inventory and add it to the vector.
-  if (push_idx != -1) {
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
-                                     << " is initially holding "
-                                     << feed_inv[push_idx].quantity()
-                                     << " of feed in inventory no. "
-                                     << push_idx << ".";
-    try {
-      feed_inv[push_idx].Push(mat);
-    } catch (cyclus::Error& e) {
-      e.msg(Agent::InformErrorMsg(e.msg()));
-    throw e;
-    }
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype() << " added "
-                                     << mat->quantity() << " of "
-                                     << feed_commod
-                                     << " to its inventory no. " << push_idx
-                                     << " which is now holding "
-                                     << feed_inv[push_idx].quantity();
-  } else {
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype() << " is initially"
-                                     << " holding no feed of this"
-                                     << " composition and creates a new"
-                                     << " inventory.";
-
-    feed_inv.push_back(cyclus::toolkit::ResBuf<cyclus::Material>());
-    feed_inv.back().capacity(max_feed_inventory);
-    try {
-      feed_inv.back().Push(mat);
-    } catch (cyclus::Error& e) {
-      e.msg(Agent::InformErrorMsg(e.msg()));
-    }
-    feed_inv_comp.push_back(comp);
-    // '-1' because of index starting at 0
-    feed_idx = std::distance(feed_inv.begin(), feed_inv.end()) - 1;
-
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype() << " added "
-                                     << mat->quantity() << " of "
-                                     << feed_commod
-                                     << " to its new inventory (no. "
-                                     << feed_idx << ") which is "
-                                     << "now holding "
-                                     << feed_inv[feed_idx].quantity();
+void FlexibleEnrichment::AddFeedMat_(cyclus::Material::Ptr mat,
+                                     std::string commodity) {
+  std::vector<std::string>::iterator commod_it = std::find(
+      feed_commods.begin(), feed_commods.end(), commodity);
+  if (commod_it == feed_commods.end()) {
+    std::string msg = "tried to add a material to the feed inventory which is "
+                      "not a valid commodity!";
+    throw cyclus::ValueError(msg);
   }
+  int push_idx = commod_it - feed_commods.begin();
+
+  // Push the material to the correct feed inventory.
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+                                   << " is initially holding "
+                                   << feed_inv[push_idx].quantity()
+                                   << " of feed (commodity: " << commodity
+                                   << ") in inventory no. " << push_idx << ".";
+  try {
+    feed_inv[push_idx].Push(mat);
+  } catch (cyclus::Error& e) {
+    e.msg(Agent::InformErrorMsg(e.msg()));
+    throw e;
+  }
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype() << " added "
+                                   << mat->quantity() << " of feed commodity '"
+                                   << commodity << "' to its inventory no. "
+                                   << push_idx << " which is now holding "
+                                   << feed_inv[push_idx].quantity();
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-int FlexibleEnrichment::ResBufIdx_(const cyclus::Composition::Ptr& in_comp) {
-  cyclus::CompMap in_compmap = in_comp->atom();
-  cyclus::compmath::Normalize(&in_compmap);
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+void FlexibleEnrichment::FeedIdxByPreference_() {
+  feed_idx_by_pref = std::vector<int>(feed_commod_prefs.size());
+  std::iota(feed_idx_by_pref.begin(), feed_idx_by_pref.end(), 0);
 
-  for (const cyclus::Composition::Ptr& buf_comp : feed_inv_comp) {
-    cyclus::CompMap buf_compmap = buf_comp->atom();
-    cyclus::compmath::Normalize(&buf_compmap);
-
-    if (cyclus::compmath::AlmostEq(in_compmap, buf_compmap, kEpsCompMap)) {
-      int i = &buf_comp - &feed_inv_comp[0];
-      return i;
-    }
-  }
-  return -1;  // if element is not in buf_compositions
+  // Sort s.t. the highest preference comes first!
+  std::stable_sort(
+      feed_idx_by_pref.begin(), feed_idx_by_pref.end(),
+      [&](int i, int j) {return feed_commod_prefs[i] > feed_commod_prefs[j];}
+  );
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -173,12 +160,19 @@ void FlexibleEnrichment::Tock() {
                                    << intra_timestep_swu << " SWU";
   RecordTimeSeries<cyclus::toolkit::ENRICH_SWU>(this, intra_timestep_swu);
 
-  LOG(cyclus::LEV_INFO4, "FlxEnr") << prototype() << " used "
-                                   << intra_timestep_feed << " feed";
-  RecordTimeSeries<cyclus::toolkit::ENRICH_FEED>(this,
-                                                 intra_timestep_feed);
-  RecordTimeSeries<double>("demand"+feed_commod, this,
-                           intra_timestep_feed);
+  for (int i = 0; i < feed_commods.size(); ++i) {
+    LOG(cyclus::LEV_INFO4, "FlxEnr") << prototype() << " used "
+                                     << intra_timestep_feed[i] << " feed"
+                                     << " commodity " << feed_commods[i];
+    // The last argument of 'RecordTimeSeries<cyclus::toolkit::ENRICH_FEED>
+    // *should* be the unit. Considering that the unit is not important and that
+    // even Cycamore does not store it, we 'misuse' the field to store the
+    // commodity.
+    RecordTimeSeries<cyclus::toolkit::ENRICH_FEED>(
+        this, intra_timestep_feed[i], feed_commods[i]);
+    RecordTimeSeries<double>("demand"+feed_commods[i], this,
+                             intra_timestep_feed[i]);
+  }
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -190,22 +184,23 @@ FlexibleEnrichment::GetMatlRequests() {
 
   std::set<RequestPortfolio<Material>::Ptr> ports;
   RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
-  Material::Ptr mat = Request_();
 
-  if (mat->quantity() > cyclus::eps_rsrc()) {
-    //TODO use multiple feed commodities?
-    port->AddRequest(mat, this, feed_commod);
+  Material::Ptr mat;
+  std::vector<Request<Material>*> mutuals;
+  for (int i = 0; i < feed_inv.size(); ++i) {
+    double amount = std::min(max_feed_inventory,
+                             std::max(0.,feed_inv[i].space()));
+    if (amount > cyclus::eps_rsrc()) {
+      mat = cyclus::NewBlankMaterial(amount);
+      mutuals.push_back(port->AddRequest(mat, this, feed_commods[i],
+                                         feed_commod_prefs[i]));
+    }
+  }
+  if (mutuals.size() > 0) {
+    port->AddMutualReqs(mutuals);
     ports.insert(port);
   }
   return ports;
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-cyclus::Material::Ptr FlexibleEnrichment::Request_() {
-  double qty = std::max(0.0, feed_inv[feed_idx].capacity()
-                             - feed_inv[feed_idx].quantity());
-  cyclus::Composition::Ptr comp = feed_inv_comp[feed_idx];
-  return cyclus::Material::CreateUntracked(qty, feed_inv_comp[feed_idx]);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -228,15 +223,15 @@ FlexibleEnrichment::GetMatlBids(
   // this is not correct as the product supply will be smaller or much smaller
   // than the feed quantity. I might think about a better implementation at some
   // later point in time. (minor TODO)
-  RecordTimeSeries<double>("supply" + product_commod, this,
-                           feed_inv[feed_idx].quantity());
+  for (int i = 0; i < feed_commods.size(); ++i) {
+    RecordTimeSeries<double>("supply" + feed_commods[i], this,
+                             feed_inv[i].quantity());
+  }
   RecordTimeSeries<double>("supply" + tails_commod, this,
                            tails_inv.quantity());
 
-  // TODO check how reasonable this is. Apparently requests do not
-  // feature the recipe, only the commodity.
-  if ((out_requests.count(tails_commod) > 0)
-      && (tails_inv.quantity() > 0)) {
+  // Bid on tails requests if available.
+  if ((out_requests.count(tails_commod) > 0) && (tails_inv.quantity() > 0)) {
     BidPortfolio<Material>::Ptr tails_port(new BidPortfolio<Material>());
 
     std::vector<Request<Material>*>& tails_requests =
@@ -259,44 +254,49 @@ FlexibleEnrichment::GetMatlBids(
     ports.insert(tails_port);
   }
 
-  // TODO here, one idea would be to change the if-clause and to check if
-  // any of the feed_inv's is not zero. If the current is not, then use
-  // that one, else change.
-  if ((out_requests.count(product_commod) > 0)
-      && (feed_inv[feed_idx].quantity() > 0)) {
-    BidPortfolio<Material>::Ptr commod_port(new BidPortfolio<Material>());
-
+  // Bid on product requests if available. Note that one request receives at
+  // most on bid (even if multiple feed commodities were available).
+  if (out_requests.count(product_commod) > 0) {
     std::vector<Request<Material>*>& commod_requests =
         out_requests[product_commod];
-    std::vector<Request<Material>*>::iterator it;
-    for (it = commod_requests.begin(); it != commod_requests.end(); it++) {
-      Request<Material>* req = *it;
-      Material::Ptr req_mat = req->target();
-      if (ValidReq_(req_mat)) {
-        Material::Ptr offer = Offer_(req_mat);
-        commod_port->AddBid(req, offer, this);
+    // Iterate through feed inventory, use only the highest-preference but non-
+    // empty inventory.
+    for (int feed_idx : feed_idx_by_pref) {
+      if (feed_inv[feed_idx].quantity() > 0) {
+        BidPortfolio<Material>::Ptr commod_port(new BidPortfolio<Material>());
+        std::vector<Request<Material>*>::iterator it;
+        for (it = commod_requests.begin(); it != commod_requests.end(); it++) {
+          Request<Material>* req = *it;
+          Material::Ptr req_mat = req->target();
+          if (ValidReq_(req_mat)) {
+            Material::Ptr offer = Offer_(req_mat);
+            commod_port->AddBid(req, offer, this);
+          }
+        }
+        double feed_assay = FeedAssay_(feed_idx);
+        // Add SWU constraint.
+        cyclus::Converter<Material>::Ptr swu_converter(
+            new SwuConverter(feed_assay, tails_assay));
+        CapacityConstraint<Material> swu_constraint(swu_capacity,
+                                                    swu_converter);
+        commod_port->AddConstraint(swu_constraint);
+        LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+                                         << " adding a SWU constraint of "
+                                         << swu_constraint.capacity();
+
+        // Add feed constraint.
+        cyclus::Converter<Material>::Ptr feed_converter(
+            new FeedConverter(feed_assay, tails_assay));
+        CapacityConstraint<Material> feed_constraint(
+            feed_inv[feed_idx].quantity(), feed_converter);
+        commod_port->AddConstraint(feed_constraint);
+        LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+                                         << " adding a feed constraint of "
+                                         << feed_constraint.capacity();
+        ports.insert(commod_port);
+        break;
       }
     }
-
-    double feed_assay = FeedAssay_(feed_idx);
-    cyclus::Converter<Material>::Ptr swu_converter(
-        new SwuConverter(feed_assay, tails_assay));
-    cyclus::Converter<Material>::Ptr feed_converter(
-        new FeedConverter(feed_assay, tails_assay));
-    CapacityConstraint<Material> swu_constraint(swu_capacity,
-                                                swu_converter);
-    CapacityConstraint<Material> feed_constraint(
-        feed_inv[feed_idx].quantity(), feed_converter);
-    commod_port->AddConstraint(swu_constraint);
-    commod_port->AddConstraint(feed_constraint);
-
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
-                                     << " adding a SWU constraint of "
-                                     << swu_constraint.capacity();
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
-                                     << " adding a feed constraint of "
-                                     << feed_constraint.capacity();
-    ports.insert(commod_port);
   }
   return ports;
 }
@@ -406,7 +406,7 @@ void FlexibleEnrichment::AdjustMatlPrefs(
         cyclus::toolkit::MatQuery mq(mat);
         if (mq.mass(922350000) == 0.) {
           new_pref = -1;
-        }else {
+        } else {
           u235_mass = true;
         }
       }
@@ -424,7 +424,7 @@ void FlexibleEnrichment::GetMatlTrades(
   using cyclus::Trade;
 
   intra_timestep_swu = 0;
-  intra_timestep_feed = 0;
+  intra_timestep_feed = std::vector<double>(feed_commods.size(), 0.);
 
   std::vector<Trade<Material> >::const_iterator it;
   for (it = trades.begin(); it != trades.end(); it++) {
@@ -434,13 +434,13 @@ void FlexibleEnrichment::GetMatlTrades(
     if (commod_type == tails_commod) {
       LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
                                        << " just received an order for "
-                                       << it->amt << " of " << tails_commod;
+                                       << qty << " of " << tails_commod;
       double pop_qty = std::min(qty, tails_inv.quantity());
       response = tails_inv.Pop(pop_qty, cyclus::eps_rsrc());
     } else {
       LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
                                        << " just received an order for "
-                                       << it->amt << " of " << product_commod;
+                                       << qty << " of " << product_commod;
       response = Enrich_(it->bid->offer(), qty);
     }
     responses.push_back(std::make_pair(*it, response));
@@ -461,19 +461,73 @@ void FlexibleEnrichment::GetMatlTrades(
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 cyclus::Material::Ptr FlexibleEnrichment::Enrich_(
     cyclus::Material::Ptr mat, double request_qty) {
-  // Get the enrichment parameters.
-  double feed_assay = FeedAssay_(feed_idx);
+  int feed_used_idx = -1;  // Index of feed inventory that is to be used.
+  // Move through the feed inventories by preference to find an inventory able
+  // to perform the enrichment.
+  for (int feed_idx : feed_idx_by_pref) {
+    double feed_inv_qty = feed_inv[feed_idx].quantity();
+    if (feed_inv_qty < cyclus::eps_rsrc()) {
+      continue;
+    }
+    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Considering feed commod "
+                                      << feed_commods[feed_idx];
+    double feed_assay = FeedAssay_(feed_idx);
+    double product_assay = cyclus::toolkit::UraniumAssayMass(mat);
+    cyclus::toolkit::Assays assays(feed_assay, product_assay, tails_assay);
+    double swu_required = cyclus::toolkit::SwuRequired(request_qty, assays);
+    double uranium_required = cyclus::toolkit::FeedQty(request_qty, assays);
+
+    cyclus::Material::Ptr feed_mat = feed_inv[feed_idx].Pop(feed_inv_qty,
+                                                            cyclus::eps_rsrc());
+    feed_inv[feed_idx].Push(feed_mat);
+    cyclus::toolkit::MatQuery mq(feed_mat);
+    std::set<cyclus::Nuc> nucs;
+    nucs.insert(922350000);
+    nucs.insert(922380000);
+    double uranium_frac = mq.mass_frac(nucs);
+    double feed_required = uranium_required / uranium_frac;
+
+    // Try to find another inventory with sufficient uranium.
+    if (feed_inv_qty < uranium_required) {
+      LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Not enough "
+                                        << feed_commods[feed_idx]
+                                        << " present.\n";
+      continue;
+    }
+    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "using feed commod "
+                                      << feed_commods[feed_idx];
+    feed_used_idx = feed_idx;
+    break;
+  }
+
+  // Use the highest-preference, non-empty inventory.
+  if (feed_used_idx == -1) {
+    for (int feed_idx : feed_idx_by_pref) {
+      if (feed_inv[feed_idx].quantity() > cyclus::eps_rsrc()) {
+        LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "fallback to "
+                                          << feed_commods[feed_idx];
+        feed_used_idx = feed_idx;
+        break;
+      }
+    }
+  }
+  if (feed_used_idx == -1) {
+    std::string msg(" has no valid feed inventory for the enrichment.");
+    throw cyclus::ValueError(Agent::InformErrorMsg(msg));
+  }
+
+  // Recalculate values in case the inventory has changed.
+  double feed_assay = FeedAssay_(feed_used_idx);
   double product_assay = cyclus::toolkit::UraniumAssayMass(mat);
   cyclus::toolkit::Assays assays(feed_assay, product_assay, tails_assay);
   double swu_required = cyclus::toolkit::SwuRequired(request_qty, assays);
   double uranium_required = cyclus::toolkit::FeedQty(request_qty, assays);
-
   // Determine the amount of uranium in the feed material, i.e.,
   // U235+U238 / total mass.
-  double pop_qty = feed_inv[feed_idx].quantity();
-  cyclus::Material::Ptr feed_mat = feed_inv[feed_idx].Pop(pop_qty,
-                                                          cyclus::eps_rsrc());
-  feed_inv[feed_idx].Push(feed_mat);
+  double pop_qty = feed_inv[feed_used_idx].quantity();
+  cyclus::Material::Ptr feed_mat = feed_inv[feed_used_idx].Pop(
+      pop_qty, cyclus::eps_rsrc());
+  feed_inv[feed_used_idx].Push(feed_mat);
   cyclus::toolkit::MatQuery mq(feed_mat);
   std::set<cyclus::Nuc> nucs;
   nucs.insert(922350000);
@@ -497,21 +551,22 @@ cyclus::Material::Ptr FlexibleEnrichment::Enrich_(
     // not contribute to the SWU.
     swu_required = SwuRequired(request_qty, assays);
   }
+
   // Perform the enrichment by popping the feed and converting it to product
   // and tails.
   cyclus::Material::Ptr pop_mat;
   try {
-    if (cyclus::AlmostEq(feed_required, feed_inv[feed_idx].quantity())) {
+    if (cyclus::AlmostEq(feed_required, feed_inv[feed_used_idx].quantity())) {
       pop_mat = cyclus::toolkit::Squash(
-          feed_inv[feed_idx].PopN(feed_inv[feed_idx].count()));
+          feed_inv[feed_used_idx].PopN(feed_inv[feed_used_idx].count()));
     } else {
-      pop_mat = feed_inv[feed_idx].Pop(feed_required, cyclus::eps_rsrc());
+      pop_mat = feed_inv[feed_used_idx].Pop(feed_required, cyclus::eps_rsrc());
     }
   } catch (cyclus::Error& e) {
     FeedConverter fc(feed_assay, tails_assay);
     std::stringstream ss;
     ss << " tried to remove " << feed_required << " from its feed inventory nr "
-       << feed_idx << " holding " << feed_inv[feed_idx].quantity()
+       << feed_used_idx << " holding " << feed_inv[feed_used_idx].quantity()
        << " and the conversion of the material into feed uranium is "
        << fc.convert(mat);
     throw cyclus::ValueError(Agent::InformErrorMsg(ss.str()));
@@ -523,12 +578,15 @@ cyclus::Material::Ptr FlexibleEnrichment::Enrich_(
 
   current_swu_capacity -= swu_required;
   intra_timestep_swu += swu_required;
-  intra_timestep_feed += feed_required;
-  RecordEnrichment_(feed_required, swu_required, feed_idx);
+  intra_timestep_feed[feed_used_idx] += feed_required;
+  RecordEnrichment_(feed_required, swu_required, feed_commods[feed_used_idx]);
 
   LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
                                    << " has performed an enrichment: ";
   LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Qty: " << feed_required;
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Commod.: "
+                                   << feed_commods[feed_used_idx];
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Inv No.: " << feed_used_idx;
   LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Assay: "
                                    << assays.Feed() * 100 << "%";
   LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Product Qty: " << request_qty;
@@ -554,19 +612,20 @@ void FlexibleEnrichment::AcceptMatlTrades(
   std::vector<std::pair<cyclus::Trade<cyclus::Material>,
                         cyclus::Material::Ptr> >::const_iterator it;
   for (it = responses.begin(); it != responses.end(); ++it) {
-    AddMat_(it->second);
+    AddMat_(it->second, it->first.request->commodity());
   }
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void FlexibleEnrichment::AddMat_(cyclus::Material::Ptr mat) {
+void FlexibleEnrichment::AddMat_(cyclus::Material::Ptr mat,
+                                 std::string commodity) {
   cyclus::CompMap cm = mat->comp()->atom();
   bool minor_uranium_isotopes = false;
   bool non_uranium_elements = false;
 
   cyclus::CompMap::const_iterator it;
   for (it = cm.begin(); it != cm.end(); it++) {
-    if (pyne::nucname::znum(it->first) != 92) {
+    if (pyne::nucname::znum(it->first) == 92) {
       if (pyne::nucname::anum(it->first) != 235 &&
           pyne::nucname::anum(it->first) != 238 && it->second > 0) {
         minor_uranium_isotopes = true;
@@ -584,23 +643,24 @@ void FlexibleEnrichment::AddMat_(cyclus::Material::Ptr mat) {
     cyclus::Warn<cyclus::VALUE_WARNING>(
         "Non-uranium elements present. They are sent directly to tails.");
   }
-  AddFeedMat_(mat);
+  AddFeedMat_(mat, commodity);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleEnrichment::RecordEnrichment_(double feed_qty, double swu,
-                                           int feed_inv_idx) {
+                                           std::string feed_commod) {
   LOG(cyclus::LEV_DEBUG1, "FlxEnr") << prototype()
                                     << " has enriched a material:";
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  * Amount: " << feed_qty;
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *    SWU: " << swu;
+  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *     Amount: " << feed_qty;
+  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *        SWU: " << swu;
+  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  * Feedcommod: " << feed_commod;
 
   cyclus::Context* ctx = cyclus::Agent::context();
   ctx->NewDatum("FlexibleEnrichments")
      ->AddVal("AgentId", id())
      ->AddVal("Time", ctx->time())
      ->AddVal("feed_qty", feed_qty)
-     ->AddVal("feed_inv_idx", feed_inv_idx)
+     ->AddVal("feed_commod", feed_commod)
      ->AddVal("SWU", swu)
      ->Record();
 }

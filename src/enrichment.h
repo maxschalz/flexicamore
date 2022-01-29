@@ -147,42 +147,48 @@ class FlexibleEnrichment : public cyclus::Facility,
 
   cyclus::Material::Ptr Enrich_(cyclus::Material::Ptr mat, double qty);
   cyclus::Material::Ptr Offer_(cyclus::Material::Ptr req);
-  cyclus::Material::Ptr Request_();
 
   double FeedAssay_(int feed_idx_);
-
-  int ResBufIdx_(const cyclus::Composition::Ptr& comp);
 
   // This function will probably be needed because of NU *and* LEU *and* DU
   // *and* reprocessed U enrichment.
   // TODO *Alternatively* I could conceive to program the enrichment s.t. it
   // only requests fresh uranium once its stock are empty?
-  void AddFeedMat_(cyclus::Material::Ptr mat);
-  void AddMat_(cyclus::Material::Ptr mat);
-  void RecordEnrichment_(double feed_qty, double swu, int feed_inv_idx);
+  void AddFeedMat_(cyclus::Material::Ptr mat, std::string commodity);
+  void AddMat_(cyclus::Material::Ptr mat, std::string commodity);
+  void FeedIdxByPreference_();
+  void RecordEnrichment_(double feed_qty, double swu, std::string feed_commod);
   void RecordPosition();
 
   // TODO all variables below, notably things like `feed_commod` and
   // `product_commod`, may later be replaced by FlexibleInput variables. I will
   // determine this once I finish the simulation setup
   #pragma cyclus var { \
-    "tooltip": "feed commodity", \
-    "doc": "feed commodity that the enrichment facility accepts",	\
-    "uilabel": "Feed Commodity", \
-    "uitype": "incommodity" \
+    "tooltip": "feed commodities", \
+    "doc": "feed commodities that the enrichment facility accepts", \
+    "uilabel": "Feed Commodities", \
+    "uitype": ["oneormore", "incommodity"] \
   }
-  std::string feed_commod;
+  std::vector<std::string> feed_commods;
+
+  // TODO think about how to include these variables in preprocessor. Also see
+  // misoenrichment's MIsoEnrich (same problem).
+  //#pragma cyclus var {}
+  std::vector<cyclus::toolkit::ResBuf<cyclus::Material> > feed_inv;
+  // TODO maybe feed_idx can be deleted, tbc.
+  int feed_idx;
 
   #pragma cyclus var { \
-    "tooltip": "feed recipe",	\
-    "doc": "recipe for enrichment facility feed commodity. Please note that " \
-           "this is only needed for the generation of initial feed "  \
-           "material. For later steps of the simulation, it will not be " \
-           "relevant.", \
-    "uilabel": "Feed Recipe", \
-    "uitype": "inrecipe" \
+    "tooltip": "feed commodity preferences", \
+    "default": [], \
+    "uilabel": "feed commodity preferences", \
+    "doc": "The preference for each feed commodity (in the same order as in " \
+           "'feed_commods'). If no preferences are specified, 1.0 is used as " \
+           "default for all feed commodities." \
   }
-  std::string feed_recipe;
+  std::vector<double> feed_commod_prefs;
+  // Feed indices sorted s.t. highest preference comes first.
+  std::vector<int> feed_idx_by_pref;
 
   #pragma cyclus var { \
     "tooltip": "product commodity",	\
@@ -210,20 +216,12 @@ class FlexibleEnrichment : public cyclus::Facility,
   double tails_assay;
 
   #pragma cyclus var { \
-    "default": 0, "tooltip": "initial uranium reserves (kg)",	\
-    "uilabel": "Initial Feed Inventory", \
-    "doc": "amount of natural uranium stored at the enrichment " \
-    "facility at the beginning of the simulation (kg)" \
-  }
-  double initial_feed;
-
-  #pragma cyclus var { \
     "default": 1e299, "tooltip": "max inventory of feed material (kg)", \
     "uilabel": "Maximum Feed Inventory", \
     "uitype": "range", \
     "range": [0.0, 1e299], \
-    "doc": "maximum total inventory of natural uranium in "	\
-           "the enrichment facility (kg)" \
+    "doc": "maximum total inventory of feed material in the enrichment " \
+           "facility (kg)" \
   }
   double max_feed_inventory;
 
@@ -249,9 +247,14 @@ class FlexibleEnrichment : public cyclus::Facility,
     "default": 1,	\
     "userlevel": 10, \
     "tooltip": "Rank Material Requests by U235 Content", \
-    "uilabel": "Prefer feed with higher U235 content", \
+    "uilabel": "Prefer feed with higher U235 content, *RECOMMENDED TO SET IT TO FALSE*", \
     "doc": "Turn on preference ordering for input material so that the " \
-           "enrichment facility chooses higher U235 content first." \
+           "enrichment facility chooses higher U235 content first. " \
+           "**PLEASE NOTE:** we advise you to set `order_prefs` to `false` " \
+           "due to an existing bug, see " \
+           "https://git.rwth-aachen.de/nvd/fuel-cycle/flexicamore/-/issues/4 ." \
+           "This is especially important if you are using non-unity " \
+           "`feed_commod_prefs`." \
   }
   bool order_prefs;
 
@@ -301,17 +304,8 @@ class FlexibleEnrichment : public cyclus::Facility,
   double swu_capacity;
   double current_swu_capacity;
 
-  double intra_timestep_feed;
+  std::vector<double> intra_timestep_feed;
   double intra_timestep_swu;
-
-  // TODO think about how to include these variables in preprocessor. Also see
-  // misoenrichment's MIsoEnrich (same problem).
-  //#pragma cyclus var {}
-  std::vector<cyclus::toolkit::ResBuf<cyclus::Material> > feed_inv;
-  //#pragma cyclus var {}
-  std::vector<cyclus::Composition::Ptr> feed_inv_comp;
-
-  int feed_idx;
 
   #pragma cyclus var {}
   cyclus::toolkit::ResBuf<cyclus::Material> tails_inv;

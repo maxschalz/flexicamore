@@ -12,7 +12,15 @@
     },
     {
      "lib": "cycamore",
+     "name": "DeployInst"
+    },
+    {
+     "lib": "cycamore",
      "name": "Sink"
+    },
+    {
+     "lib": "cycamore",
+     "name": "Source"
     },
     {
      "lib": "flexicamore",
@@ -27,6 +35,10 @@
   "commodity": [
    {
     "name": "NaturalU",
+    "solution_priority": 1
+   },
+   {
+    "name": "LEU",
     "solution_priority": 1
    },
    {
@@ -57,6 +69,28 @@
   },
   "facility": [
    {
+    "name": "Mine",
+    "config": {
+     "Source": {
+      "outcommod": "LEU",
+      "outrecipe": "LEURecipe",
+      "inventory_size": 1e+299,
+      "throughput": 12
+     }
+    }
+   },
+   {
+    "name": "LEUStorage",
+    "lifetime": 1,
+    "config": {
+     "Source": {
+      "outcommod": "LEU",
+      "outrecipe": "LEURecipe",
+      "throughput": 50
+     }
+    }
+   },
+   {
     "name": "UraniumMine",
     "config": {
      "FlexibleSource": {
@@ -86,18 +120,36 @@
     }
    },
    {
+    "name": "SecondLEU",
+    "config": {
+     "FlexibleSource": {
+      "out_commod": "LEU",
+      "out_recipe": "LEURecipe",
+      "inventory_size": 1e+299,
+      "throughput_times": {
+       "val": [
+        0
+       ]
+      },
+      "throughput_vals": {
+       "val": [
+        200.
+       ]
+      }
+     }
+    }
+   },
+   {
     "name": "EnrichmentFacility",
     "config": {
      "FlexibleEnrichment": {
-      "feed_commod": "NaturalU",
-      "feed_recipe": "NaturalURecipe",
+      "feed_commods": {"val": ["NaturalU", "LEU"]},
       "product_commod": "EnrichedU",
       "tails_commod": "DepletedU",
       "tails_assay": 0.003,
-      "initial_feed": 0,
       "max_feed_inventory": 1e+299,
       "max_enrich": 1.0,
-      "order_prefs": true,
+      "order_prefs": false,
       "swu_capacity_times": {
        "val": [
         0,
@@ -107,7 +159,7 @@
       },
       "swu_capacity_vals": {
        "val": [
-         20000.,
+         200.,
          100.,
          100000.
        ]
@@ -158,6 +210,20 @@
     ]
    },
    {
+    "name": "LEURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.03
+     },
+     {
+      "id": "U238",
+      "comp": 0.97
+     }
+    ]
+   },
+   {
     "name": "WeapongradeURecipe",
     "basis": "atom",
     "nuclide": [
@@ -196,13 +262,33 @@
      {
       "name": "FleximoniaAtomicEnergyCommission",
       "config": {
-       "NullInst": null
+       "DeployInst": {
+        "prototypes": {
+         "val": [
+          "SecondLEU"
+         ]
+        },
+        "build_times": {
+         "val": [5]
+        },
+        "n_build": {
+         "val": [1]
+        }
+       }
       },
       "initialfacilitylist": {
        "entry": [
         {
          "number": 1,
          "prototype": "UraniumMine"
+        },
+        {
+         "number": 1,
+         "prototype": "Mine"
+        },
+        {
+         "number": 1,
+         "prototype": "LEUStorage"
         },
         {
          "number": 1,

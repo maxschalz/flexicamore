@@ -62,6 +62,12 @@ Flexible variables:
 - SWU capacity. Currently allows using both methods (kind of).
   To use method 2, set `swu_capacity_times` to `-1` and indicate *all* SWU
   values in `swu_capacity_vals`.
+- Multiple feed commodities can be specified (at the same time, including
+  preferences). See the example input file in `input/`.
+- __Note__: currently, `order_prefs` should be set to `false` if feed commodity
+  preferences are used due to a possible bug, see
+  [issue 4](https://git.rwth-aachen.de/nvd/fuel-cycle/flexicamore/-/issues/4).
+  Due to this, the unit tests also show two disabled tests.
 
 ### FlexibleSource
 Flexible variables:
