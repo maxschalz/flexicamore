@@ -44,6 +44,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
       <name>Sink</name>
     </spec>
     <spec>
+      <lib>flexicamore</lib>
+      <name>FlexibleSink</name>
+    </spec>
+    <spec>
       <lib>cycamore</lib>
       <name>Source</name>
     </spec>
@@ -208,22 +212,36 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>StoredU</val>
         </in_commods>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+          <val>4</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1</val>
+          <val>10000</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>StoredUSink</name>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>EnrichedU</val>
         </in_commods>
         <recipe_name>WeapongradeURecipe</recipe_name>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1e+200</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>WeapongradeUSink</name>
   </facility>
@@ -323,6 +341,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
         <entry>
           <number>1</number>
           <prototype>StoredUSink</prototype>
+        </entry>
+        <entry>
+          <number>1</number>
+          <prototype>MyStorage</prototype>
         </entry>
         <entry>
           <number>1</number>
@@ -362,6 +384,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
       <name>Sink</name>
     </spec>
     <spec>
+      <lib>flexicamore</lib>
+      <name>FlexibleSink</name>
+    </spec>
+    <spec>
       <lib>cycamore</lib>
       <name>Source</name>
     </spec>
@@ -526,22 +552,36 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>StoredU</val>
         </in_commods>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+          <val>4</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1</val>
+          <val>10000</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>StoredUSink</name>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>EnrichedU</val>
         </in_commods>
         <recipe_name>WeapongradeURecipe</recipe_name>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1e+200</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>WeapongradeUSink</name>
   </facility>
@@ -641,6 +681,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
         <entry>
           <number>1</number>
           <prototype>StoredUSink</prototype>
+        </entry>
+        <entry>
+          <number>1</number>
+          <prototype>MyStorage</prototype>
         </entry>
         <entry>
           <number>1</number>
@@ -680,6 +724,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
       <name>Sink</name>
     </spec>
     <spec>
+      <lib>flexicamore</lib>
+      <name>FlexibleSink</name>
+    </spec>
+    <spec>
       <lib>cycamore</lib>
       <name>Source</name>
     </spec>
@@ -844,22 +892,36 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>StoredU</val>
         </in_commods>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+          <val>4</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1</val>
+          <val>10000</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>StoredUSink</name>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>EnrichedU</val>
         </in_commods>
         <recipe_name>WeapongradeURecipe</recipe_name>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1e+200</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>WeapongradeUSink</name>
   </facility>
@@ -962,6 +1024,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
         </entry>
         <entry>
           <number>1</number>
+          <prototype>MyStorage</prototype>
+        </entry>
+        <entry>
+          <number>1</number>
           <prototype>WeapongradeUSink</prototype>
         </entry>
         <entry>
@@ -979,25 +1045,27 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </region>
 </simulation>
 
-DEBUG3(memory):              Agent ID=0, ptr=0x55a8b5c5fa50 created.
+DEBUG3(memory):              Agent ID=0, ptr=0x55e899e7f340 created.
 DEBUG3(memory):              Deleting agent '' ID=0
-DEBUG3(memory):              Agent ID=1, ptr=0x55a8b5c5fa50 created.
+DEBUG3(memory):              Agent ID=1, ptr=0x55e899e7f340 created.
 DEBUG3(memory):              Deleting agent '' ID=1
-DEBUG3(memory):              Agent ID=2, ptr=0x55a8b5ef64f0 created.
+DEBUG3(memory):              Agent ID=2, ptr=0x55e89a0bfd30 created.
 DEBUG3(memory):              Deleting agent '' ID=2
-DEBUG3(memory):              Agent ID=3, ptr=0x55a8b71e0378 created.
+DEBUG3(memory):              Agent ID=3, ptr=0x55e89b3f21b8 created.
 DEBUG3(memory):              Deleting agent '' ID=3
-DEBUG3(memory):              Agent ID=4, ptr=0x55a8b5a719d8 created.
+DEBUG3(memory):              Agent ID=4, ptr=0x55e89a18d9b8 created.
 DEBUG3(memory):              Deleting agent '' ID=4
-DEBUG3(memory):              Agent ID=5, ptr=0x55a8b71c9d88 created.
+DEBUG3(memory):              Agent ID=5, ptr=0x55e899c8d308 created.
 DEBUG3(memory):              Deleting agent '' ID=5
-DEBUG3(memory):              Agent ID=6, ptr=0x55a8b71e06b8 created.
+DEBUG3(memory):              Agent ID=6, ptr=0x55e89ab28ce8 created.
 DEBUG3(memory):              Deleting agent '' ID=6
-DEBUG3(memory):              Agent ID=7, ptr=0x55a8b71ceb58 created.
+DEBUG3(memory):              Agent ID=7, ptr=0x55e89b3eaa98 created.
+DEBUG3(memory):              Deleting agent '' ID=7
+DEBUG3(memory):              Agent ID=8, ptr=0x55e89b3eda58 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Deleting agent '' ID=7
+DEBUG3(memory):              Deleting agent '' ID=8
 DEBUG5(core  ):                  Parsing the snippet: <simulation>
   <archetypes>
     <spec>
@@ -1015,6 +1083,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
     <spec>
       <lib>cycamore</lib>
       <name>Sink</name>
+    </spec>
+    <spec>
+      <lib>flexicamore</lib>
+      <name>FlexibleSink</name>
     </spec>
     <spec>
       <lib>cycamore</lib>
@@ -1181,22 +1253,36 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>StoredU</val>
         </in_commods>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+          <val>4</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1</val>
+          <val>10000</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>StoredUSink</name>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>EnrichedU</val>
         </in_commods>
         <recipe_name>WeapongradeURecipe</recipe_name>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1e+200</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>WeapongradeUSink</name>
   </facility>
@@ -1299,6 +1385,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
         </entry>
         <entry>
           <number>1</number>
+          <prototype>MyStorage</prototype>
+        </entry>
+        <entry>
+          <number>1</number>
           <prototype>WeapongradeUSink</prototype>
         </entry>
         <entry>
@@ -1316,25 +1406,27 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </region>
 </simulation>
 
-DEBUG3(memory):              Agent ID=8, ptr=0x55a8b5c5fa50 created.
-DEBUG3(memory):              Deleting agent '' ID=8
-DEBUG3(memory):              Agent ID=9, ptr=0x55a8b5c5fa50 created.
+DEBUG3(memory):              Agent ID=9, ptr=0x55e899e7f340 created.
 DEBUG3(memory):              Deleting agent '' ID=9
-DEBUG3(memory):              Agent ID=10, ptr=0x55a8b5ef64f0 created.
+DEBUG3(memory):              Agent ID=10, ptr=0x55e899e7f340 created.
 DEBUG3(memory):              Deleting agent '' ID=10
-DEBUG3(memory):              Agent ID=11, ptr=0x55a8b71e0378 created.
+DEBUG3(memory):              Agent ID=11, ptr=0x55e89a0bfd30 created.
 DEBUG3(memory):              Deleting agent '' ID=11
-DEBUG3(memory):              Agent ID=12, ptr=0x55a8b5d73e28 created.
+DEBUG3(memory):              Agent ID=12, ptr=0x55e89b3f21b8 created.
 DEBUG3(memory):              Deleting agent '' ID=12
-DEBUG3(memory):              Agent ID=13, ptr=0x55a8b71c9d88 created.
+DEBUG3(memory):              Agent ID=13, ptr=0x55e89a18d9b8 created.
 DEBUG3(memory):              Deleting agent '' ID=13
-DEBUG3(memory):              Agent ID=14, ptr=0x55a8b71e06b8 created.
+DEBUG3(memory):              Agent ID=14, ptr=0x55e899f930b8 created.
 DEBUG3(memory):              Deleting agent '' ID=14
-DEBUG3(memory):              Agent ID=15, ptr=0x55a8b71e4f48 created.
+DEBUG3(memory):              Agent ID=15, ptr=0x55e89ab28ce8 created.
+DEBUG3(memory):              Deleting agent '' ID=15
+DEBUG3(memory):              Agent ID=16, ptr=0x55e89b3eaa98 created.
+DEBUG3(memory):              Deleting agent '' ID=16
+DEBUG3(memory):              Agent ID=17, ptr=0x55e89b4037c8 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Deleting agent '' ID=15
+DEBUG3(memory):              Deleting agent '' ID=17
 <grammar xmlns="http://relaxng.org/ns/structure/1.0"
 datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
 <start>
@@ -1473,6 +1565,65 @@ datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
     <optional>
         <element name="capacity">
             <data type="double"/>
+        </element>
+    </optional>
+    <optional>
+        <element name="latitude">
+            <data type="double"/>
+        </element>
+    </optional>
+    <optional>
+        <element name="longitude">
+            <data type="double"/>
+        </element>
+    </optional>
+</interleave>
+
+</element>
+<element name="FlexibleSink">
+<interleave>
+    <element name="in_commods">
+        <oneOrMore>
+            <element name="val">
+                <data type="string"/>
+            </element>
+        </oneOrMore>
+    </element>
+    <optional>
+        <element name="in_commod_prefs">
+            <oneOrMore>
+                <element name="val">
+                    <data type="double"/>
+                </element>
+            </oneOrMore>
+        </element>
+    </optional>
+    <optional>
+        <element name="recipe_name">
+            <data type="string"/>
+        </element>
+    </optional>
+    <optional>
+        <element name="max_inv_size">
+            <data type="double"/>
+        </element>
+    </optional>
+    <optional>
+        <element name="throughput_times">
+            <oneOrMore>
+                <element name="val">
+                    <data type="int"/>
+                </element>
+            </oneOrMore>
+        </element>
+    </optional>
+    <optional>
+        <element name="throughput_vals">
+            <oneOrMore>
+                <element name="val">
+                    <data type="double"/>
+                </element>
+            </oneOrMore>
         </element>
     </optional>
     <optional>
@@ -1883,6 +2034,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
       <name>Sink</name>
     </spec>
     <spec>
+      <lib>flexicamore</lib>
+      <name>FlexibleSink</name>
+    </spec>
+    <spec>
       <lib>cycamore</lib>
       <name>Source</name>
     </spec>
@@ -2047,22 +2202,36 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>StoredU</val>
         </in_commods>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+          <val>4</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1</val>
+          <val>10000</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>StoredUSink</name>
   </facility>
   <facility>
     <config>
-      <Sink>
+      <FlexibleSink>
         <in_commods>
           <val>EnrichedU</val>
         </in_commods>
         <recipe_name>WeapongradeURecipe</recipe_name>
-      </Sink>
+        <throughput_times>
+          <val>0</val>
+        </throughput_times>
+        <throughput_vals>
+          <val>1e+200</val>
+        </throughput_vals>
+      </FlexibleSink>
     </config>
     <name>WeapongradeUSink</name>
   </facility>
@@ -2165,6 +2334,10 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
         </entry>
         <entry>
           <number>1</number>
+          <prototype>MyStorage</prototype>
+        </entry>
+        <entry>
+          <number>1</number>
           <prototype>WeapongradeUSink</prototype>
         </entry>
         <entry>
@@ -2182,64 +2355,72 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </region>
 </simulation>
 
-DEBUG3(memory):              Agent ID=16, ptr=0x55a8b5a719d8 created.
-DEBUG3(memory):              Agent ID=17, ptr=0x55a8b5e95e08 created.
-DEBUG3(memory):              Agent ID=18, ptr=0x55a8b71e06b8 created.
-DEBUG3(memory):              Agent ID=19, ptr=0x55a8b69b0268 created.
-DEBUG3(memory):              Agent ID=20, ptr=0x55a8b69b2dd8 created.
-DEBUG3(memory):              Agent ID=21, ptr=0x55a8b695a7f8 created.
+DEBUG3(memory):              Agent ID=18, ptr=0x55e899c8d308 created.
+DEBUG3(memory):              Agent ID=19, ptr=0x55e89a0b23f8 created.
+DEBUG3(memory):              Agent ID=20, ptr=0x55e89b3eaa98 created.
+DEBUG3(memory):              Agent ID=21, ptr=0x55e89abd6338 created.
+DEBUG3(memory):              Agent ID=22, ptr=0x55e89abd7bb8 created.
+DEBUG3(memory):              Agent ID=23, ptr=0x55e89abf26e8 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Agent ID=22, ptr=0x55a8b71e0ab8 created.
-DEBUG3(memory):              Agent ID=23, ptr=0x55a8b71e0378 created.
-DEBUG3(memory):              Agent ID=24, ptr=0x55a8b69cdab8 created.
-DEBUG3(memory):              Agent ID=25, ptr=0x55a8b6913d20 created.
-DEBUG3(memory):              Agent ID=26, ptr=0x55a8b69b7ab0 created.
-DEBUG3(memory):              Agent ID=27, ptr=0x55a8b69d7680 created.
+DEBUG3(memory):              Agent ID=24, ptr=0x55e89ab82e68 created.
+DEBUG3(memory):              Agent ID=25, ptr=0x55e89a18d9b8 created.
+DEBUG3(memory):              Agent ID=26, ptr=0x55e89b3f21b8 created.
+DEBUG3(memory):              Agent ID=27, ptr=0x55e899a55350 created.
+DEBUG3(memory):              Agent ID=28, ptr=0x55e89abda6c0 created.
+DEBUG3(memory):              Agent ID=29, ptr=0x55e89abd92b0 created.
 DEBUG1(core  ):          Agent 'Fleximonia' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :agents:NullRegion
-DEBUG3(core  ):               * ID: 27
-DEBUG3(memory):              Agent ID=28, ptr=0x55a8b696ffd0 created.
+DEBUG3(core  ):               * ID: 29
+DEBUG3(memory):              Agent ID=30, ptr=0x55e89a062860 created.
 DEBUG1(core  ):          Agent 'FleximoniaAtomicEnergyCommission' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:DeployInst
-DEBUG3(core  ):               * ID: 28
-DEBUG3(memory):              Agent ID=29, ptr=0x55a8b69af578 created.
+DEBUG3(core  ):               * ID: 30
+DEBUG3(memory):              Agent ID=31, ptr=0x55e89abf9b08 created.
 DEBUG1(core  ):          Agent 'UraniumMine' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSource
-DEBUG3(core  ):               * ID: 29
+DEBUG3(core  ):               * ID: 31
 DEBUG2(FlxSrc):            FlexibleSource entering the simulation: 
-DEBUG2(FlxSrc):            Facility_UraniumMine ( ID=29, implementation=:flexicamore:FlexibleSource,  name=UraniumMine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'NaturalU' with recipe 'NaturalURecipe' at a current throughput of 100 kg per time step. commod producer members:  produces NaturalU?: yes throughput: 100 cost: 100
-DEBUG3(memory):              Agent ID=30, ptr=0x55a8b5d73e28 created.
+DEBUG2(FlxSrc):            Facility_UraniumMine ( ID=31, implementation=:flexicamore:FlexibleSource,  name=UraniumMine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'NaturalU' with recipe 'NaturalURecipe' at a current throughput of 100 kg per time step. commod producer members:  produces NaturalU?: yes throughput: 100 cost: 100
+DEBUG3(memory):              Agent ID=32, ptr=0x55e899f930b8 created.
 DEBUG1(core  ):          Agent 'Mine' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:Source
-DEBUG3(core  ):               * ID: 30
-DEBUG3(memory):              Agent ID=31, ptr=0x55a8b5d59c88 created.
+DEBUG3(core  ):               * ID: 32
+DEBUG3(memory):              Agent ID=33, ptr=0x55e89ac097b8 created.
 DEBUG1(core  ):          Agent 'LEUStorage' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:Source
-DEBUG3(core  ):               * ID: 31
-DEBUG3(memory):              Agent ID=32, ptr=0x55a8b69d73f8 created.
+DEBUG3(core  ):               * ID: 33
+DEBUG3(memory):              Agent ID=34, ptr=0x55e89ab7b068 created.
 DEBUG1(core  ):          Agent 'StoredUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
-DEBUG3(core  ):               * Spec: :cycamore:Sink
-DEBUG3(core  ):               * ID: 32
-DEBUG3(memory):              Agent ID=33, ptr=0x55a8b69dfca8 created.
+DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSink
+DEBUG3(core  ):               * ID: 34
+DEBUG3(memory):              Agent ID=35, ptr=0x55e89abfa3d8 created.
+Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
+DEBUG1(core  ):          Agent 'MyStorage' is entering the simulation.
+DEBUG3(core  ):              It has:
+DEBUG3(core  ):               * Spec: :flexicamore:FlexibleStorage
+DEBUG3(core  ):               * ID: 35
+DEBUG3(memory):              Agent ID=36, ptr=0x55e89ac050a8 created.
 DEBUG1(core  ):          Agent 'WeapongradeUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
-DEBUG3(core  ):               * Spec: :cycamore:Sink
-DEBUG3(core  ):               * ID: 33
-DEBUG3(memory):              Agent ID=34, ptr=0x55a8b69d4e98 created.
+DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSink
+DEBUG3(core  ):               * ID: 36
+DEBUG3(memory):              Agent ID=37, ptr=0x55e89abd3b98 created.
 DEBUG1(core  ):          Agent 'EnrichmentFacility' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleEnrichment
-DEBUG3(core  ):               * ID: 34
+DEBUG3(core  ):               * ID: 37
 DEBUG2(FlxEnr):            Flexible Enrichment Facility entering the simulation: 
-DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=34, implementation=:flexicamore:FlexibleEnrichment,  name=EnrichmentFacility,  parentID=28 )  with:  lifetime: -1 build date: 0 with enrichment facility parameters:
+DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=37, implementation=:flexicamore:FlexibleEnrichment,  name=EnrichmentFacility,  parentID=30 )  with:  lifetime: -1 build date: 0 with enrichment facility parameters:
  * SWU (capacity, time):
      (200, 0)
      (100, 5)
@@ -2249,50 +2430,54 @@ DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=34, implementation=:
  * Output cyclus::Commodity: EnrichedU
  * Tails cyclus::Commodity: DepletedU
 
-DEBUG3(memory):              Agent ID=35, ptr=0x55a8b69da298 created.
+DEBUG3(memory):              Agent ID=38, ptr=0x55e89abf5bc8 created.
 DEBUG1(core  ):          Agent 'DepletedUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:Sink
-DEBUG3(core  ):               * ID: 35
-DEBUG3(memory):              Deleting agent 'Mine' ID=16
-DEBUG3(memory):              Deleting agent 'LEUStorage' ID=17
-DEBUG3(memory):              Deleting agent 'FleximoniaAtomicEnergyCommission' ID=25
-DEBUG3(memory):              Deleting agent 'MyStorage' ID=21
-DEBUG3(memory):              Deleting agent 'SecondLEU' ID=19
-DEBUG3(memory):              Deleting agent 'EnrichmentFacility' ID=20
-DEBUG3(memory):              Deleting agent 'Fleximonia' ID=26
-DEBUG3(memory):              Deleting agent 'DepletedUSink' ID=24
-DEBUG3(memory):              Deleting agent 'Fleximonia' ID=27
-DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=23
-DEBUG3(memory):              Deleting agent 'UraniumMine' ID=18
-DEBUG3(memory):              Deleting agent 'StoredUSink' ID=22
-DEBUG3(memory):              Agent ID=36, ptr=0x55a8b5e95e08 created.
-DEBUG3(memory):              Agent ID=37, ptr=0x55a8b5a719d8 created.
-DEBUG3(memory):              Agent ID=38, ptr=0x55a8b71e06b8 created.
-DEBUG3(memory):              Agent ID=39, ptr=0x55a8b69b0268 created.
-DEBUG3(memory):              Agent ID=40, ptr=0x55a8b69f64e8 created.
-DEBUG3(memory):              Agent ID=41, ptr=0x55a8b7257458 created.
+DEBUG3(core  ):               * ID: 38
+DEBUG3(memory):              Deleting agent 'FleximoniaAtomicEnergyCommission' ID=27
+DEBUG3(memory):              Deleting agent 'Mine' ID=18
+DEBUG3(memory):              Deleting agent 'LEUStorage' ID=19
+DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=25
+DEBUG3(memory):              Deleting agent 'StoredUSink' ID=24
+DEBUG3(memory):              Deleting agent 'SecondLEU' ID=21
+DEBUG3(memory):              Deleting agent 'EnrichmentFacility' ID=22
+DEBUG3(memory):              Deleting agent 'Fleximonia' ID=29
+DEBUG3(memory):              Deleting agent 'Fleximonia' ID=28
+DEBUG3(memory):              Deleting agent 'MyStorage' ID=23
+DEBUG3(memory):              Deleting agent 'UraniumMine' ID=20
+DEBUG3(memory):              Deleting agent 'DepletedUSink' ID=26
+DEBUG3(memory):              Agent ID=39, ptr=0x55e89a0b23f8 created.
+DEBUG3(memory):              Agent ID=40, ptr=0x55e899c8d308 created.
+DEBUG3(memory):              Agent ID=41, ptr=0x55e89b3eaa98 created.
+DEBUG3(memory):              Agent ID=42, ptr=0x55e89abd6338 created.
+DEBUG3(memory):              Agent ID=43, ptr=0x55e89ac24188 created.
+DEBUG3(memory):              Agent ID=44, ptr=0x55e89b47c078 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Agent ID=42, ptr=0x55a8b69ecd68 created.
-DEBUG3(memory):              Agent ID=43, ptr=0x55a8b7259588 created.
-DEBUG3(memory):              Agent ID=44, ptr=0x55a8b72599b8 created.
-DEBUG3(memory):              Agent ID=45, ptr=0x55a8b725a1b0 created.
-DEBUG3(memory):              Agent ID=46, ptr=0x55a8b5c5fa50 created.
-DEBUG3(memory):              Agent ID=47, ptr=0x55a8b5c1d130 created.
-DEBUG3(memory):              Agent ID=48, ptr=0x55a8b725b4a0 created.
-DEBUG3(memory):              Agent ID=49, ptr=0x55a8b725b698 created.
-DEBUG3(memory):              Agent ID=50, ptr=0x55a8b5ca73a8 created.
-DEBUG3(memory):              Agent ID=51, ptr=0x55a8b69cd368 created.
-DEBUG3(memory):              Agent ID=52, ptr=0x55a8b725b998 created.
-DEBUG3(memory):              Agent ID=53, ptr=0x55a8b725c3c8 created.
-DEBUG3(memory):              Agent ID=54, ptr=0x55a8b69f60d8 created.
-DEBUG3(memory):              Agent ID=55, ptr=0x55a8b725d5b8 created.
+DEBUG3(memory):              Agent ID=45, ptr=0x55e89ab82e68 created.
+DEBUG3(memory):              Agent ID=46, ptr=0x55e89a18d9b8 created.
+DEBUG3(memory):              Agent ID=47, ptr=0x55e89b47fb48 created.
+DEBUG3(memory):              Agent ID=48, ptr=0x55e89b47fec0 created.
+DEBUG3(memory):              Agent ID=49, ptr=0x55e899dbd3e0 created.
+DEBUG3(memory):              Agent ID=50, ptr=0x55e899e7f340 created.
+DEBUG3(memory):              Agent ID=51, ptr=0x55e89b480cc0 created.
+DEBUG3(memory):              Agent ID=52, ptr=0x55e89b481308 created.
+DEBUG3(memory):              Agent ID=53, ptr=0x55e89ac08058 created.
+DEBUG3(memory):              Agent ID=54, ptr=0x55e89a0ae938 created.
+DEBUG3(memory):              Agent ID=55, ptr=0x55e89b482148 created.
+DEBUG3(memory):              Agent ID=56, ptr=0x55e89b482548 created.
+Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
+Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
+Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
+DEBUG3(memory):              Agent ID=57, ptr=0x55e89b482d48 created.
+DEBUG3(memory):              Agent ID=58, ptr=0x55e89ac23d78 created.
+DEBUG3(memory):              Agent ID=59, ptr=0x55e89b4815c8 created.
 DEBUG2(FlxSrc):            FlexibleSource entering the simulation: 
-DEBUG2(FlxSrc):            Facility_UraniumMine ( ID=29, implementation=:flexicamore:FlexibleSource,  name=UraniumMine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'NaturalU' with recipe 'NaturalURecipe' at a current throughput of 100 kg per time step. commod producer members:  produces NaturalU?: yes throughput: 100 cost: 100
+DEBUG2(FlxSrc):            Facility_UraniumMine ( ID=31, implementation=:flexicamore:FlexibleSource,  name=UraniumMine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'NaturalU' with recipe 'NaturalURecipe' at a current throughput of 100 kg per time step. commod producer members:  produces NaturalU?: yes throughput: 100 cost: 100
 DEBUG2(FlxEnr):            Flexible Enrichment Facility entering the simulation: 
-DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=34, implementation=:flexicamore:FlexibleEnrichment,  name=EnrichmentFacility,  parentID=28 )  with:  lifetime: -1 build date: 0 with enrichment facility parameters:
+DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=37, implementation=:flexicamore:FlexibleEnrichment,  name=EnrichmentFacility,  parentID=30 )  with:  lifetime: -1 build date: 0 with enrichment facility parameters:
  * SWU (capacity, time):
      (200, 0)
      (100, 5)
@@ -2306,20 +2491,25 @@ DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=34, implementation=:
  INFO1(core  ):Beginning simulation
  INFO1(core  ):Current time: 0
  INFO2(core  ):  Beginning Tick for time: 0
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 1 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 10000 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
  INFO2(core  ):  Beginning DRE for time: 0
+ INFO3(buypol):    policy inventory (agent MyStorage-35): requesting 10000 kg via 1 request(s)
+ INFO3(buypol):      - one 10000 kg request of EnrichedU
  INFO3(FlxSrc):    UraniumMine is bidding up to 100 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
  INFO3(Source):    LEUStorage is bidding up to 50 kg of LEU
- INFO5(Source):        stats: Facility_LEUStorage ( ID=31, implementation=:cycamore:Source,  name=LEUStorage,  parentID=28 )  with:  lifetime: 1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 50 kg per time step  commod producer members:  produces LEU?: yes throughput: 50 cost: 50
+ INFO5(Source):        stats: Facility_LEUStorage ( ID=33, implementation=:cycamore:Source,  name=LEUStorage,  parentID=30 )  with:  lifetime: 1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 50 kg per time step  commod producer members:  produces LEU?: yes throughput: 50 cost: 50
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2342,6 +2532,11 @@ DEBUG5(core  ):                  Updating preference for one of EnrichmentFacili
 DEBUG5(core  ):                     preference: 1
 DEBUG1(core  ):          graph translated!
 DEBUG1(core  ):          solving graph...
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 0
+DEBUG5(core  ):                              node weight: 1
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 0
@@ -2423,52 +2618,58 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Adding 1 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 3 trade matches.
 DEBUG1(core  ):          trades translated!
- INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(Source):        LEUStorage sent an order for 50 of LEU
+ INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 100 of NaturalU
  INFO5(FlxEnr):        EnrichmentFacility is initially holding 0 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 12
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 12 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 50 of feed commodity 'LEU' to its inventory no. 1 which is now holding 62
+ INFO5(FlxEnr):        EnrichmentFacility added 50 of feed commodity 'LEU' to its inventory no. 1 which is now holding 50
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 50 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 62
  INFO5(FlxEnr):        EnrichmentFacility is initially holding 0 of feed (commodity: NaturalU) in inventory no. 0.
  INFO5(FlxEnr):        EnrichmentFacility added 100 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 100
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 0
  INFO3(core  ):    LEUStorage has reached the end of its lifetime
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 0.
- INFO4(SnkFac):      Sink 33 is holding 0 units of material at the close of month 0.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 0.
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 0 units of material at the close of step 0.
  INFO4(FlxEnr):      EnrichmentFacility used 0 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 0 units of material at the close of month 0.
+ INFO4(SnkFac):      Sink 38 is holding 0 units of material at the close of month 0.
  INFO2(core  ):  Beginning Decision for time: 0
- INFO3(core  ):    LEUStorage(0x55a8b69cd368) is being decommissioned
-DEBUG3(memory):              Deleting agent 'LEUStorage' ID=31
-DEBUG2(core  ):            Agent 'FleximoniaAtomicEnergyCommission' ID=28 has removed child 'LEUStorage' ID=31 from its list of children.
+ INFO3(core  ):    LEUStorage(0x55e89a0ae938) is being decommissioned
+DEBUG3(memory):              Deleting agent 'LEUStorage' ID=33
+DEBUG2(core  ):            Agent 'FleximoniaAtomicEnergyCommission' ID=30 has removed child 'LEUStorage' ID=33 from its list of children.
  INFO1(core  ):Current time: 1
  INFO2(core  ):  Beginning Tick for time: 1
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 1 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 10000 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
  INFO2(core  ):  Beginning DRE for time: 1
+ INFO3(buypol):    policy inventory (agent MyStorage-35): requesting 10000 kg via 1 request(s)
+ INFO3(buypol):      - one 10000 kg request of EnrichedU
  INFO3(FlxSrc):    UraniumMine is bidding up to 100 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 200
  INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 100
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2485,6 +2686,15 @@ DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 199.798
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 225.361
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of MyStorage's trade nodes:
+DEBUG5(core  ):                     preference: 1
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 199.798
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -2510,6 +2720,11 @@ DEBUG5(core  ):                  Determining node weight:
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
@@ -2528,11 +2743,11 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 0
 DEBUG5(core  ):                              node weight: 1
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 10000
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 10000
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 199.798
@@ -2541,16 +2756,32 @@ DEBUG1(core  ):          Capacity for node:
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 225.361
 DEBUG1(core  ):                   capacity: 0.443732
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):          Capacity for unode of arc: 10000
 DEBUG1(core  ):          Capacity for vnode of arc: 0.443732
 DEBUG1(core  ):          Capacity for arc         : 0.443732
 DEBUG1(core  ):          Greedy Solver is matching 0.443732 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 10000
+DEBUG1(core  ):                                    to: 9999.56
 DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 111.343
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1e+200
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1e+200
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 111.343
+DEBUG1(core  ):              unit capacity: 199.798
+DEBUG1(core  ):                   capacity: 0.557278
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 0
+DEBUG1(core  ):              unit capacity: 225.361
+DEBUG1(core  ):                   capacity: 0
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
+DEBUG1(core  ):          Capacity for vnode of arc: 0
+DEBUG1(core  ):          Capacity for arc         : 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -2584,9 +2815,9 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):          Greedy Solving for 1 amount of a resource.
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Adding 2 false arcs.
+DEBUG1(core  ):          Adding 3 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 3 trade matches.
 DEBUG1(core  ):          trades translated!
@@ -2595,56 +2826,66 @@ DEBUG1(core  ):          trades translated!
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
-DEBUG5(FlxEnr):                  using feed commod NaturalU
-DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
+DEBUG5(FlxEnr):                  Not enough NaturalU present.
+
+DEBUG5(FlxEnr):                  Considering feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG5(FlxEnr):                  using feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(FlxEnr):          EnrichmentFacility has enriched a material:
-DEBUG1(FlxEnr):            *     Amount: 100
-DEBUG1(FlxEnr):            *        SWU: 88.6568
-DEBUG1(FlxEnr):            * Feedcommod: NaturalU
+DEBUG1(FlxEnr):            *     Amount: 15.4313
+DEBUG1(FlxEnr):            *        SWU: 36.8318
+DEBUG1(FlxEnr):            * Feedcommod: LEU
  INFO5(FlxEnr):        EnrichmentFacility has performed an enrichment: 
- INFO5(FlxEnr):           * Feed Qty: 100
- INFO5(FlxEnr):           * Feed Commod.: NaturalU
- INFO5(FlxEnr):           * Feed Inv No.: 0
- INFO5(FlxEnr):           * Feed Assay: 0.71097%
+ INFO5(FlxEnr):           * Feed Qty: 15.4313
+ INFO5(FlxEnr):           * Feed Commod.: LEU
+ INFO5(FlxEnr):           * Feed Inv No.: 1
+ INFO5(FlxEnr):           * Feed Assay: 2.96323%
  INFO5(FlxEnr):           * Product Qty: 0.443732
  INFO5(FlxEnr):           * Product Assay: 92.9168%
- INFO5(FlxEnr):           * Tails Qty: 99.5563
+ INFO5(FlxEnr):           * Tails Qty: 14.9875
  INFO5(FlxEnr):           * Tails Assay: 0.3%
- INFO5(FlxEnr):           * SWU: 88.6568
- INFO5(FlxEnr):           * Current SWU capacity: 111.343
+ INFO5(FlxEnr):           * SWU: 36.8318
+ INFO5(FlxEnr):           * Current SWU capacity: 163.168
  INFO5(FlxSrc):        UraniumMine sent an order for 100 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 62 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 74
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 0 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 100 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 100
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 46.5687 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 58.5687
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 100 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 100 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 200
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 1
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 1.
- INFO4(SnkFac):      Sink 33 is holding 0.443732 units of material at the close of month 1.
- INFO4(FlxEnr):      EnrichmentFacility used 88.6568 SWU
- INFO4(FlxEnr):      EnrichmentFacility used 100 feed commodity NaturalU
- INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 0 units of material at the close of month 1.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 1.
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 0.443732 units of material at the close of step 1.
+ INFO4(FlxEnr):      EnrichmentFacility used 36.8318 SWU
+ INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity NaturalU
+ INFO4(FlxEnr):      EnrichmentFacility used 15.4313 feed commodity LEU
+ INFO4(SnkFac):      Sink 38 is holding 0 units of material at the close of month 1.
  INFO2(core  ):  Beginning Decision for time: 1
  INFO1(core  ):Current time: 2
  INFO2(core  ):  Beginning Tick for time: 2
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 1 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 10000 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
  INFO2(core  ):  Beginning DRE for time: 2
+ INFO3(buypol):    policy inventory (agent MyStorage-35): requesting 10000 kg via 1 request(s)
+ INFO3(buypol):      - one 10000 kg request of EnrichedU
  INFO3(FlxSrc):    UraniumMine is bidding up to 120 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
- INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 99.5563
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 14.9875
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 200
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 100
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 200
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2673,6 +2914,15 @@ DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass 
 DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of MyStorage's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 199.798
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 225.361
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG1(core  ):          graph translated!
@@ -2691,6 +2941,11 @@ DEBUG5(core  ):                  Determining node weight:
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
@@ -2709,29 +2964,45 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 10000
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 10000
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 1.00101
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 100
+DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 0.443732
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 0.443732
-DEBUG1(core  ):          Capacity for arc         : 0.443732
-DEBUG1(core  ):          Greedy Solver is matching 0.443732 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):                   capacity: 0.887464
+DEBUG1(core  ):          Capacity for unode of arc: 10000
+DEBUG1(core  ):          Capacity for vnode of arc: 0.887464
+DEBUG1(core  ):          Capacity for arc         : 0.887464
+DEBUG1(core  ):          Greedy Solver is matching 0.887464 amount of a resource.
+DEBUG1(core  ):          Updating capacity value from: 10000
+DEBUG1(core  ):                                    to: 9999.11
 DEBUG1(core  ):          Updating capacity value from: 200
-DEBUG1(core  ):                                    to: 111.343
-DEBUG1(core  ):          Updating capacity value from: 100
+DEBUG1(core  ):                                    to: 22.6864
+DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1e+200
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1e+200
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 22.6864
+DEBUG1(core  ):              unit capacity: 199.798
+DEBUG1(core  ):                   capacity: 0.113546
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 0
+DEBUG1(core  ):              unit capacity: 225.361
+DEBUG1(core  ):                   capacity: 0
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
+DEBUG1(core  ):          Capacity for vnode of arc: 0
+DEBUG1(core  ):          Capacity for arc         : 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -2771,78 +3042,88 @@ DEBUG1(core  ):             group capacity: 1e+299
 DEBUG1(core  ):              unit capacity: 1
 DEBUG1(core  ):                   capacity: 1e+299
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 99.5563
+DEBUG1(core  ):             group capacity: 14.9875
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 99.5563
+DEBUG1(core  ):                   capacity: 14.9875
 DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 99.5563
-DEBUG1(core  ):          Capacity for arc         : 99.5563
-DEBUG1(core  ):          Greedy Solver is matching 99.5563 amount of a resource.
+DEBUG1(core  ):          Capacity for vnode of arc: 14.9875
+DEBUG1(core  ):          Capacity for arc         : 14.9875
+DEBUG1(core  ):          Greedy Solver is matching 14.9875 amount of a resource.
 DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
-DEBUG1(core  ):          Updating capacity value from: 99.5563
+DEBUG1(core  ):          Updating capacity value from: 14.9875
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Adding 3 false arcs.
+DEBUG1(core  ):          Greedy Solving for 1 amount of a resource.
+DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 4 trade matches.
 DEBUG1(core  ):          trades translated!
  INFO5(Source):        Mine sent an order for 12 of LEU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 99.5563 of DepletedU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.443732 of EnrichedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 14.9875 of DepletedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.887464 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
-DEBUG5(FlxEnr):                  using feed commod NaturalU
-DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
+DEBUG5(FlxEnr):                  Not enough NaturalU present.
+
+DEBUG5(FlxEnr):                  Considering feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG5(FlxEnr):                  using feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(FlxEnr):          EnrichmentFacility has enriched a material:
-DEBUG1(FlxEnr):            *     Amount: 100
-DEBUG1(FlxEnr):            *        SWU: 88.6568
-DEBUG1(FlxEnr):            * Feedcommod: NaturalU
+DEBUG1(FlxEnr):            *     Amount: 30.8625
+DEBUG1(FlxEnr):            *        SWU: 73.6636
+DEBUG1(FlxEnr):            * Feedcommod: LEU
  INFO5(FlxEnr):        EnrichmentFacility has performed an enrichment: 
- INFO5(FlxEnr):           * Feed Qty: 100
- INFO5(FlxEnr):           * Feed Commod.: NaturalU
- INFO5(FlxEnr):           * Feed Inv No.: 0
- INFO5(FlxEnr):           * Feed Assay: 0.71097%
- INFO5(FlxEnr):           * Product Qty: 0.443732
+ INFO5(FlxEnr):           * Feed Qty: 30.8625
+ INFO5(FlxEnr):           * Feed Commod.: LEU
+ INFO5(FlxEnr):           * Feed Inv No.: 1
+ INFO5(FlxEnr):           * Feed Assay: 2.96323%
+ INFO5(FlxEnr):           * Product Qty: 0.887464
  INFO5(FlxEnr):           * Product Assay: 92.9168%
- INFO5(FlxEnr):           * Tails Qty: 99.5563
+ INFO5(FlxEnr):           * Tails Qty: 29.9751
  INFO5(FlxEnr):           * Tails Assay: 0.3%
- INFO5(FlxEnr):           * SWU: 88.6568
- INFO5(FlxEnr):           * Current SWU capacity: 111.343
+ INFO5(FlxEnr):           * SWU: 73.6636
+ INFO5(FlxEnr):           * Current SWU capacity: 126.336
  INFO5(FlxSrc):        UraniumMine sent an order for 120 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 74 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 86
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 0 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 120 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 120
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 27.7062 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 39.7062
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 200 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 120 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 320
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 2
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 2.
- INFO4(SnkFac):      Sink 33 is holding 0.887464 units of material at the close of month 2.
- INFO4(FlxEnr):      EnrichmentFacility used 88.6568 SWU
- INFO4(FlxEnr):      EnrichmentFacility used 100 feed commodity NaturalU
- INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 99.5563 units of material at the close of month 2.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 2.
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 1.3312 units of material at the close of step 2.
+ INFO4(FlxEnr):      EnrichmentFacility used 73.6636 SWU
+ INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity NaturalU
+ INFO4(FlxEnr):      EnrichmentFacility used 30.8625 feed commodity LEU
+ INFO4(SnkFac):      Sink 38 is holding 14.9875 units of material at the close of month 2.
  INFO2(core  ):  Beginning Decision for time: 2
  INFO1(core  ):Current time: 3
  INFO2(core  ):  Beginning Tick for time: 3
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 1 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 10000 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
  INFO2(core  ):  Beginning DRE for time: 3
+ INFO3(buypol):    policy inventory (agent MyStorage-35): requesting 10000 kg via 1 request(s)
+ INFO3(buypol):      - one 10000 kg request of EnrichedU
  INFO3(FlxSrc):    UraniumMine is bidding up to 130 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
- INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 99.5563
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 29.9751
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 200
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 120
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 320
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2857,6 +3138,11 @@ DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -2868,10 +3154,14 @@ DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass 
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 199.798
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 225.361
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
+DEBUG5(core  ):                  Updating preference for one of MyStorage's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG1(core  ):          graph translated!
 DEBUG1(core  ):          solving graph...
@@ -2889,6 +3179,11 @@ DEBUG5(core  ):                  Determining node weight:
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
@@ -2907,29 +3202,45 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 10000
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 10000
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 1.00101
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 120
+DEBUG1(core  ):             group capacity: 320
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 0.532478
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 0.532478
-DEBUG1(core  ):          Capacity for arc         : 0.532478
-DEBUG1(core  ):          Greedy Solver is matching 0.532478 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):                   capacity: 1.41994
+DEBUG1(core  ):          Capacity for unode of arc: 10000
+DEBUG1(core  ):          Capacity for vnode of arc: 1.00101
+DEBUG1(core  ):          Capacity for arc         : 1.00101
+DEBUG1(core  ):          Greedy Solver is matching 1.00101 amount of a resource.
+DEBUG1(core  ):          Updating capacity value from: 10000
+DEBUG1(core  ):                                    to: 9999
 DEBUG1(core  ):          Updating capacity value from: 200
-DEBUG1(core  ):                                    to: 93.6118
-DEBUG1(core  ):          Updating capacity value from: 120
-DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):                                    to: -2.84217e-14
+DEBUG1(core  ):          Updating capacity value from: 320
+DEBUG1(core  ):                                    to: 94.411
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1e+200
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1e+200
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: -2.84217e-14
+DEBUG1(core  ):              unit capacity: 199.798
+DEBUG1(core  ):                   capacity: -1.42252e-16
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 94.411
+DEBUG1(core  ):              unit capacity: 225.361
+DEBUG1(core  ):                   capacity: 0.418932
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
+DEBUG1(core  ):          Capacity for vnode of arc: -1.42252e-16
+DEBUG1(core  ):          Capacity for arc         : -1.42252e-16
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -2969,24 +3280,25 @@ DEBUG1(core  ):             group capacity: 1e+299
 DEBUG1(core  ):              unit capacity: 1
 DEBUG1(core  ):                   capacity: 1e+299
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 99.5563
+DEBUG1(core  ):             group capacity: 29.9751
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 99.5563
+DEBUG1(core  ):                   capacity: 29.9751
 DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 99.5563
-DEBUG1(core  ):          Capacity for arc         : 99.5563
-DEBUG1(core  ):          Greedy Solver is matching 99.5563 amount of a resource.
+DEBUG1(core  ):          Capacity for vnode of arc: 29.9751
+DEBUG1(core  ):          Capacity for arc         : 29.9751
+DEBUG1(core  ):          Greedy Solver is matching 29.9751 amount of a resource.
 DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
-DEBUG1(core  ):          Updating capacity value from: 99.5563
+DEBUG1(core  ):          Updating capacity value from: 29.9751
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Adding 3 false arcs.
+DEBUG1(core  ):          Greedy Solving for 1 amount of a resource.
+DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 4 trade matches.
 DEBUG1(core  ):          trades translated!
  INFO5(Source):        Mine sent an order for 12 of LEU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.532478 of EnrichedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 29.9751 of DepletedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 1.00101 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -2994,53 +3306,59 @@ DEBUG5(FlxEnr):                  using feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(FlxEnr):          EnrichmentFacility has enriched a material:
-DEBUG1(FlxEnr):            *     Amount: 120
-DEBUG1(FlxEnr):            *        SWU: 106.388
+DEBUG1(FlxEnr):            *     Amount: 225.589
+DEBUG1(FlxEnr):            *        SWU: 200
 DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):        EnrichmentFacility has performed an enrichment: 
- INFO5(FlxEnr):           * Feed Qty: 120
+ INFO5(FlxEnr):           * Feed Qty: 225.589
  INFO5(FlxEnr):           * Feed Commod.: NaturalU
  INFO5(FlxEnr):           * Feed Inv No.: 0
  INFO5(FlxEnr):           * Feed Assay: 0.71097%
- INFO5(FlxEnr):           * Product Qty: 0.532478
+ INFO5(FlxEnr):           * Product Qty: 1.00101
  INFO5(FlxEnr):           * Product Assay: 92.9168%
- INFO5(FlxEnr):           * Tails Qty: 119.468
+ INFO5(FlxEnr):           * Tails Qty: 224.588
  INFO5(FlxEnr):           * Tails Assay: 0.3%
- INFO5(FlxEnr):           * SWU: 106.388
- INFO5(FlxEnr):           * Current SWU capacity: 93.6118
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 99.5563 of DepletedU
+ INFO5(FlxEnr):           * SWU: 200
+ INFO5(FlxEnr):           * Current SWU capacity: -2.27374e-13
  INFO5(FlxSrc):        UraniumMine sent an order for 130 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 86 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 98
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 0 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 130 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 130
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 39.7062 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 51.7062
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 94.411 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 130 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 224.411
+ INFO3(buypol):    policy inventory (agent MyStorage-35): got 1.00101 kg of EnrichedU
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 3
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 3.
- INFO4(SnkFac):      Sink 33 is holding 1.41994 units of material at the close of month 3.
- INFO4(FlxEnr):      EnrichmentFacility used 106.388 SWU
- INFO4(FlxEnr):      EnrichmentFacility used 120 feed commodity NaturalU
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 3.
+DEBUG2(FlxSto):            FlexibleStorage MyStorage added resources to processing at t = 3
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 1.3312 units of material at the close of step 3.
+ INFO4(FlxEnr):      EnrichmentFacility used 200 SWU
+ INFO4(FlxEnr):      EnrichmentFacility used 225.589 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 199.113 units of material at the close of month 3.
+ INFO4(SnkFac):      Sink 38 is holding 44.9626 units of material at the close of month 3.
  INFO2(core  ):  Beginning Decision for time: 3
  INFO1(core  ):Current time: 4
  INFO2(core  ):  Beginning Tick for time: 4
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 10000 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 9999 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
  INFO2(core  ):  Beginning DRE for time: 4
+ INFO3(buypol):    policy inventory (agent MyStorage-35): requesting 9999 kg via 1 request(s)
+ INFO3(buypol):      - one 9999 kg request of EnrichedU
  INFO3(FlxSrc):    UraniumMine is bidding up to 150 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
- INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 119.468
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 224.588
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 200
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 130
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 224.411
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 9999
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -3071,6 +3389,15 @@ DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass 
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 199.798
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 225.361
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of MyStorage's trade nodes:
+DEBUG5(core  ):                     preference: 1
 DEBUG1(core  ):          graph translated!
 DEBUG1(core  ):          solving graph...
 DEBUG5(core  ):                  Determining node weight: 
@@ -3087,6 +3414,11 @@ DEBUG5(core  ):                  Determining node weight:
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
@@ -3105,29 +3437,45 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 9999 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 9999
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 9999
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 1.00101
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 130
+DEBUG1(core  ):             group capacity: 224.411
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 0.576851
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 0.576851
-DEBUG1(core  ):          Capacity for arc         : 0.576851
-DEBUG1(core  ):          Greedy Solver is matching 0.576851 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):                   capacity: 0.995783
+DEBUG1(core  ):          Capacity for unode of arc: 9999
+DEBUG1(core  ):          Capacity for vnode of arc: 0.995783
+DEBUG1(core  ):          Capacity for arc         : 0.995783
+DEBUG1(core  ):          Greedy Solver is matching 0.995783 amount of a resource.
+DEBUG1(core  ):          Updating capacity value from: 9999
+DEBUG1(core  ):                                    to: 9998
 DEBUG1(core  ):          Updating capacity value from: 200
-DEBUG1(core  ):                                    to: 84.7461
-DEBUG1(core  ):          Updating capacity value from: 130
+DEBUG1(core  ):                                    to: 1.04432
+DEBUG1(core  ):          Updating capacity value from: 224.411
 DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1e+200
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1e+200
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1.04432
+DEBUG1(core  ):              unit capacity: 199.798
+DEBUG1(core  ):                   capacity: 0.00522689
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 0
+DEBUG1(core  ):              unit capacity: 225.361
+DEBUG1(core  ):                   capacity: 0
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
+DEBUG1(core  ):          Capacity for vnode of arc: 0
+DEBUG1(core  ):          Capacity for arc         : 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -3167,87 +3515,95 @@ DEBUG1(core  ):             group capacity: 1e+299
 DEBUG1(core  ):              unit capacity: 1
 DEBUG1(core  ):                   capacity: 1e+299
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 119.468
+DEBUG1(core  ):             group capacity: 224.588
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 119.468
+DEBUG1(core  ):                   capacity: 224.588
 DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 119.468
-DEBUG1(core  ):          Capacity for arc         : 119.468
-DEBUG1(core  ):          Greedy Solver is matching 119.468 amount of a resource.
+DEBUG1(core  ):          Capacity for vnode of arc: 224.588
+DEBUG1(core  ):          Capacity for arc         : 224.588
+DEBUG1(core  ):          Greedy Solver is matching 224.588 amount of a resource.
 DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
-DEBUG1(core  ):          Updating capacity value from: 119.468
+DEBUG1(core  ):          Updating capacity value from: 224.588
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Adding 3 false arcs.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
+DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 4 trade matches.
 DEBUG1(core  ):          trades translated!
  INFO5(Source):        Mine sent an order for 12 of LEU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 119.468 of DepletedU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.576851 of EnrichedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 224.588 of DepletedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.995783 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
-DEBUG5(FlxEnr):                  using feed commod NaturalU
-DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
+DEBUG5(FlxEnr):                  Not enough NaturalU present.
+
+DEBUG5(FlxEnr):                  Considering feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG5(FlxEnr):                  using feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(FlxEnr):          EnrichmentFacility has enriched a material:
-DEBUG1(FlxEnr):            *     Amount: 130
-DEBUG1(FlxEnr):            *        SWU: 115.254
-DEBUG1(FlxEnr):            * Feedcommod: NaturalU
+DEBUG1(FlxEnr):            *     Amount: 34.6295
+DEBUG1(FlxEnr):            *        SWU: 82.6546
+DEBUG1(FlxEnr):            * Feedcommod: LEU
  INFO5(FlxEnr):        EnrichmentFacility has performed an enrichment: 
- INFO5(FlxEnr):           * Feed Qty: 130
- INFO5(FlxEnr):           * Feed Commod.: NaturalU
- INFO5(FlxEnr):           * Feed Inv No.: 0
- INFO5(FlxEnr):           * Feed Assay: 0.71097%
- INFO5(FlxEnr):           * Product Qty: 0.576851
+ INFO5(FlxEnr):           * Feed Qty: 34.6295
+ INFO5(FlxEnr):           * Feed Commod.: LEU
+ INFO5(FlxEnr):           * Feed Inv No.: 1
+ INFO5(FlxEnr):           * Feed Assay: 2.96323%
+ INFO5(FlxEnr):           * Product Qty: 0.995783
  INFO5(FlxEnr):           * Product Assay: 92.9168%
- INFO5(FlxEnr):           * Tails Qty: 129.423
+ INFO5(FlxEnr):           * Tails Qty: 33.6337
  INFO5(FlxEnr):           * Tails Assay: 0.3%
- INFO5(FlxEnr):           * SWU: 115.254
- INFO5(FlxEnr):           * Current SWU capacity: 84.7461
+ INFO5(FlxEnr):           * SWU: 82.6546
+ INFO5(FlxEnr):           * Current SWU capacity: 117.345
  INFO5(FlxSrc):        UraniumMine sent an order for 150 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 98 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 110
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 0 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 150 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 150
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 17.0767 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 29.0767
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 224.411 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 150 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 374.411
+ INFO3(buypol):    policy inventory (agent MyStorage-35): got 0.995783 kg of EnrichedU
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 4
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 4.
- INFO4(SnkFac):      Sink 33 is holding 1.99679 units of material at the close of month 4.
- INFO4(FlxEnr):      EnrichmentFacility used 115.254 SWU
- INFO4(FlxEnr):      EnrichmentFacility used 130 feed commodity NaturalU
- INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 318.58 units of material at the close of month 4.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 4.
+DEBUG2(FlxSto):            FlexibleStorage MyStorage added resources to processing at t = 4
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 1.3312 units of material at the close of step 4.
+ INFO4(FlxEnr):      EnrichmentFacility used 82.6546 SWU
+ INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity NaturalU
+ INFO4(FlxEnr):      EnrichmentFacility used 34.6295 feed commodity LEU
+ INFO4(SnkFac):      Sink 38 is holding 269.551 units of material at the close of month 4.
  INFO2(core  ):  Beginning Decision for time: 4
  INFO1(core  ):Current time: 5
-DEBUG3(memory):              Agent ID=36, ptr=0x55a8b6ab2258 created.
- INFO3(core  ):    Building a SecondLEU from parent 0x55a8b725b4a0
+DEBUG3(memory):              Agent ID=39, ptr=0x55e89acd3798 created.
+ INFO3(core  ):    Building a SecondLEU from parent 0x55e89b480cc0
 DEBUG1(core  ):          Agent 'SecondLEU' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSource
-DEBUG3(core  ):               * ID: 36
+DEBUG3(core  ):               * ID: 39
 DEBUG2(FlxSrc):            FlexibleSource entering the simulation: 
-DEBUG2(FlxSrc):            Facility_SecondLEU ( ID=36, implementation=:flexicamore:FlexibleSource,  name=SecondLEU,  parentID=28 )  with:  lifetime: -1 build date: 5 supplies commodity 'LEU' with recipe 'LEURecipe' at a current throughput of 200 kg per time step. commod producer members:  produces LEU?: yes throughput: 200 cost: 200
+DEBUG2(FlxSrc):            Facility_SecondLEU ( ID=39, implementation=:flexicamore:FlexibleSource,  name=SecondLEU,  parentID=30 )  with:  lifetime: -1 build date: 5 supplies commodity 'LEU' with recipe 'LEURecipe' at a current throughput of 200 kg per time step. commod producer members:  produces LEU?: yes throughput: 200 cost: 200
  INFO2(core  ):  Beginning Tick for time: 5
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 10000 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 0 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
  INFO2(core  ):  Beginning DRE for time: 5
  INFO3(FlxSrc):    UraniumMine is bidding up to 150 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
- INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 129.423
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 33.6337
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 100
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 150
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 374.411
  INFO3(FlxSrc):    SecondLEU is bidding up to 200 kg of LEU
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -3317,29 +3673,29 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0.500505
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 150
+DEBUG1(core  ):             group capacity: 374.411
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 0.665598
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 1.66138
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0.500505
 DEBUG1(core  ):          Capacity for arc         : 0.500505
 DEBUG1(core  ):          Greedy Solver is matching 0.500505 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 1e+200
+DEBUG1(core  ):                                    to: 1e+200
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Updating capacity value from: 150
-DEBUG1(core  ):                                    to: 37.2055
+DEBUG1(core  ):          Updating capacity value from: 374.411
+DEBUG1(core  ):                                    to: 261.617
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -3395,18 +3751,18 @@ DEBUG1(core  ):             group capacity: 1e+299
 DEBUG1(core  ):              unit capacity: 1
 DEBUG1(core  ):                   capacity: 1e+299
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 129.423
+DEBUG1(core  ):             group capacity: 33.6337
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 129.423
+DEBUG1(core  ):                   capacity: 33.6337
 DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 129.423
-DEBUG1(core  ):          Capacity for arc         : 129.423
-DEBUG1(core  ):          Greedy Solver is matching 129.423 amount of a resource.
+DEBUG1(core  ):          Capacity for vnode of arc: 33.6337
+DEBUG1(core  ):          Capacity for arc         : 33.6337
+DEBUG1(core  ):          Greedy Solver is matching 33.6337 amount of a resource.
 DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
-DEBUG1(core  ):          Updating capacity value from: 129.423
+DEBUG1(core  ):          Updating capacity value from: 33.6337
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Adding 3 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 5 trade matches.
@@ -3433,57 +3789,58 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Qty: 112.294
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
- INFO5(FlxEnr):           * Current SWU capacity: -2.27374e-13
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 129.423 of DepletedU
+ INFO5(FlxEnr):           * Current SWU capacity: 0
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 33.6337 of DepletedU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 150 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 110 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 122
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 122 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 322
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 37.2055 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 150 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 187.206
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 29.0767 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 41.0767
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 41.0767 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 241.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 261.617 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 150 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 411.617
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 5
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 5.
- INFO4(SnkFac):      Sink 33 is holding 2.4973 units of material at the close of month 5.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 5.
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 1.8317 units of material at the close of step 5.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 448.003 units of material at the close of month 5.
+ INFO4(SnkFac):      Sink 38 is holding 303.184 units of material at the close of month 5.
  INFO2(core  ):  Beginning Decision for time: 5
  INFO1(core  ):Current time: 6
-DEBUG3(memory):              Agent ID=37, ptr=0x55a8b6a10918 created.
- INFO3(core  ):    Building a WeapongradeUSink from parent 0x55a8b725b4a0
+DEBUG3(memory):              Agent ID=40, ptr=0x55e89abe33f8 created.
+ INFO3(core  ):    Building a WeapongradeUSink from parent 0x55e89b480cc0
 DEBUG1(core  ):          Agent 'WeapongradeUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
-DEBUG3(core  ):               * Spec: :cycamore:Sink
-DEBUG3(core  ):               * ID: 37
+DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSink
+DEBUG3(core  ):               * ID: 40
  INFO2(core  ):  Beginning Tick for time: 6
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 10000 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 0 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO2(core  ):  Beginning DRE for time: 6
  INFO3(FlxSrc):    UraniumMine is bidding up to 20000 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
  INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 112.294
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 100
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 187.206
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 411.617
  INFO3(FlxSrc):    SecondLEU is bidding up to 200 kg of LEU
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
-DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3563,29 +3920,29 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0.500505
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 187.206
+DEBUG1(core  ):             group capacity: 411.617
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 0.830691
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 1.82647
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0.500505
 DEBUG1(core  ):          Capacity for arc         : 0.500505
 DEBUG1(core  ):          Greedy Solver is matching 0.500505 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 1e+200
+DEBUG1(core  ):                                    to: 1e+200
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Updating capacity value from: 187.206
-DEBUG1(core  ):                                    to: 74.411
+DEBUG1(core  ):          Updating capacity value from: 411.617
+DEBUG1(core  ):                                    to: 298.822
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -3652,23 +4009,23 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 112.294
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 0
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 74.411
+DEBUG1(core  ):             group capacity: 298.822
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 0.330185
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 1.32597
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 5 trade matches.
@@ -3696,51 +4053,55 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Qty: 112.294
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
- INFO5(FlxEnr):           * Current SWU capacity: -2.27374e-13
+ INFO5(FlxEnr):           * Current SWU capacity: 0
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 20000 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 322 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 334
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 334 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 534
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 74.411 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 20000 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 20074.4
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 241.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 253.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 253.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 453.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 298.822 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 20000 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 20298.8
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 6
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 6.
- INFO4(SnkFac):      Sink 33 is holding 2.4973 units of material at the close of month 6.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 0 units of material at the close of step 6.
+ INFO4(FlxSto):      FlexibleStorage MyStorage moved resources from ready to stocks at t = 6
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 2.33221 units of material at the close of step 6.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 560.297 units of material at the close of month 6.
- INFO4(SnkFac):      Sink 37 is holding 0.500505 units of material at the close of month 6.
+ INFO4(SnkFac):      Sink 38 is holding 415.478 units of material at the close of month 6.
+ INFO4(FlxSnk):      FlexibleSink 40 is holding 0 units of material at the close of step 6.
  INFO2(core  ):  Beginning Decision for time: 6
  INFO1(core  ):Current time: 7
  INFO2(core  ):  Beginning Tick for time: 7
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 10000 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 0 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO2(core  ):  Beginning DRE for time: 7
  INFO3(FlxSrc):    UraniumMine is bidding up to 20000 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO3(selpol):    policy stocks (agent MyStorage-35): bidding out 1.00101 kg
+ INFO3(selpol):      - bid 1.00101 kg on a request for StoredU
  INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 112.294
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 100
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 20074.4
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 20298.8
  INFO3(FlxSrc):    SecondLEU is bidding up to 200 kg of LEU
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
-DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3751,6 +4112,11 @@ DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of StoredUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3785,28 +4151,6 @@ DEBUG1(core  ):          graph translated!
 DEBUG1(core  ):          solving graph...
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 0
-DEBUG5(core  ):                              node weight: 1
-DEBUG1(core  ):          Group weight value during graph preconditioning is 1.
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
@@ -3819,30 +4163,69 @@ DEBUG5(core  ):                  Determining node weight:
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 10000
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 10000
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1.00101
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1.00101
+DEBUG1(core  ):          Capacity for unode of arc: 10000
+DEBUG1(core  ):          Capacity for vnode of arc: 1.00101
+DEBUG1(core  ):          Capacity for arc         : 1.00101
+DEBUG1(core  ):          Greedy Solver is matching 1.00101 amount of a resource.
+DEBUG1(core  ):          Updating capacity value from: 10000
+DEBUG1(core  ):                                    to: 9999
+DEBUG1(core  ):          Updating capacity value from: 1.00101
+DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1e+200
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0.500505
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 20074.4
+DEBUG1(core  ):             group capacity: 20298.8
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 89.0766
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 90.0723
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0.500505
 DEBUG1(core  ):          Capacity for arc         : 0.500505
 DEBUG1(core  ):          Greedy Solver is matching 0.500505 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 1e+200
+DEBUG1(core  ):                                    to: 1e+200
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Updating capacity value from: 20074.4
-DEBUG1(core  ):                                    to: 19961.6
+DEBUG1(core  ):          Updating capacity value from: 20298.8
+DEBUG1(core  ):                                    to: 20186
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -3909,26 +4292,25 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 112.294
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 0
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 19961.6
+DEBUG1(core  ):             group capacity: 20186
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 88.5761
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 89.5718
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Adding 4 false arcs.
+DEBUG1(core  ):          Adding 5 false arcs.
 DEBUG1(core  ):          graph solved!
-DEBUG1(core  ):          Back traslating 5 trade matches.
+DEBUG1(core  ):          Back traslating 6 trade matches.
 DEBUG1(core  ):          trades translated!
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
@@ -3953,51 +4335,56 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Qty: 112.294
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
- INFO5(FlxEnr):           * Current SWU capacity: -2.27374e-13
+ INFO5(FlxEnr):           * Current SWU capacity: 0
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 20000 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 534 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 546
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 546 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 746
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 19961.6 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 20000 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 39961.6
+ INFO3(selpol):    policy stocks (agent MyStorage-35):  sending 1.00101 kg of StoredU
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 453.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 465.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 465.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 665.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 20186 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 20000 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 40186
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 7
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 7.
- INFO4(SnkFac):      Sink 33 is holding 2.9978 units of material at the close of month 7.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 1.00101 units of material at the close of step 7.
+ INFO4(FlxSto):      FlexibleStorage MyStorage moved resources from ready to stocks at t = 7
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 2.33221 units of material at the close of step 7.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 672.591 units of material at the close of month 7.
- INFO4(SnkFac):      Sink 37 is holding 0.500505 units of material at the close of month 7.
+ INFO4(SnkFac):      Sink 38 is holding 527.772 units of material at the close of month 7.
+ INFO4(FlxSnk):      FlexibleSink 40 is holding 0.500505 units of material at the close of step 7.
  INFO2(core  ):  Beginning Decision for time: 7
  INFO1(core  ):Current time: 8
  INFO2(core  ):  Beginning Tick for time: 8
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 10000 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 0 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO2(core  ):  Beginning DRE for time: 8
  INFO3(FlxSrc):    UraniumMine is bidding up to 30000 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO3(selpol):    policy stocks (agent MyStorage-35): bidding out 0.995783 kg
+ INFO3(selpol):      - bid 0.995783 kg on a request for StoredU
  INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 112.294
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 100
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 39961.6
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 40186
  INFO3(FlxSrc):    SecondLEU is bidding up to 200 kg of LEU
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
-DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -4008,6 +4395,11 @@ DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of StoredUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -4042,28 +4434,6 @@ DEBUG1(core  ):          graph translated!
 DEBUG1(core  ):          solving graph...
 DEBUG5(core  ):                  Determining node weight: 
 DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 0
-DEBUG5(core  ):                              node weight: 1
-DEBUG1(core  ):          Group weight value during graph preconditioning is 1.
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
-DEBUG5(core  ):                                 avg pref: 1
-DEBUG5(core  ):                              node weight: 1.5
-DEBUG5(core  ):                  Determining node weight: 
-DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
@@ -4076,30 +4446,69 @@ DEBUG5(core  ):                  Determining node weight:
 DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG5(core  ):                  Determining node weight: 
+DEBUG5(core  ):                         commodity weight: 1
+DEBUG5(core  ):                                 avg pref: 1
+DEBUG5(core  ):                              node weight: 1.5
+DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 10000
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 10000
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 0.995783
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 0.995783
+DEBUG1(core  ):          Capacity for unode of arc: 10000
+DEBUG1(core  ):          Capacity for vnode of arc: 0.995783
+DEBUG1(core  ):          Capacity for arc         : 0.995783
+DEBUG1(core  ):          Greedy Solver is matching 0.995783 amount of a resource.
+DEBUG1(core  ):          Updating capacity value from: 10000
+DEBUG1(core  ):                                    to: 9999
+DEBUG1(core  ):          Updating capacity value from: 0.995783
+DEBUG1(core  ):                                    to: 0
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
+DEBUG1(core  ):          Capacity for node: 
+DEBUG1(core  ):             group capacity: 1e+200
+DEBUG1(core  ):              unit capacity: 1
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0.500505
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 39961.6
+DEBUG1(core  ):             group capacity: 40186
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 177.322
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 178.318
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0.500505
 DEBUG1(core  ):          Capacity for arc         : 0.500505
 DEBUG1(core  ):          Greedy Solver is matching 0.500505 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 1e+200
+DEBUG1(core  ):                                    to: 1e+200
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Updating capacity value from: 39961.6
-DEBUG1(core  ):                                    to: 39848.8
+DEBUG1(core  ):          Updating capacity value from: 40186
+DEBUG1(core  ):                                    to: 40073.2
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 1e+299
@@ -4166,26 +4575,25 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 112.294
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 0
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 39848.8
+DEBUG1(core  ):             group capacity: 40073.2
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 176.822
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):                   capacity: 177.818
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
-DEBUG1(core  ):          Adding 4 false arcs.
+DEBUG1(core  ):          Adding 5 false arcs.
 DEBUG1(core  ):          graph solved!
-DEBUG1(core  ):          Back traslating 5 trade matches.
+DEBUG1(core  ):          Back traslating 6 trade matches.
 DEBUG1(core  ):          trades translated!
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.500505 of EnrichedU
@@ -4209,62 +4617,59 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Qty: 112.294
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
- INFO5(FlxEnr):           * Current SWU capacity: -2.27374e-13
+ INFO5(FlxEnr):           * Current SWU capacity: 0
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 30000 of NaturalU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 746 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 758
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 758 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 958
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 39848.8 of feed (commodity: NaturalU) in inventory no. 0.
- INFO5(FlxEnr):        EnrichmentFacility added 30000 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 69848.8
+ INFO3(selpol):    policy stocks (agent MyStorage-35):  sending 0.995783 kg of StoredU
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 665.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 677.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 677.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 877.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 40073.2 of feed (commodity: NaturalU) in inventory no. 0.
+ INFO5(FlxEnr):        EnrichmentFacility added 30000 of feed commodity 'NaturalU' to its inventory no. 0 which is now holding 70073.2
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 8
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 8.
- INFO4(SnkFac):      Sink 33 is holding 3.49831 units of material at the close of month 8.
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 1.99679 units of material at the close of step 8.
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 2.83271 units of material at the close of step 8.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 784.885 units of material at the close of month 8.
- INFO4(SnkFac):      Sink 37 is holding 0.500505 units of material at the close of month 8.
+ INFO4(SnkFac):      Sink 38 is holding 640.066 units of material at the close of month 8.
+ INFO4(FlxSnk):      FlexibleSink 40 is holding 0.500505 units of material at the close of step 8.
  INFO2(core  ):  Beginning Decision for time: 8
  INFO1(core  ):Current time: 9
  INFO2(core  ):  Beginning Tick for time: 9
- INFO4(SnkFac):      StoredUSink will request 1e+299 kg of StoredU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      StoredUSink will request 10000 kg of StoredU.
+ INFO4(FlxSto):      MyStorage has capacity for 0 kg of material.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO4(SnkFac):      DepletedUSink will request 1e+299 kg of DepletedU.
- INFO4(SnkFac):      WeapongradeUSink will request 1e+299 kg of EnrichedU.
+ INFO4(FlxSnk):      WeapongradeUSink will request 1e+200 kg of EnrichedU.
  INFO2(core  ):  Beginning DRE for time: 9
  INFO3(FlxSrc):    UraniumMine is bidding up to 0 kg of NaturalU
  INFO3(Source):    Mine is bidding up to 12 kg of LEU
- INFO5(Source):        stats: Facility_Mine ( ID=30, implementation=:cycamore:Source,  name=Mine,  parentID=28 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
+ INFO5(Source):        stats: Facility_Mine ( ID=32, implementation=:cycamore:Source,  name=Mine,  parentID=30 )  with:  lifetime: -1 build date: 0 supplies commodity 'LEU' with recipe 'LEURecipe' at a throughput of 12 kg per time step  commod producer members:  produces LEU?: yes throughput: 12 cost: 12
  INFO5(FlxEnr):        EnrichmentFacility adding tails capacity constraint of 112.294
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
  INFO5(FlxEnr):        EnrichmentFacility adding a SWU constraint of 100000
- INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 69848.8
+ INFO5(FlxEnr):        EnrichmentFacility adding a feed constraint of 70073.2
  INFO3(FlxSrc):    SecondLEU is bidding up to 200 kg of LEU
 DEBUG1(core  ):          done with info gathering
 DEBUG1(core  ):          translating graph...
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 10000
+DEBUG4(core  ):                adding 1 request capacities
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
-DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
-DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -4284,6 +4689,11 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -4329,28 +4739,28 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 1
 DEBUG5(core  ):                              node weight: 1.5
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.5.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100000
 DEBUG1(core  ):              unit capacity: 199.798
 DEBUG1(core  ):                   capacity: 500.505
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 69848.8
+DEBUG1(core  ):             group capacity: 70073.2
 DEBUG1(core  ):              unit capacity: 225.361
-DEBUG1(core  ):                   capacity: 309.941
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
-DEBUG1(core  ):          Capacity for vnode of arc: 309.941
-DEBUG1(core  ):          Capacity for arc         : 309.941
-DEBUG1(core  ):          Greedy Solver is matching 309.941 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):                   capacity: 310.937
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
+DEBUG1(core  ):          Capacity for vnode of arc: 310.937
+DEBUG1(core  ):          Capacity for arc         : 310.937
+DEBUG1(core  ):          Greedy Solver is matching 310.937 amount of a resource.
+DEBUG1(core  ):          Updating capacity value from: 1e+200
+DEBUG1(core  ):                                    to: 1e+200
 DEBUG1(core  ):          Updating capacity value from: 100000
-DEBUG1(core  ):                                    to: 38074.3
-DEBUG1(core  ):          Updating capacity value from: 69848.8
+DEBUG1(core  ):                                    to: 37875.3
+DEBUG1(core  ):          Updating capacity value from: 70073.2
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
@@ -4369,20 +4779,20 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 112.294
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 1e+200 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 1e+200
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 1e+200
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 38074.3
+DEBUG1(core  ):             group capacity: 37875.3
 DEBUG1(core  ):              unit capacity: 199.798
-DEBUG1(core  ):                   capacity: 190.564
+DEBUG1(core  ):                   capacity: 189.568
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 0
 DEBUG1(core  ):              unit capacity: 225.361
 DEBUG1(core  ):                   capacity: 0
-DEBUG1(core  ):          Capacity for unode of arc: 1e+299
+DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -4418,63 +4828,70 @@ DEBUG1(core  ):          Updating capacity value from: 1e+299
 DEBUG1(core  ):                                    to: 1e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
 DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 4 trade matches.
 DEBUG1(core  ):          trades translated!
  INFO5(Source):        Mine sent an order for 12 of LEU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 309.941 of EnrichedU
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 310.937 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
-DEBUG5(FlxEnr):                  using feed commod NaturalU
+DEBUG5(FlxEnr):                  Not enough NaturalU present.
+
+DEBUG5(FlxEnr):                  Considering feed commod LEU
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0296323 with u238 mass fraction: 0.970368
+DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
+DEBUG5(FlxEnr):                  Not enough LEU present.
+
+DEBUG5(FlxEnr):                  fallback to NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(FlxEnr):          EnrichmentFacility has enriched a material:
-DEBUG1(FlxEnr):            *     Amount: 69848.8
-DEBUG1(FlxEnr):            *        SWU: 61925.7
+DEBUG1(FlxEnr):            *     Amount: 70073.2
+DEBUG1(FlxEnr):            *        SWU: 62124.7
 DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):        EnrichmentFacility has performed an enrichment: 
- INFO5(FlxEnr):           * Feed Qty: 69848.8
+ INFO5(FlxEnr):           * Feed Qty: 70073.2
  INFO5(FlxEnr):           * Feed Commod.: NaturalU
  INFO5(FlxEnr):           * Feed Inv No.: 0
  INFO5(FlxEnr):           * Feed Assay: 0.71097%
- INFO5(FlxEnr):           * Product Qty: 309.941
+ INFO5(FlxEnr):           * Product Qty: 310.937
  INFO5(FlxEnr):           * Product Assay: 92.9168%
- INFO5(FlxEnr):           * Tails Qty: 69538.9
+ INFO5(FlxEnr):           * Tails Qty: 69762.3
  INFO5(FlxEnr):           * Tails Assay: 0.3%
- INFO5(FlxEnr):           * SWU: 61925.7
- INFO5(FlxEnr):           * Current SWU capacity: 38074.3
+ INFO5(FlxEnr):           * SWU: 62124.7
+ INFO5(FlxEnr):           * Current SWU capacity: 37875.3
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 958 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 970
- INFO5(FlxEnr):        EnrichmentFacility is initially holding 970 of feed (commodity: LEU) in inventory no. 1.
- INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 1170
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 877.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 12 of feed commodity 'LEU' to its inventory no. 1 which is now holding 889.077
+ INFO5(FlxEnr):        EnrichmentFacility is initially holding 889.077 of feed (commodity: LEU) in inventory no. 1.
+ INFO5(FlxEnr):        EnrichmentFacility added 200 of feed commodity 'LEU' to its inventory no. 1 which is now holding 1089.08
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 9
- INFO4(SnkFac):      Sink 32 is holding 0 units of material at the close of month 9.
- INFO4(SnkFac):      Sink 33 is holding 3.49831 units of material at the close of month 9.
- INFO4(FlxEnr):      EnrichmentFacility used 61925.7 SWU
- INFO4(FlxEnr):      EnrichmentFacility used 69848.8 feed commodity NaturalU
+ INFO4(FlxSnk):      FlexibleSink 34 is holding 1.99679 units of material at the close of step 9.
+ INFO4(FlxSnk):      FlexibleSink 36 is holding 313.77 units of material at the close of step 9.
+ INFO4(FlxEnr):      EnrichmentFacility used 62124.7 SWU
+ INFO4(FlxEnr):      EnrichmentFacility used 70073.2 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
- INFO4(SnkFac):      Sink 35 is holding 897.179 units of material at the close of month 9.
- INFO4(SnkFac):      Sink 37 is holding 310.442 units of material at the close of month 9.
+ INFO4(SnkFac):      Sink 38 is holding 752.36 units of material at the close of month 9.
+ INFO4(FlxSnk):      FlexibleSink 40 is holding 0.500505 units of material at the close of step 9.
  INFO2(core  ):  Beginning Decision for time: 9
 
 Status: Cyclus run successful!
 Output location: cyclus.sqlite
-Simulation ID: 379db49f-8fff-4da5-add3-4ca046fede11
-DEBUG3(memory):              Deleting agent 'LEUStorage' ID=17
-DEBUG3(memory):              Deleting agent 'Fleximonia' ID=27
-DEBUG3(memory):              Deleting agent 'Fleximonia' ID=26
-DEBUG3(memory):              Deleting agent 'Mine' ID=16
-DEBUG3(memory):              Deleting agent 'SecondLEU' ID=19
-DEBUG3(memory):              Deleting agent 'StoredUSink' ID=22
-DEBUG3(memory):              Deleting agent 'EnrichmentFacility' ID=20
-DEBUG3(memory):              Deleting agent 'UraniumMine' ID=18
-DEBUG3(memory):              Deleting agent 'MyStorage' ID=21
-DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=23
-DEBUG3(memory):              Deleting agent 'DepletedUSink' ID=24
-DEBUG3(memory):              Deleting agent 'FleximoniaAtomicEnergyCommission' ID=25
+Simulation ID: 4b2e5a45-d4c9-43ce-a097-674e031c8545
+DEBUG3(memory):              Deleting agent 'LEUStorage' ID=19
+DEBUG3(memory):              Deleting agent 'Fleximonia' ID=28
+DEBUG3(memory):              Deleting agent 'Fleximonia' ID=29
+DEBUG3(memory):              Deleting agent 'Mine' ID=18
+DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=25
+DEBUG3(memory):              Deleting agent 'StoredUSink' ID=24
+DEBUG3(memory):              Deleting agent 'SecondLEU' ID=21
+DEBUG3(memory):              Deleting agent 'EnrichmentFacility' ID=22
+DEBUG3(memory):              Deleting agent 'UraniumMine' ID=20
+DEBUG3(memory):              Deleting agent 'MyStorage' ID=23
+DEBUG3(memory):              Deleting agent 'DepletedUSink' ID=26
+DEBUG3(memory):              Deleting agent 'FleximoniaAtomicEnergyCommission' ID=27
