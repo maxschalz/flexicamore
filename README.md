@@ -13,6 +13,15 @@ This repository is developed by the
 from RWTH Aachen University, Germany.
 
 ## How to use Flexicamore
+### Installing flexicamore
+1. Make sure you have [Cyclus](https://github.com/cyclus/cyclus) installed.
+2. Clone this repository.
+3. Run the install-script: `$ python3 install.py`.
+4. Done!
+   You can run the unittests using `$ flexicamore_unit_tests` which should
+   result in all tests passing successfully.
+   Currently, there are 97 tests from 14 test cases and two disabled tests.
+
 ### Hands on: example input file
 An input file and the corresponding output using all `flexicamore` archetypes
 can be found in the `input` directory.
@@ -77,3 +86,8 @@ Flexible variables:
 Flexible variables:
 - inventory size: total amount of material present in the facility at a given
   moment.
+
+### FlexibleSink
+Flexible variables:
+- Throughput: maximum amount of material requested and (if available) accepted
+  per timestep.

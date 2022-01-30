@@ -19,6 +19,10 @@
      "name": "Sink"
     },
     {
+     "lib": "flexicamore",
+     "name": "FlexibleSink"
+    },
+    {
      "lib": "cycamore",
      "name": "Source"
     },
@@ -187,25 +191,21 @@
    {
     "name": "StoredUSink",
     "config": {
-     "Sink": {
-      "in_commods": {
-       "val": [
-        "StoredU"
-       ]
-      }
+     "FlexibleSink": {
+      "in_commods": {"val": ["StoredU"]},
+      "throughput_times": {"val": [0, 4]},
+      "throughput_vals": {"val": [1, 10000]}
      }
     }
    },
    {
     "name": "WeapongradeUSink",
     "config": {
-     "Sink": {
-      "in_commods": {
-       "val": [
-        "EnrichedU"
-       ]
-      },
-      "recipe_name": "WeapongradeURecipe"
+     "FlexibleSink": {
+      "in_commods": {"val": ["EnrichedU"]},
+      "recipe_name": "WeapongradeURecipe",
+      "throughput_times": {"val": [0]},
+      "throughput_vals": {"val": [1e200]}
      }
     }
    },
@@ -323,6 +323,10 @@
         {
          "number": 1,
          "prototype": "StoredUSink"
+        },
+        {
+         "number": 1,
+         "prototype": "MyStorage"
         },
         {
          "number": 1,
