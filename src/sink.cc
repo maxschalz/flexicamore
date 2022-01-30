@@ -211,10 +211,13 @@ void FlexibleSink::Tick() {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleSink::Tock() {
+  double total_material = inventory.quantity();
   LOG(cyclus::LEV_INFO4, "FlxSnk") << "FlexibleSink " << this->id()
-                                   << " is holding " << inventory.quantity()
+                                   << " is holding " << total_material
                                    << " units of material at the close of step "
                                    << context()->time() << ".";
+  cyclus::toolkit::RecordTimeSeries<double>("SinkTotalMats", this,
+                                            total_material);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
