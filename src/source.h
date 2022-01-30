@@ -119,7 +119,6 @@ class FlexibleSource : public cyclus::Facility,
   }
   std::vector<int> throughput_times;
 
-
   #pragma cyclus var {  \
     "default": [], \
     "tooltip": "List of throughput per timestep", \
