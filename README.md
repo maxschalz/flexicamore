@@ -20,7 +20,7 @@ from RWTH Aachen University, Germany.
 4. Done!
    You can run the unittests using `$ flexicamore_unit_tests` which should
    result in all tests passing successfully.
-   Currently, there are 97 tests from 14 test cases and two disabled tests.
+   Currently, there are 96 tests from 14 test cases and 3 disabled tests.
 
 ### Hands on: example input file
 An input file and the corresponding output using all `flexicamore` archetypes

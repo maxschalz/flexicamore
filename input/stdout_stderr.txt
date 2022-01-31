@@ -1045,23 +1045,23 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </region>
 </simulation>
 
-DEBUG3(memory):              Agent ID=0, ptr=0x55975301b8c0 created.
+DEBUG3(memory):              Agent ID=0, ptr=0x55632562e8c0 created.
 DEBUG3(memory):              Deleting agent '' ID=0
-DEBUG3(memory):              Agent ID=1, ptr=0x55975301b8c0 created.
+DEBUG3(memory):              Agent ID=1, ptr=0x55632562e8c0 created.
 DEBUG3(memory):              Deleting agent '' ID=1
-DEBUG3(memory):              Agent ID=2, ptr=0x559753196c10 created.
+DEBUG3(memory):              Agent ID=2, ptr=0x5563257a9c60 created.
 DEBUG3(memory):              Deleting agent '' ID=2
-DEBUG3(memory):              Agent ID=3, ptr=0x559754596308 created.
+DEBUG3(memory):              Agent ID=3, ptr=0x556326baa2c8 created.
 DEBUG3(memory):              Deleting agent '' ID=3
-DEBUG3(memory):              Agent ID=4, ptr=0x55975315dd98 created.
+DEBUG3(memory):              Agent ID=4, ptr=0x556325770de8 created.
 DEBUG3(memory):              Deleting agent '' ID=4
-DEBUG3(memory):              Agent ID=5, ptr=0x559753cd5ba8 created.
+DEBUG3(memory):              Agent ID=5, ptr=0x5563262e8bb8 created.
 DEBUG3(memory):              Deleting agent '' ID=5
-DEBUG3(memory):              Agent ID=6, ptr=0x55975324ffe8 created.
+DEBUG3(memory):              Agent ID=6, ptr=0x556325863038 created.
 DEBUG3(memory):              Deleting agent '' ID=6
-DEBUG3(memory):              Agent ID=7, ptr=0x5597545968b8 created.
+DEBUG3(memory):              Agent ID=7, ptr=0x556326baa5c8 created.
 DEBUG3(memory):              Deleting agent '' ID=7
-DEBUG3(memory):              Agent ID=8, ptr=0x559754599ab8 created.
+DEBUG3(memory):              Agent ID=8, ptr=0x556326bb3258 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
@@ -1422,53 +1422,53 @@ DEBUG5(core  ):                  Parsing the snippet: <simulation>
   </region>
 </simulation>
 
-DEBUG3(memory):              Agent ID=9, ptr=0x559753cdeb88 created.
-DEBUG3(memory):              Agent ID=10, ptr=0x559753db4d08 created.
-DEBUG3(memory):              Agent ID=11, ptr=0x5597545968b8 created.
-DEBUG3(memory):              Agent ID=12, ptr=0x559753d264d8 created.
-DEBUG3(memory):              Agent ID=13, ptr=0x559753dd2688 created.
-DEBUG3(memory):              Agent ID=14, ptr=0x559753dae968 created.
+DEBUG3(memory):              Agent ID=9, ptr=0x5563262f1bb8 created.
+DEBUG3(memory):              Agent ID=10, ptr=0x5563262e8bb8 created.
+DEBUG3(memory):              Agent ID=11, ptr=0x556326baa5c8 created.
+DEBUG3(memory):              Agent ID=12, ptr=0x5563263c6478 created.
+DEBUG3(memory):              Agent ID=13, ptr=0x5563263ddd18 created.
+DEBUG3(memory):              Agent ID=14, ptr=0x5563263e10e8 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Agent ID=15, ptr=0x559753daf8b8 created.
-DEBUG3(memory):              Agent ID=16, ptr=0x559753dd4048 created.
-DEBUG3(memory):              Agent ID=17, ptr=0x559753d59e58 created.
-DEBUG3(memory):              Agent ID=18, ptr=0x559753cdc270 created.
-DEBUG3(memory):              Agent ID=19, ptr=0x559752aa63a0 created.
-DEBUG3(memory):              Agent ID=20, ptr=0x559753dbae10 created.
+DEBUG3(memory):              Agent ID=15, ptr=0x5563263e1778 created.
+DEBUG3(memory):              Agent ID=16, ptr=0x5563263df0a8 created.
+DEBUG3(memory):              Agent ID=17, ptr=0x556326313c18 created.
+DEBUG3(memory):              Agent ID=18, ptr=0x5563262ef130 created.
+DEBUG3(memory):              Agent ID=19, ptr=0x5563250b93a0 created.
+DEBUG3(memory):              Agent ID=20, ptr=0x5563263c4f70 created.
 DEBUG1(core  ):          Agent 'Fleximonia' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :agents:NullRegion
 DEBUG3(core  ):               * ID: 20
-DEBUG3(memory):              Agent ID=21, ptr=0x559753dd3780 created.
+DEBUG3(memory):              Agent ID=21, ptr=0x556326367b20 created.
 DEBUG1(core  ):          Agent 'FleximoniaAtomicEnergyCommission' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:DeployInst
 DEBUG3(core  ):               * ID: 21
-DEBUG3(memory):              Agent ID=22, ptr=0x559753de9568 created.
+DEBUG3(memory):              Agent ID=22, ptr=0x5563263f0e58 created.
 DEBUG1(core  ):          Agent 'UraniumMine' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSource
 DEBUG3(core  ):               * ID: 22
 DEBUG2(FlxSrc):            FlexibleSource entering the simulation: 
 DEBUG2(FlxSrc):            Facility_UraniumMine ( ID=22, implementation=:flexicamore:FlexibleSource,  name=UraniumMine,  parentID=21 )  with:  lifetime: -1 build date: 0 supplies commodity 'NaturalU' with recipe 'NaturalURecipe' at a current throughput of 100 kg per time step. commod producer members:  produces NaturalU?: yes throughput: 100 cost: 100
-DEBUG3(memory):              Agent ID=23, ptr=0x559753dafe38 created.
+DEBUG3(memory):              Agent ID=23, ptr=0x5563263b50d8 created.
 DEBUG1(core  ):          Agent 'Mine' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:Source
 DEBUG3(core  ):               * ID: 23
-DEBUG3(memory):              Agent ID=24, ptr=0x559753db5518 created.
+DEBUG3(memory):              Agent ID=24, ptr=0x5563263f4f48 created.
 DEBUG1(core  ):          Agent 'LEUStorage' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:Source
 DEBUG3(core  ):               * ID: 24
-DEBUG3(memory):              Agent ID=25, ptr=0x559753deec68 created.
+DEBUG3(memory):              Agent ID=25, ptr=0x5563263f5478 created.
 DEBUG1(core  ):          Agent 'StoredUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSink
 DEBUG3(core  ):               * ID: 25
-DEBUG3(memory):              Agent ID=26, ptr=0x559753def2c8 created.
+DEBUG3(memory):              Agent ID=26, ptr=0x5563263facb8 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
@@ -1476,12 +1476,12 @@ DEBUG1(core  ):          Agent 'MyStorage' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleStorage
 DEBUG3(core  ):               * ID: 26
-DEBUG3(memory):              Agent ID=27, ptr=0x559753de56d8 created.
+DEBUG3(memory):              Agent ID=27, ptr=0x5563263f6c98 created.
 DEBUG1(core  ):          Agent 'WeapongradeUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSink
 DEBUG3(core  ):               * ID: 27
-DEBUG3(memory):              Agent ID=28, ptr=0x559753dac758 created.
+DEBUG3(memory):              Agent ID=28, ptr=0x5563263dc2a8 created.
 DEBUG1(core  ):          Agent 'EnrichmentFacility' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleEnrichment
@@ -1497,50 +1497,50 @@ DEBUG2(FlxEnr):            Facility_EnrichmentFacility ( ID=28, implementation=:
  * Output cyclus::Commodity: EnrichedU
  * Tails cyclus::Commodity: DepletedU
 
-DEBUG3(memory):              Agent ID=29, ptr=0x559753d63498 created.
+DEBUG3(memory):              Agent ID=29, ptr=0x55632636e018 created.
 DEBUG1(core  ):          Agent 'DepletedUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :cycamore:Sink
 DEBUG3(core  ):               * ID: 29
 DEBUG3(memory):              Deleting agent 'Fleximonia' ID=19
+DEBUG3(memory):              Deleting agent 'LEUStorage' ID=10
 DEBUG3(memory):              Deleting agent 'FleximoniaAtomicEnergyCommission' ID=18
 DEBUG3(memory):              Deleting agent 'Mine' ID=9
-DEBUG3(memory):              Deleting agent 'SecondLEU' ID=12
 DEBUG3(memory):              Deleting agent 'DepletedUSink' ID=17
-DEBUG3(memory):              Deleting agent 'MyStorage' ID=14
-DEBUG3(memory):              Deleting agent 'StoredUSink' ID=15
-DEBUG3(memory):              Deleting agent 'LEUStorage' ID=10
 DEBUG3(memory):              Deleting agent 'Fleximonia' ID=20
+DEBUG3(memory):              Deleting agent 'SecondLEU' ID=12
 DEBUG3(memory):              Deleting agent 'EnrichmentFacility' ID=13
 DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=16
+DEBUG3(memory):              Deleting agent 'MyStorage' ID=14
+DEBUG3(memory):              Deleting agent 'StoredUSink' ID=15
 DEBUG3(memory):              Deleting agent 'UraniumMine' ID=11
-DEBUG3(memory):              Agent ID=30, ptr=0x559753db4d08 created.
-DEBUG3(memory):              Agent ID=31, ptr=0x559753cdeb88 created.
-DEBUG3(memory):              Agent ID=32, ptr=0x5597545968b8 created.
-DEBUG3(memory):              Agent ID=33, ptr=0x559753d264d8 created.
-DEBUG3(memory):              Agent ID=34, ptr=0x559753dd0d18 created.
-DEBUG3(memory):              Agent ID=35, ptr=0x559754647fa8 created.
+DEBUG3(memory):              Agent ID=30, ptr=0x5563262f1bb8 created.
+DEBUG3(memory):              Agent ID=31, ptr=0x5563262e8bb8 created.
+DEBUG3(memory):              Agent ID=32, ptr=0x556326baa5c8 created.
+DEBUG3(memory):              Agent ID=33, ptr=0x5563263c6478 created.
+DEBUG3(memory):              Agent ID=34, ptr=0x5563263da738 created.
+DEBUG3(memory):              Agent ID=35, ptr=0x556326c5bf48 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Agent ID=36, ptr=0x559753dd4048 created.
-DEBUG3(memory):              Agent ID=37, ptr=0x559753daf8b8 created.
-DEBUG3(memory):              Agent ID=38, ptr=0x55975464b4d8 created.
-DEBUG3(memory):              Agent ID=39, ptr=0x55975464b800 created.
-DEBUG3(memory):              Agent ID=40, ptr=0x55975301b8c0 created.
-DEBUG3(memory):              Agent ID=41, ptr=0x559753019bc0 created.
-DEBUG3(memory):              Agent ID=42, ptr=0x55975464cbe0 created.
-DEBUG3(memory):              Agent ID=43, ptr=0x55975464cdd8 created.
-DEBUG3(memory):              Agent ID=44, ptr=0x559753ddf4d8 created.
-DEBUG3(memory):              Agent ID=45, ptr=0x559753cd5ba8 created.
-DEBUG3(memory):              Agent ID=46, ptr=0x55975464dff8 created.
-DEBUG3(memory):              Agent ID=47, ptr=0x55975464e308 created.
+DEBUG3(memory):              Agent ID=36, ptr=0x5563263e1778 created.
+DEBUG3(memory):              Agent ID=37, ptr=0x5563263df0a8 created.
+DEBUG3(memory):              Agent ID=38, ptr=0x556326c5f518 created.
+DEBUG3(memory):              Agent ID=39, ptr=0x556326c5f8d0 created.
+DEBUG3(memory):              Agent ID=40, ptr=0x55632562cbc0 created.
+DEBUG3(memory):              Agent ID=41, ptr=0x55632556d760 created.
+DEBUG3(memory):              Agent ID=42, ptr=0x556326c58300 created.
+DEBUG3(memory):              Agent ID=43, ptr=0x556326c60d78 created.
+DEBUG3(memory):              Agent ID=44, ptr=0x5563263f5188 created.
+DEBUG3(memory):              Agent ID=45, ptr=0x5563263c1d28 created.
+DEBUG3(memory):              Agent ID=46, ptr=0x556326c61dd8 created.
+DEBUG3(memory):              Agent ID=47, ptr=0x556326c62948 created.
 Experimental Warning: MatlBuyPolicy is experimental and its API may be subject to change
 Experimental Warning: MatlSellPolicy is experimental and its API may be subject to change
 Experimental Warning: 'FlexibleStorage' is based on the experimental Cycamore storage facility.
-DEBUG3(memory):              Agent ID=48, ptr=0x55975464e998 created.
-DEBUG3(memory):              Agent ID=49, ptr=0x559753db8c68 created.
-DEBUG3(memory):              Agent ID=50, ptr=0x55975464d098 created.
+DEBUG3(memory):              Agent ID=48, ptr=0x556326c62fd8 created.
+DEBUG3(memory):              Agent ID=49, ptr=0x5563263bcf88 created.
+DEBUG3(memory):              Agent ID=50, ptr=0x556326c61038 created.
 DEBUG2(FlxSrc):            FlexibleSource entering the simulation: 
 DEBUG2(FlxSrc):            Facility_UraniumMine ( ID=22, implementation=:flexicamore:FlexibleSource,  name=UraniumMine,  parentID=21 )  with:  lifetime: -1 build date: 0 supplies commodity 'NaturalU' with recipe 'NaturalURecipe' at a current throughput of 100 kg per time step. commod producer members:  produces NaturalU?: yes throughput: 100 cost: 100
 DEBUG2(FlxEnr):            Flexible Enrichment Facility entering the simulation: 
@@ -1580,7 +1580,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -1638,11 +1638,11 @@ DEBUG5(core  ):                         commodity weight: 1
 DEBUG5(core  ):                                 avg pref: 0
 DEBUG5(core  ):                              node weight: 1
 DEBUG1(core  ):          Group weight value during graph preconditioning is 1.
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 1
@@ -1651,14 +1651,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 100
 DEBUG1(core  ):          Capacity for arc         : 100
 DEBUG1(core  ):          Greedy Solver is matching 100 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 50
 DEBUG1(core  ):              unit capacity: 1
@@ -1667,14 +1667,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 50
 DEBUG1(core  ):          Capacity for arc         : 50
 DEBUG1(core  ):          Greedy Solver is matching 50 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 50
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -1683,8 +1683,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1 amount of a resource.
@@ -1716,7 +1716,7 @@ DEBUG1(core  ):          done with info gathering
  INFO4(SnkFac):      Sink 29 is holding 0 units of material at the close of month 0.
  INFO3(SnkFac):    }
  INFO2(core  ):  Beginning Decision for time: 0
- INFO3(core  ):    LEUStorage(0x559753cd5ba8) is being decommissioned
+ INFO3(core  ):    LEUStorage(0x5563263c1d28) is being decommissioned
 DEBUG3(memory):              Deleting agent 'LEUStorage' ID=24
 DEBUG2(core  ):            Agent 'FleximoniaAtomicEnergyCommission' ID=21 has removed child 'LEUStorage' ID=24 from its list of children.
  INFO1(core  ):Current time: 1
@@ -1744,7 +1744,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -1855,11 +1855,11 @@ DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 100
 DEBUG1(core  ):              unit capacity: 1
@@ -1868,14 +1868,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 100
 DEBUG1(core  ):          Capacity for arc         : 100
 DEBUG1(core  ):          Greedy Solver is matching 100 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -1884,8 +1884,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1 amount of a resource.
@@ -1966,7 +1966,7 @@ DEBUG2(core  ):            Translating request portfolio of size 9999.56
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2082,11 +2082,11 @@ DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 120
 DEBUG1(core  ):              unit capacity: 1
@@ -2095,14 +2095,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 120
 DEBUG1(core  ):          Capacity for arc         : 120
 DEBUG1(core  ):          Greedy Solver is matching 120 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 120
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -2111,8 +2111,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -2210,7 +2210,7 @@ DEBUG2(core  ):            Translating request portfolio of size 9998.67
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2326,11 +2326,11 @@ DEBUG1(core  ):                   capacity: 0.418932
 DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 1.42252e-16
 DEBUG1(core  ):          Capacity for arc         : 1.42252e-16
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 130
 DEBUG1(core  ):              unit capacity: 1
@@ -2339,14 +2339,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 130
 DEBUG1(core  ):          Capacity for arc         : 130
 DEBUG1(core  ):          Greedy Solver is matching 130 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 130
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -2355,8 +2355,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -2449,7 +2449,7 @@ DEBUG2(core  ):            Translating request portfolio of size 9997.67
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2462,11 +2462,6 @@ DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
-DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -2486,6 +2481,11 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG1(core  ):          graph translated!
 DEBUG1(core  ):          solving graph...
@@ -2565,11 +2565,11 @@ DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 150
 DEBUG1(core  ):              unit capacity: 1
@@ -2578,14 +2578,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 150
 DEBUG1(core  ):          Capacity for arc         : 150
 DEBUG1(core  ):          Greedy Solver is matching 150 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 150
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -2594,8 +2594,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -2620,7 +2620,6 @@ DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 4 trade matches.
 DEBUG1(core  ):          trades translated!
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 224.588 of DepletedU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.995783 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
@@ -2648,6 +2647,7 @@ DEBUG1(FlxEnr):            * Feedcommod: LEU
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 82.6546
  INFO5(FlxEnr):           * Current SWU capacity: 117.345
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 224.588 of DepletedU
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 150 of NaturalU
  INFO5(FlxEnr):        EnrichmentFacility is initially holding 17.0767 of feed (commodity: LEU) in inventory no. 1.
@@ -2667,8 +2667,8 @@ DEBUG1(core  ):          done with info gathering
  INFO3(SnkFac):    }
  INFO2(core  ):  Beginning Decision for time: 4
  INFO1(core  ):Current time: 5
-DEBUG3(memory):              Agent ID=30, ptr=0x559753e0b4b8 created.
- INFO3(core  ):    Building a SecondLEU from parent 0x55975464cbe0
+DEBUG3(memory):              Agent ID=30, ptr=0x556326413da8 created.
+ INFO3(core  ):    Building a SecondLEU from parent 0x556326c58300
 DEBUG1(core  ):          Agent 'SecondLEU' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSource
@@ -2699,7 +2699,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2718,11 +2718,6 @@ DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of StoredUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
-DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 199.798
@@ -2732,6 +2727,11 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -2812,11 +2812,11 @@ DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Updating capacity value from: 374.411
 DEBUG1(core  ):                                    to: 261.617
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 150
 DEBUG1(core  ):              unit capacity: 1
@@ -2825,14 +2825,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 150
 DEBUG1(core  ):          Capacity for arc         : 150
 DEBUG1(core  ):          Greedy Solver is matching 150 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 150
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 1
@@ -2841,14 +2841,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 200
 DEBUG1(core  ):          Capacity for arc         : 200
 DEBUG1(core  ):          Greedy Solver is matching 200 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -2857,8 +2857,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -2882,7 +2882,6 @@ DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 6 trade matches.
 DEBUG1(core  ):          trades translated!
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 33.6337 of DepletedU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.500505 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
@@ -2905,6 +2904,7 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
  INFO5(FlxEnr):           * Current SWU capacity: 0
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 33.6337 of DepletedU
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 150 of NaturalU
@@ -2928,8 +2928,8 @@ DEBUG1(core  ):          done with info gathering
  INFO3(SnkFac):    }
  INFO2(core  ):  Beginning Decision for time: 5
  INFO1(core  ):Current time: 6
-DEBUG3(memory):              Agent ID=31, ptr=0x559753df72c8 created.
- INFO3(core  ):    Building a WeapongradeUSink from parent 0x55975464cbe0
+DEBUG3(memory):              Agent ID=31, ptr=0x556326315c58 created.
+ INFO3(core  ):    Building a WeapongradeUSink from parent 0x556326c58300
 DEBUG1(core  ):          Agent 'WeapongradeUSink' is entering the simulation.
 DEBUG3(core  ):              It has:
 DEBUG3(core  ):               * Spec: :flexicamore:FlexibleSink
@@ -2959,7 +2959,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -2980,6 +2980,11 @@ DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of StoredUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
+DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 199.798
@@ -2998,11 +3003,6 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
-DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3088,11 +3088,11 @@ DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Updating capacity value from: 411.617
 DEBUG1(core  ):                                    to: 298.822
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 20000
 DEBUG1(core  ):              unit capacity: 1
@@ -3101,14 +3101,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 20000
 DEBUG1(core  ):          Capacity for arc         : 20000
 DEBUG1(core  ):          Greedy Solver is matching 20000 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 20000
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 1
@@ -3117,14 +3117,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 200
 DEBUG1(core  ):          Capacity for arc         : 200
 DEBUG1(core  ):          Greedy Solver is matching 200 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -3133,8 +3133,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -3174,6 +3174,7 @@ DEBUG1(core  ):          Adding 5 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 6 trade matches.
 DEBUG1(core  ):          trades translated!
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.500505 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
@@ -3196,7 +3197,6 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
  INFO5(FlxEnr):           * Current SWU capacity: 0
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 20000 of NaturalU
@@ -3211,14 +3211,14 @@ DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 6
  INFO4(FlxSnk):      FlexibleSink 25 is holding 1.3312 units of material at the close of step 6.
  INFO4(FlxSto):      FlexibleStorage MyStorage moved resources from ready to stocks at t = 6
- INFO4(FlxSnk):      FlexibleSink 27 is holding 1.49629 units of material at the close of step 6.
+ INFO4(FlxSnk):      FlexibleSink 27 is holding 1.99679 units of material at the close of step 6.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
  INFO3(SnkFac):    DepletedUSink is tocking {
  INFO4(SnkFac):      Sink 29 is holding 415.478 units of material at the close of month 6.
  INFO3(SnkFac):    }
- INFO4(FlxSnk):      FlexibleSink 31 is holding 0.500505 units of material at the close of step 6.
+ INFO4(FlxSnk):      FlexibleSink 31 is holding 0 units of material at the close of step 6.
  INFO2(core  ):  Beginning Decision for time: 6
  INFO1(core  ):Current time: 7
  INFO2(core  ):  Beginning Tick for time: 7
@@ -3246,7 +3246,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -3267,11 +3267,6 @@ DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of StoredUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
-DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 199.798
@@ -3290,6 +3285,11 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3375,11 +3375,11 @@ DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Updating capacity value from: 20298.8
 DEBUG1(core  ):                                    to: 20186
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 20000
 DEBUG1(core  ):              unit capacity: 1
@@ -3388,14 +3388,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 20000
 DEBUG1(core  ):          Capacity for arc         : 20000
 DEBUG1(core  ):          Greedy Solver is matching 20000 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 20000
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 1
@@ -3404,14 +3404,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 200
 DEBUG1(core  ):          Capacity for arc         : 200
 DEBUG1(core  ):          Greedy Solver is matching 200 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -3420,8 +3420,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -3461,7 +3461,6 @@ DEBUG1(core  ):          Adding 5 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 6 trade matches.
 DEBUG1(core  ):          trades translated!
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.500505 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
@@ -3484,6 +3483,7 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
  INFO5(FlxEnr):           * Current SWU capacity: 0
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 20000 of NaturalU
@@ -3497,14 +3497,14 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 7
  INFO4(FlxSnk):      FlexibleSink 25 is holding 2.33221 units of material at the close of step 7.
- INFO4(FlxSnk):      FlexibleSink 27 is holding 1.99679 units of material at the close of step 7.
+ INFO4(FlxSnk):      FlexibleSink 27 is holding 2.4973 units of material at the close of step 7.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
  INFO3(SnkFac):    DepletedUSink is tocking {
  INFO4(SnkFac):      Sink 29 is holding 527.772 units of material at the close of month 7.
  INFO3(SnkFac):    }
- INFO4(FlxSnk):      FlexibleSink 31 is holding 0.500505 units of material at the close of step 7.
+ INFO4(FlxSnk):      FlexibleSink 31 is holding 0 units of material at the close of step 7.
  INFO2(core  ):  Beginning Decision for time: 7
  INFO1(core  ):Current time: 8
  INFO2(core  ):  Beginning Tick for time: 8
@@ -3530,7 +3530,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -3545,6 +3545,11 @@ DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -3564,11 +3569,6 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
-DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3637,11 +3637,11 @@ DEBUG1(core  ):          Updating capacity value from: 100
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Updating capacity value from: 40186
 DEBUG1(core  ):                                    to: 40073.2
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 30000
 DEBUG1(core  ):              unit capacity: 1
@@ -3650,14 +3650,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 30000
 DEBUG1(core  ):          Capacity for arc         : 30000
 DEBUG1(core  ):          Greedy Solver is matching 30000 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 30000
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 1
@@ -3666,14 +3666,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 200
 DEBUG1(core  ):          Capacity for arc         : 200
 DEBUG1(core  ):          Greedy Solver is matching 200 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -3682,8 +3682,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
@@ -3724,6 +3724,7 @@ DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 5 trade matches.
 DEBUG1(core  ):          trades translated!
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 0.500505 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
@@ -3746,7 +3747,6 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 100
  INFO5(FlxEnr):           * Current SWU capacity: 0
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxSrc):        UraniumMine sent an order for 30000 of NaturalU
@@ -3759,14 +3759,14 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 8
  INFO4(FlxSnk):      FlexibleSink 25 is holding 2.33221 units of material at the close of step 8.
- INFO4(FlxSnk):      FlexibleSink 27 is holding 2.4973 units of material at the close of step 8.
+ INFO4(FlxSnk):      FlexibleSink 27 is holding 2.9978 units of material at the close of step 8.
  INFO4(FlxEnr):      EnrichmentFacility used 100 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 112.794 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
  INFO3(SnkFac):    DepletedUSink is tocking {
  INFO4(SnkFac):      Sink 29 is holding 640.066 units of material at the close of month 8.
  INFO3(SnkFac):    }
- INFO4(FlxSnk):      FlexibleSink 31 is holding 0.500505 units of material at the close of step 8.
+ INFO4(FlxSnk):      FlexibleSink 31 is holding 0 units of material at the close of step 8.
  INFO2(core  ):  Beginning Decision for time: 8
  INFO1(core  ):Current time: 9
  INFO2(core  ):  Beginning Tick for time: 9
@@ -3792,7 +3792,7 @@ DEBUG2(core  ):            Translating request portfolio of size 10000
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+200
 DEBUG4(core  ):                adding 1 request capacities
-DEBUG2(core  ):            Translating request portfolio of size 1e+299
+DEBUG2(core  ):            Translating request portfolio of size 2e+299
 DEBUG4(core  ):                adding 1 request capacities
 DEBUG2(core  ):            Translating request portfolio of size 1e+299
 DEBUG4(core  ):                adding 1 request capacities
@@ -3802,6 +3802,11 @@ DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of EnrichmentFacility's trade nodes:
+DEBUG5(core  ):                     preference: 1
+DEBUG4(core  ):                adding 1 bid capacities
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG1(core  ):          Additing unit capacity: 1
+DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 2 bid capacities
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
@@ -3821,11 +3826,6 @@ DEBUG1(core  ):          Additing unit capacity: 225.361
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.929168 with u238 mass fraction: 0.0708321
 DEBUG1(core  ):          Additing unit capacity: 1
 DEBUG5(core  ):                  Updating preference for one of WeapongradeUSink's trade nodes:
-DEBUG5(core  ):                     preference: 1
-DEBUG4(core  ):                adding 1 bid capacities
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG1(core  ):          Additing unit capacity: 1
-DEBUG5(core  ):                  Updating preference for one of DepletedUSink's trade nodes:
 DEBUG5(core  ):                     preference: 1
 DEBUG4(core  ):                adding 1 bid capacities
 DEBUG1(core  ):          Additing unit capacity: 1
@@ -3927,11 +3927,11 @@ DEBUG1(core  ):                   capacity: 0
 DEBUG1(core  ):          Capacity for unode of arc: 1e+200
 DEBUG1(core  ):          Capacity for vnode of arc: 0
 DEBUG1(core  ):          Capacity for arc         : 0
-DEBUG1(core  ):          Greedy Solving for 1e+299 amount of a resource.
+DEBUG1(core  ):          Greedy Solving for 2e+299 amount of a resource.
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 200
 DEBUG1(core  ):              unit capacity: 1
@@ -3940,14 +3940,14 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 200
 DEBUG1(core  ):          Capacity for arc         : 200
 DEBUG1(core  ):          Greedy Solver is matching 200 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 200
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Capacity for node: 
-DEBUG1(core  ):             group capacity: 1e+299
+DEBUG1(core  ):             group capacity: 2e+299
 DEBUG1(core  ):              unit capacity: 1
-DEBUG1(core  ):                   capacity: 1e+299
+DEBUG1(core  ):                   capacity: 2e+299
 DEBUG1(core  ):          Capacity for node: 
 DEBUG1(core  ):             group capacity: 12
 DEBUG1(core  ):              unit capacity: 1
@@ -3956,8 +3956,8 @@ DEBUG1(core  ):          Capacity for unode of arc: 1e+299
 DEBUG1(core  ):          Capacity for vnode of arc: 12
 DEBUG1(core  ):          Capacity for arc         : 12
 DEBUG1(core  ):          Greedy Solver is matching 12 amount of a resource.
-DEBUG1(core  ):          Updating capacity value from: 1e+299
-DEBUG1(core  ):                                    to: 1e+299
+DEBUG1(core  ):          Updating capacity value from: 2e+299
+DEBUG1(core  ):                                    to: 2e+299
 DEBUG1(core  ):          Updating capacity value from: 12
 DEBUG1(core  ):                                    to: 0
 DEBUG1(core  ):          Greedy Solving for 10000 amount of a resource.
@@ -3965,6 +3965,7 @@ DEBUG1(core  ):          Adding 4 false arcs.
 DEBUG1(core  ):          graph solved!
 DEBUG1(core  ):          Back traslating 4 trade matches.
 DEBUG1(core  ):          trades translated!
+ INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(FlxEnr):        EnrichmentFacility just received an order for 310.937 of EnrichedU
 DEBUG5(FlxEnr):                  Considering feed commod NaturalU
 DEBUG1(CEnr  ):          Comparing u235 mass fraction : 0.0071097 with u238 mass fraction: 0.99289
@@ -3994,7 +3995,6 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
  INFO5(FlxEnr):           * Tails Assay: 0.3%
  INFO5(FlxEnr):           * SWU: 62124.7
  INFO5(FlxEnr):           * Current SWU capacity: 37875.3
- INFO5(FlxEnr):        EnrichmentFacility just received an order for 112.294 of DepletedU
  INFO5(Source):        Mine sent an order for 12 of LEU
  INFO5(FlxSrc):        SecondLEU sent an order for 200 of LEU
  INFO5(FlxEnr):        EnrichmentFacility is initially holding 877.077 of feed (commodity: LEU) in inventory no. 1.
@@ -4004,26 +4004,26 @@ DEBUG1(FlxEnr):            * Feedcommod: NaturalU
 DEBUG1(core  ):          done with info gathering
  INFO2(core  ):  Beginning Tock for time: 9
  INFO4(FlxSnk):      FlexibleSink 25 is holding 2.33221 units of material at the close of step 9.
- INFO4(FlxSnk):      FlexibleSink 27 is holding 313.435 units of material at the close of step 9.
+ INFO4(FlxSnk):      FlexibleSink 27 is holding 313.935 units of material at the close of step 9.
  INFO4(FlxEnr):      EnrichmentFacility used 62124.7 SWU
  INFO4(FlxEnr):      EnrichmentFacility used 70073.2 feed commodity NaturalU
  INFO4(FlxEnr):      EnrichmentFacility used 0 feed commodity LEU
  INFO3(SnkFac):    DepletedUSink is tocking {
  INFO4(SnkFac):      Sink 29 is holding 752.36 units of material at the close of month 9.
  INFO3(SnkFac):    }
- INFO4(FlxSnk):      FlexibleSink 31 is holding 0.500505 units of material at the close of step 9.
+ INFO4(FlxSnk):      FlexibleSink 31 is holding 0 units of material at the close of step 9.
  INFO2(core  ):  Beginning Decision for time: 9
 
 Status: Cyclus run successful!
 Output location: cyclus.sqlite
-Simulation ID: 94e3ce14-fbeb-4bf2-8aa3-7b91d2730329
+Simulation ID: 4b721ae5-b683-4f7a-9f7f-9864fcdc038d
 DEBUG3(memory):              Deleting agent 'Fleximonia' ID=20
 DEBUG3(memory):              Deleting agent 'Fleximonia' ID=19
 DEBUG3(memory):              Deleting agent 'LEUStorage' ID=10
-DEBUG3(memory):              Deleting agent 'SecondLEU' ID=12
-DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=16
 DEBUG3(memory):              Deleting agent 'Mine' ID=9
+DEBUG3(memory):              Deleting agent 'SecondLEU' ID=12
 DEBUG3(memory):              Deleting agent 'EnrichmentFacility' ID=13
+DEBUG3(memory):              Deleting agent 'WeapongradeUSink' ID=16
 DEBUG3(memory):              Deleting agent 'StoredUSink' ID=15
 DEBUG3(memory):              Deleting agent 'UraniumMine' ID=11
 DEBUG3(memory):              Deleting agent 'MyStorage' ID=14

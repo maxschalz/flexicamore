@@ -181,23 +181,23 @@ FlexibleEnrichment::GetMatlRequests() {
   using cyclus::Material;
   using cyclus::RequestPortfolio;
   using cyclus::Request;
+  // Also see branch 'enrich/GetMatlRequests'.
 
   std::set<RequestPortfolio<Material>::Ptr> ports;
   RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
 
   Material::Ptr mat;
-  std::vector<Request<Material>*> mutuals;
+  bool at_least_one_request = false;
   for (int i = 0; i < feed_inv.size(); ++i) {
     double amount = std::min(max_feed_inventory,
                              std::max(0.,feed_inv[i].space()));
     if (amount > cyclus::eps_rsrc()) {
       mat = cyclus::NewBlankMaterial(amount);
-      mutuals.push_back(port->AddRequest(mat, this, feed_commods[i],
-                                         feed_commod_prefs[i]));
+      port->AddRequest(mat, this, feed_commods[i], feed_commod_prefs[i]);
+      at_least_one_request = true;
     }
   }
-  if (mutuals.size() > 0) {
-    port->AddMutualReqs(mutuals);
+  if (at_least_one_request) {
     ports.insert(port);
   }
   return ports;

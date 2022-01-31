@@ -147,7 +147,7 @@ TEST_F(FlexibleEnrichmentTest, Tock) {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-TEST_F(FlexibleEnrichmentTest, GetMatlRequests) {
+TEST_F(FlexibleEnrichmentTest, DISABLED_GetMatlRequests) {
   // Test the size of the RequestPortfolio and that the request asks for
   // the right quantity and commodity.
   std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr> req_ports;
