@@ -178,28 +178,53 @@ void FlexibleEnrichment::Tock() {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
 FlexibleEnrichment::GetMatlRequests() {
+  // Comments with '//' designate the old version (mutual requests)
+  /*
+  and multiline comments designate the updated version (one requets_portfolio w/o mutual)
+  */
+  // - - - - - - - - - - - - - - - - - - - - -
+  // I chose the second version (multiline comments) because apparently, a
+  // facility should only submit one RequestPortfolio, see Matthew Gidden's
+  // answer from 27.09.2013, 19:05:29 in
+  // https://groups.google.com/g/cyclus-dev/c/OE5sC_PSEug/m/FEPmKnLfWy0J
+  //
+  // This stuff may be revisited later.
   using cyclus::Material;
   using cyclus::RequestPortfolio;
   using cyclus::Request;
 
   std::set<RequestPortfolio<Material>::Ptr> ports;
+  /*
   RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
+  */
 
   Material::Ptr mat;
-  std::vector<Request<Material>*> mutuals;
+  bool at_least_one_request = false;
+  //std::vector<Request<Material>*> mutuals;
   for (int i = 0; i < feed_inv.size(); ++i) {
     double amount = std::min(max_feed_inventory,
                              std::max(0.,feed_inv[i].space()));
     if (amount > cyclus::eps_rsrc()) {
       mat = cyclus::NewBlankMaterial(amount);
-      mutuals.push_back(port->AddRequest(mat, this, feed_commods[i],
-                                         feed_commod_prefs[i]));
+      RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
+      port->AddRequest(mat, this, feed_commods[i], feed_commod_prefs[i]);
+      ports.insert(port);
+      /*
+      at_least_one_request = true;
+      */
+      //mutuals.push_back(port->AddRequest(mat, this, feed_commods[i],
+      //                                   feed_commod_prefs[i]));
     }
   }
-  if (mutuals.size() > 0) {
-    port->AddMutualReqs(mutuals);
+  //if (mutuals.size() > 0) {
+  //  port->AddMutualReqs(mutuals);
+  //}
+
+  /*
+  if (at_least_one_request) {
     ports.insert(port);
   }
+  */
   return ports;
 }
 
