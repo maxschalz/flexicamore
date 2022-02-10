@@ -86,9 +86,9 @@ void FlexibleEnrichment::EnterNotify() {
     feed_inv.back().capacity(max_feed_inventory);
   }
 
-  LOG(cyclus::LEV_DEBUG2, "FlxEnr") << "Flexible Enrichment Facility "
+  LOG(cyclus::LEV_INFO3, "FlxEnr") << "Flexible Enrichment Facility "
                                     << "entering the simulation: ";
-  LOG(cyclus::LEV_DEBUG2, "FlxEnr") << str();
+  LOG(cyclus::LEV_INFO3, "FlxEnr") << str();
   RecordPosition();
 }
 
@@ -469,7 +469,7 @@ cyclus::Material::Ptr FlexibleEnrichment::Enrich_(
     if (feed_inv_qty < cyclus::eps_rsrc()) {
       continue;
     }
-    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Considering feed commod "
+    LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "Considering feed commod "
                                       << feed_commods[feed_idx];
     double feed_assay = FeedAssay_(feed_idx);
     double product_assay = cyclus::toolkit::UraniumAssayMass(mat);
@@ -488,13 +488,19 @@ cyclus::Material::Ptr FlexibleEnrichment::Enrich_(
     double feed_required = uranium_required / uranium_frac;
 
     // Try to find another inventory with sufficient uranium.
-    if (feed_inv_qty < uranium_required) {
-      LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Not enough "
+    if (uranium_required - feed_inv_qty > cyclus::eps_rsrc()) {
+      LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "Not enough "
                                         << feed_commods[feed_idx]
-                                        << " present.\n";
+                                        << " present.";
+      LOG(cyclus::LEV_DEBUG2, "FlxEnr")
+          << " * uranium required:     " << uranium_required;
+      LOG(cyclus::LEV_DEBUG2, "FlxEnr")
+          << " * uranium in inventory: " << feed_inv_qty;
+      LOG(cyclus::LEV_DEBUG2, "FlxEnr")
+          << " * difference:           " << uranium_required - feed_inv_qty;
       continue;
     }
-    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "using feed commod "
+    LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "using feed commod "
                                       << feed_commods[feed_idx];
     feed_used_idx = feed_idx;
     break;
@@ -504,7 +510,7 @@ cyclus::Material::Ptr FlexibleEnrichment::Enrich_(
   if (feed_used_idx == -1) {
     for (int feed_idx : feed_idx_by_pref) {
       if (feed_inv[feed_idx].quantity() > cyclus::eps_rsrc()) {
-        LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "fallback to "
+        LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "fallback to "
                                           << feed_commods[feed_idx];
         feed_used_idx = feed_idx;
         break;
@@ -649,11 +655,11 @@ void FlexibleEnrichment::AddMat_(cyclus::Material::Ptr mat,
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleEnrichment::RecordEnrichment_(double feed_qty, double swu,
                                            std::string feed_commod) {
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << prototype()
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
                                     << " has enriched a material:";
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *     Amount: " << feed_qty;
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *        SWU: " << swu;
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  * Feedcommod: " << feed_commod;
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << "  *     Amount: " << feed_qty;
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << "  *        SWU: " << swu;
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << "  * Feedcommod: " << feed_commod;
 
   cyclus::Context* ctx = cyclus::Agent::context();
   ctx->NewDatum("FlexibleEnrichments")
