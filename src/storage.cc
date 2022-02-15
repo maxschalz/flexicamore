@@ -191,7 +191,7 @@ void FlexibleStorage::BeginProcessing_() {
       processing.Push(inventory.Pop());
       entry_times.push_back(context()->time());
 
-      LOG(cyclus::LEV_DEBUG2, "FlxSto")
+      LOG(cyclus::LEV_INFO5, "FlxSto")
           << "FlexibleStorage " << prototype()
           << " added resources to processing at t = " << context()->time();
     } catch (cyclus::Error& e) {

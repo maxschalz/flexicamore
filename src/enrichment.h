@@ -143,6 +143,13 @@ class FlexibleEnrichment : public cyclus::Facility,
   void Tock();
 
  private:
+  // TODO delete three functions below.
+  std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr> MainGetMatlRequests();
+  std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr> CurrentGetMatlRequests();
+  std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr> OldGetMatlRequests();
+
+
+
   bool ValidReq_(const cyclus::Material::Ptr mat);
 
   cyclus::Material::Ptr Enrich_(cyclus::Material::Ptr mat, double qty);

@@ -175,9 +175,70 @@ void FlexibleEnrichment::Tock() {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
 FlexibleEnrichment::GetMatlRequests() {
+  //return OldGetMatlRequests();
+  return MainGetMatlRequests();
+  //return CurrentGetMatlRequests();
+}
+
+// Current version on this branch using XXX
+std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
+FlexibleEnrichment::CurrentGetMatlRequests() {
+  using cyclus::Material;
+  using cyclus::RequestPortfolio;
+  using cyclus::Request;
+
+  // Apparently, a
+  // facility should only submit one RequestPortfolio, see Matthew Gidden's
+  // answer from 27.09.2013, 19:05:29 in
+  // https://groups.google.com/g/cyclus-dev/c/OE5sC_PSEug/m/FEPmKnLfWy0J
+  // TODO maybe this information is outdated. Maybe need to check this with
+  // Cyclus devs.
+  // This stuff may be revisited later.
+  std::set<RequestPortfolio<Material>::Ptr> ports;
+
+  Material::Ptr mat;
+  bool at_least_one_request = false;
+  for (int i = 0; i < feed_inv.size(); ++i) {
+    double amount = std::min(max_feed_inventory,
+                             std::max(0.,feed_inv[i].space()));
+    if (amount > cyclus::eps_rsrc()) {
+      mat = cyclus::NewBlankMaterial(amount);
+      RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
+      port->AddRequest(mat, this, feed_commods[i], feed_commod_prefs[i]);
+      ports.insert(port);
+    }
+  }
+  return ports;
+}
+
+// Old version using mutual requests.
+std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
+FlexibleEnrichment::OldGetMatlRequests() {
   using cyclus::Material;
   using cyclus::RequestPortfolio;
   using cyclus::Request;
@@ -194,14 +255,76 @@ FlexibleEnrichment::GetMatlRequests() {
       mat = cyclus::NewBlankMaterial(amount);
       mutuals.push_back(port->AddRequest(mat, this, feed_commods[i],
                                          feed_commod_prefs[i]));
+      LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+                                        << " added a request for " << amount
+                                        << " units of " << feed_commods[i]
+                                        << " with preference "
+                                        << feed_commod_prefs[i]
+                                        << " using OldGetMatlRequests.";
     }
   }
   if (mutuals.size() > 0) {
+    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << prototype()
+                                      << " has a set of request portfolios"
+                                      << " holding " << ports.size()
+                                      << " request portfolios.";
     port->AddMutualReqs(mutuals);
+    ports.insert(port);
+    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << prototype()
+                                      << " added a request portfolio containing "
+                                      << mutuals.size() << " requests to its "
+                                      << "set which now contains "
+                                      << ports.size() << " request portfolios.";
+  }
+  return ports;
+}
+
+// Version used in the main branch (one request_portfolio without mutual
+// requests).
+std::set<cyclus::RequestPortfolio<cyclus::Material>::Ptr>
+FlexibleEnrichment::MainGetMatlRequests() {
+  using cyclus::Material;
+  using cyclus::RequestPortfolio;
+  using cyclus::Request;
+
+  std::set<RequestPortfolio<Material>::Ptr> ports;
+  RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
+
+  Material::Ptr mat;
+  bool at_least_one_request = false;
+  for (int i = 0; i < feed_inv.size(); ++i) {
+    double amount = std::min(max_feed_inventory,
+                             std::max(0.,feed_inv[i].space()));
+    if (amount > cyclus::eps_rsrc()) {
+      mat = cyclus::NewBlankMaterial(amount);
+      port->AddRequest(mat, this, feed_commods[i], feed_commod_prefs[i]);
+      at_least_one_request = true;
+    }
+  }
+  if (at_least_one_request) {
     ports.insert(port);
   }
   return ports;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 std::set<cyclus::BidPortfolio<cyclus::Material>::Ptr>
@@ -271,6 +394,12 @@ FlexibleEnrichment::GetMatlBids(
           if (ValidReq_(req_mat)) {
             Material::Ptr offer = Offer_(req_mat);
             commod_port->AddBid(req, offer, this);
+
+            LOG(cyclus::LEV_INFO5, "FlxEnr")
+                << prototype() << " added a bid for " << offer->quantity()
+                << " units of product using " << feed_commods[feed_idx]
+                << " from its inventory no. " << feed_idx << " containing "
+                << feed_inv[feed_idx].quantity() << ".";
           }
         }
         double feed_assay = FeedAssay_(feed_idx);
