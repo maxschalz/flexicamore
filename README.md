@@ -52,8 +52,8 @@ Explained in code:
 ```cpp
 // Consider a uranium mine with a production rate that increases every three
 // timesteps by 1, s.t.:
-// Timestep:         0  1  2  3  4  5  6  7  8
-// Production rate:  1  1  1  2  2  2  3  3  3
+// Simulation timestep: 0  1  2  3  4  5  6  7  8
+// Production rate:     1  1  1  2  2  2  3  3  3
 
 // Method 1
 std::vector<int> change_times({0, 3, 6});
@@ -63,6 +63,21 @@ FlexibleInput<double> flexible_production(&my_source, new_throughputs, change_ti
 // Method 2, more verbose
 std::vector<double> throughputs({1, 1, 1, 2, 2, 2, 3, 3, 3});
 FlexibleInput<double> flexible_production(&my_source, throughputs);
+```
+__Important note:__ All changing times are defined _relative to the facility's
+simulation entry time_.
+Consider for example a uranium mine entering the simulation at time `t = 5` with
+the following `FlexibleInput`:
+```cpp
+std::vector<int> change_times({0, 3, 6});
+std::vector<double> new_throughputs({1, 2, 3});
+FlexibleInput<double> flexible_production(&my_source, new_throughputs, change_times);
+```
+This would result in the following production rates:
+```cpp
+// Facility entering at simulation time t = 5
+// Simulation timestep: 0  1  2  3  4  5  6  7  8  9 10 11 12 13
+// Production rate:     0  0  0  0  0  1  1  1  2  2  2  3  3  3
 ```
 
 ### FlexibleEnrichment
