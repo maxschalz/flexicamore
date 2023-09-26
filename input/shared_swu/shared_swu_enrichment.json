@@ -1,0 +1,227 @@
+{
+ "simulation": {
+  "archetypes": {
+   "spec": [
+    {
+     "lib": "agents",
+     "name": "NullRegion"
+    },
+    {
+     "lib": "agents",
+     "name": "NullInst"
+    },
+    {
+     "lib": "cycamore",
+     "name": "Sink"
+    },
+    {
+     "lib": "flexicamore",
+     "name": "FlexibleSource"
+    },
+    {
+     "lib": "flexicamore",
+     "name": "SharedSwuEnrichment"
+    },
+    {
+     "lib": "flexicamore",
+     "name": "FlexibleSink"
+    }
+   ]
+  },
+  "commodity": [
+   {
+    "name": "NaturalU",
+    "solution_priority": 1
+   },
+   {
+    "name": "WeapongradeU",
+    "solution_priority": 1
+   },
+   {
+    "name": "BlendingU",
+    "solution_priority": 10
+   }
+  ],
+  "control": {
+   "decay": "lazy",
+   "duration": 4,
+   "dt": 86400,
+   "explicit_inventory": true,
+   "explicit_inventory_compact": true,
+   "simhandle": "Flexicamore brief example",
+   "solver": {
+    "config": {
+     "coin-or": {
+      "verbose": false
+     }
+    }
+   },
+   "startmonth": 1,
+   "startyear": 2022
+  },
+  "facility": [
+   {
+    "name": "UraniumMine",
+    "config": {
+     "FlexibleSource": {
+      "out_commod": "NaturalU",
+      "out_recipe": "NaturalURecipe",
+      "inventory_size": 1e+299,
+      "throughput_times": {
+       "val": [
+        0
+       ]
+      },
+      "throughput_vals": {
+       "val": [
+        2
+       ]
+      }
+     }
+    }
+   },
+   {
+    "name": "WGUEnrichmentFacility",
+    "config": {
+     "SharedSwuEnrichment": {
+      "feed_commods": {"val": ["NaturalU"]},
+      "feed_commod_prefs": {"val": [1]},
+      "product_commod": "WeapongradeU",
+      "tails_commod": "DepletedU",
+      "tails_assay": 0.003,
+      "max_feed_inventory": 1,
+      "max_enrich": 1.0,
+      "order_prefs": false
+     }
+    }
+   },
+   {
+    "name": "BlendingEnrichmentFacility",
+    "config": {
+     "SharedSwuEnrichment": {
+      "feed_commods": {"val": ["NaturalU"]},
+      "feed_commod_prefs": {"val": [100]},
+      "product_commod": "BlendingU",
+      "tails_commod": "DepletedU",
+      "tails_assay": 0.003,
+      "max_feed_inventory": 1,
+      "max_enrich": 1.0,
+      "order_prefs": false,
+      "swu_capacity_times": {
+       "val": [
+        0
+       ]
+      },
+      "swu_capacity_vals": {
+       "val": [
+         1.
+       ]
+      }
+     }
+    }
+   },
+   {
+    "name": "BlendingUSink",
+    "config": {
+     "FlexibleSink": {
+      "in_commods": {"val": ["BlendingU"]},
+      "recipe_name": "BlendingURecipe",
+      "throughput_times": {"val": [0]},
+      "throughput_vals": {"val": [10]}
+     }
+    }
+   },
+   {
+    "name": "WeapongradeUSink",
+    "config": {
+     "Sink": {
+      "in_commods": {"val": ["WeapongradeU"]},
+      "recipe_name": "WeapongradeURecipe"
+     }
+    }
+   }
+  ],
+  "recipe": [
+   {
+    "name": "NaturalURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.0072
+     },
+     {
+      "id": "U238",
+      "comp": 0.9928
+     }
+    ]
+   },
+   {
+    "name": "BlendingURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.03
+     },
+     {
+      "id": "U238",
+      "comp": 0.97
+     }
+    ]
+   },
+   {
+    "name": "WeapongradeURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.93
+     },
+     {
+      "id": "U238",
+      "comp": 0.07
+     }
+    ]
+   }
+  ],
+  "region": [
+   {
+    "name": "Fleximonia",
+    "config": {
+     "NullRegion": null
+    },
+    "institution": [
+     {
+      "name": "FleximoniaAtomicEnergyCommission",
+      "config": {"NullInst": null},
+      "initialfacilitylist": {
+       "entry": [
+        {
+         "number": 1,
+         "prototype": "UraniumMine"
+        },
+        {
+         "number": 1,
+         "prototype": "WGUEnrichmentFacility"
+        },
+        {
+         "number": 1,
+         "prototype": "BlendingEnrichmentFacility"
+        },
+        {
+         "number": 1,
+         "prototype": "WeapongradeUSink"
+        },
+        {
+         "number": 1,
+         "prototype": "BlendingUSink"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ }
+}
