@@ -1,3 +1,5 @@
+:rotating_light: This branch, `shared_swu`, is not stable and is WIP. :rotating_light:
+
 # Flexible Cycamore
 This repository contains [Cyclus](https://github.com/cyclus/cyclus) archetypes,
 strongly based on Cyclus' [Cycamore](https://github.com/cyclus/cycamore)
