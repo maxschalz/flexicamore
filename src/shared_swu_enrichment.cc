@@ -13,6 +13,10 @@ namespace flexicamore {
 double SharedSwuEnrichment::swu_capacity = -1;
 double SharedSwuEnrichment::current_swu_capacity = -1;
 
+cyclus::Converter<cyclus::Material>::Ptr swu_converter = nullptr;
+cyclus::CapacityConstraint<cyclus::Material>* swu_constraint_ptr = nullptr;
+
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 SharedSwuEnrichment::SharedSwuEnrichment(cyclus::Context* ctx)
     : cyclus::Facility(ctx),
@@ -280,17 +284,8 @@ SharedSwuEnrichment::GetMatlBids(
           }
         }
         double feed_assay = FeedAssay_(feed_idx);
-        // Add SWU constraint.
-        cyclus::Converter<Material>::Ptr swu_converter(
-            new SwuConverter(feed_assay, tails_assay));
-        CapacityConstraint<Material> swu_constraint(swu_capacity,
-                                                    swu_converter);
-        commod_port->AddConstraint(swu_constraint);
-        LOG(cyclus::LEV_INFO5, "FlxEnr")
-            << prototype() << " adding a SWU constraint of "
-            << swu_constraint.capacity();
 
-        // Add feed constraint.
+        // Add feed and SWU constraints.
         cyclus::Converter<Material>::Ptr feed_converter(
             new FeedConverter(feed_assay, tails_assay));
         CapacityConstraint<Material> feed_constraint(
@@ -299,6 +294,25 @@ SharedSwuEnrichment::GetMatlBids(
         LOG(cyclus::LEV_INFO5, "FlxEnr")
             << prototype() << " adding a feed constraint of "
             << feed_constraint.capacity();
+
+      /*
+      static cyclus::Converter<cyclus::Material>::Ptr swu_converter;
+      static cyclus::CapacityConstraint<cyclus::Material> swu_constraint;
+      */
+        if (swu_capacity_vals[0] != -1) {
+          swu_converter = &SwuConverter(feed_assay, tails_assay);
+
+          CapacityConstraint<Material> swu_constraint(swu_capacity, swu_converter);
+          swu_constraint_ptr = *swu_constraint;
+
+
+          commod_port->AddConstraint(&swu_constraint_ptr);
+        }
+
+        LOG(cyclus::LEV_INFO5, "FlxEnr")
+            << prototype() << " adding a SWU constraint of "
+            << &swu_constraint.capacity();
+
         ports.insert(commod_port);
         break;
       }

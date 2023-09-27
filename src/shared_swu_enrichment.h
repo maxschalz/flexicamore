@@ -293,10 +293,20 @@ class SharedSwuEnrichment : public cyclus::Facility,
   }
   std::vector<double> swu_capacity_vals;
   FlexibleInput<double> flexible_swu;
-  // TODO check if this variable is actually needed or if it can be replaced
-  // entirely by the FlexibleInput SWU variable.
+
   static double swu_capacity;
   static double current_swu_capacity;
+
+  static cyclus::Converter<cyclus::Material>::Ptr swu_converter;
+  static cyclus::CapacityConstraint<cyclus::Material>* swu_constraint_ptr;
+
+  /*
+
+  // Calls used in the source file to create the above objects.
+  cyclus::Converter<Material>::Ptr swu_converter(new SwuConverter(feed_assay, tails_assay));
+  CapacityConstraint<Material> swu_constraint(swu_capacity, swu_converter);
+
+  */
 
   std::vector<double> intra_timestep_feed;
   double intra_timestep_swu;
