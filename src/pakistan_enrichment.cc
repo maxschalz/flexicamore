@@ -113,9 +113,9 @@ void PakistanEnrichment::EnterNotify() {
     feed_inv.back().capacity(max_feed_inventory);
   }
 
-  LOG(cyclus::LEV_DEBUG2, "FlxEnr") << "Flexible Enrichment Facility "
+  LOG(cyclus::LEV_DEBUG2, "PakEnr") << "Flexible Enrichment Facility "
                                     << "entering the simulation: ";
-  LOG(cyclus::LEV_DEBUG2, "FlxEnr") << str();
+  LOG(cyclus::LEV_DEBUG2, "PakEnr") << str();
   RecordPosition();
 }
 
@@ -132,7 +132,7 @@ void PakistanEnrichment::AddFeedMat_(cyclus::Material::Ptr mat,
   int push_idx = commod_it - feed_commods.begin();
 
   // Push the material to the correct feed inventory.
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+  LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                    << " is initially holding "
                                    << feed_inv[push_idx].quantity()
                                    << " of feed (commodity: " << commodity
@@ -143,7 +143,7 @@ void PakistanEnrichment::AddFeedMat_(cyclus::Material::Ptr mat,
     e.msg(Agent::InformErrorMsg(e.msg()));
     throw e;
   }
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype() << " added "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << prototype() << " added "
                                    << mat->quantity() << " of feed commodity '"
                                    << commodity << "' to its inventory no. "
                                    << push_idx << " which is now holding "
@@ -186,12 +186,12 @@ void PakistanEnrichment::Tick() {
 void PakistanEnrichment::Tock() {
   using cyclus::toolkit::RecordTimeSeries;
 
-  LOG(cyclus::LEV_INFO4, "FlxEnr") << prototype() << " used "
+  LOG(cyclus::LEV_INFO4, "PakEnr") << prototype() << " used "
                                    << intra_timestep_swu << " SWU";
   RecordTimeSeries<cyclus::toolkit::ENRICH_SWU>(this, intra_timestep_swu);
 
   for (int i = 0; i < feed_commods.size(); ++i) {
-    LOG(cyclus::LEV_INFO4, "FlxEnr") << prototype() << " used "
+    LOG(cyclus::LEV_INFO4, "PakEnr") << prototype() << " used "
                                      << intra_timestep_feed[i] << " feed"
                                      << " commodity " << feed_commods[i];
     // The last argument of 'RecordTimeSeries<cyclus::toolkit::ENRICH_FEED>
@@ -279,7 +279,7 @@ PakistanEnrichment::GetMatlBids(
     }
     CapacityConstraint<Material> tails_constraint(tails_inv.quantity());
     tails_port->AddConstraint(tails_constraint);
-    LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+    LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                      << " adding tails capacity constraint"
                                      << " of " << tails_inv.quantity();
     ports.insert(tails_port);
@@ -325,7 +325,7 @@ PakistanEnrichment::GetMatlBids(
         CapacityConstraint<Material> swu_constraint(swu_capacity,
                                                     swu_converter);
         commod_port->AddConstraint(swu_constraint);
-        LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+        LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                          << " adding a SWU constraint of "
                                          << swu_constraint.capacity();
 
@@ -335,7 +335,7 @@ PakistanEnrichment::GetMatlBids(
         CapacityConstraint<Material> feed_constraint(
             feed_inv[feed_idx].quantity(), feed_converter);
         commod_port->AddConstraint(feed_constraint);
-        LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+        LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                          << " adding a feed constraint of "
                                          << feed_constraint.capacity();
         ports.insert(commod_port);
@@ -393,7 +393,7 @@ bool PakistanEnrichment::InAltFeedEnrichInterval_(const cyclus::Material::Ptr ma
   bool in_interval = enrichment_grade >= enrich_interval_alt_feed_prefs[0]
                      && enrichment_grade <= enrich_interval_alt_feed_prefs[1];
 
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+  LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                    << " has a material that is in the "
                                    << "alternative enrichment interval: "
                                    << in_interval;
@@ -435,13 +435,13 @@ void PakistanEnrichment::GetMatlTrades(
     std::string commod_type = it->bid->request()->commodity();
     Material::Ptr response;
     if (commod_type == tails_commod) {
-      LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+      LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                        << " just received an order for "
                                        << qty << " of " << tails_commod;
       double pop_qty = std::min(qty, tails_inv.quantity());
       response = tails_inv.Pop(pop_qty, cyclus::eps_rsrc());
     } else {
-      LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+      LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                        << " just received an order for "
                                        << qty << " of " << product_commod;
       response = Enrich_(it->bid->offer(), qty);
@@ -472,7 +472,7 @@ cyclus::Material::Ptr PakistanEnrichment::Enrich_(
     if (feed_inv_qty < cyclus::eps_rsrc()) {
       continue;
     }
-    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Considering feed commod "
+    LOG(cyclus::LEV_DEBUG5, "PakEnr") << "Considering feed commod "
                                       << feed_commods[feed_idx];
     double feed_assay = FeedAssay_(feed_idx);
     double product_assay = cyclus::toolkit::UraniumAssayMass(mat);
@@ -493,12 +493,12 @@ cyclus::Material::Ptr PakistanEnrichment::Enrich_(
     // Try to find another inventory with sufficient uranium.
     if (feed_inv_qty < uranium_required
         && !cyclus::AlmostEq(feed_inv_qty, uranium_required)) {
-      LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Not enough "
+      LOG(cyclus::LEV_DEBUG5, "PakEnr") << "Not enough "
           << feed_commods[feed_idx] << " present. Feed present: "
           << feed_inv_qty << ". Feed needed: " << uranium_required << ".";
       continue;
     }
-    LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "using feed commod "
+    LOG(cyclus::LEV_DEBUG5, "PakEnr") << "using feed commod "
                                       << feed_commods[feed_idx];
     feed_used_idx = feed_idx;
     break;
@@ -508,7 +508,7 @@ cyclus::Material::Ptr PakistanEnrichment::Enrich_(
   if (feed_used_idx == -1) {
     for (int feed_idx : feed_idx_by_pref) {
       if (feed_inv[feed_idx].quantity() > cyclus::eps_rsrc()) {
-        LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "fallback to "
+        LOG(cyclus::LEV_DEBUG5, "PakEnr") << "fallback to "
                                           << feed_commods[feed_idx];
         feed_used_idx = feed_idx;
         break;
@@ -585,24 +585,24 @@ cyclus::Material::Ptr PakistanEnrichment::Enrich_(
   intra_timestep_feed[feed_used_idx] += feed_required;
   RecordEnrichment_(feed_required, swu_required, feed_commods[feed_used_idx]);
 
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+  LOG(cyclus::LEV_INFO5, "PakEnr") << prototype()
                                    << " has performed an enrichment:";
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Qty: " << feed_required;
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Commod.: "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Feed Qty: " << feed_required;
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Feed Commod.: "
                                    << feed_commods[feed_used_idx];
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Inv No.: " << feed_used_idx;
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Assay: "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Feed Inv No.: " << feed_used_idx;
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Feed Assay: "
                                    << assays.Feed() * 100 << "%";
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Product Qty: " << request_qty;
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Product Assay: "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Product Qty: " << request_qty;
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Product Assay: "
                                    << assays.Product() * 100 << "%";
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Tails Qty: "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Tails Qty: "
                                    << cyclus::toolkit::TailsQty(request_qty,
                                                                 assays);
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Tails Assay: "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Tails Assay: "
                                    << assays.Tails() * 100 << "%";
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * SWU: " << swu_required;
-  LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Current SWU capacity: "
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * SWU: " << swu_required;
+  LOG(cyclus::LEV_INFO5, "PakEnr") << "   * Current SWU capacity: "
                                    << current_swu_capacity;
 
   return response;
@@ -653,11 +653,11 @@ void PakistanEnrichment::AddMat_(cyclus::Material::Ptr mat,
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void PakistanEnrichment::RecordEnrichment_(double feed_qty, double swu,
                                            std::string feed_commod) {
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << prototype()
+  LOG(cyclus::LEV_DEBUG1, "PakEnr") << prototype()
                                     << " has enriched a material:";
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *     Amount: " << feed_qty;
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  *        SWU: " << swu;
-  LOG(cyclus::LEV_DEBUG1, "FlxEnr") << "  * Feedcommod: " << feed_commod;
+  LOG(cyclus::LEV_DEBUG1, "PakEnr") << "  *     Amount: " << feed_qty;
+  LOG(cyclus::LEV_DEBUG1, "PakEnr") << "  *        SWU: " << swu;
+  LOG(cyclus::LEV_DEBUG1, "PakEnr") << "  * Feedcommod: " << feed_commod;
 
   cyclus::Context* ctx = cyclus::Agent::context();
   ctx->NewDatum("PakistanEnrichments")
