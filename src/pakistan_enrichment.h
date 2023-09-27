@@ -135,7 +135,6 @@ class PakistanEnrichment : public cyclus::Facility,
   void AcceptMatlTrades(
       const std::vector< std::pair<cyclus::Trade<cyclus::Material>,
       cyclus::Material::Ptr> >& responses);
-  void AdjustMatlPrefs(cyclus::PrefMap<cyclus::Material>::type& prefs);
   void EnterNotify();
   void GetMatlTrades(
     const std::vector< cyclus::Trade<cyclus::Material> >& trades,
@@ -145,6 +144,9 @@ class PakistanEnrichment : public cyclus::Facility,
   void Tock();
 
  private:
+  // Check if the enrichment grade of `mat` is in the
+  // `enrich_interval_alt_feed_prefs` range.
+  bool InAltFeedEnrichInterval_(const cyclus::Material::Ptr mat);
   bool ValidReq_(const cyclus::Material::Ptr mat);
 
   cyclus::Material::Ptr Enrich_(cyclus::Material::Ptr mat, double qty);
@@ -158,7 +160,10 @@ class PakistanEnrichment : public cyclus::Facility,
   // only requests fresh uranium once its stock are empty?
   void AddFeedMat_(cyclus::Material::Ptr mat, std::string commodity);
   void AddMat_(cyclus::Material::Ptr mat, std::string commodity);
-  void FeedIdxByPreference_();
+
+  // Create a vector of indices that refer to the preferences in order.
+  void FeedIdxByPreference_(std::vector<int>& idx_vec, const std::vector<double>& pref_vec);
+
   void RecordEnrichment_(double feed_qty, double swu, std::string feed_commod);
   void RecordPosition();
 
@@ -189,8 +194,36 @@ class PakistanEnrichment : public cyclus::Facility,
            "default for all feed commodities." \
   }
   std::vector<double> feed_commod_prefs;
+
+  #pragma cyclus var { \
+    "tooltip": "Alternative feed commodity preferences", \
+    "default": [], \
+    "uilabel": "Alternative feed commodity preferences", \
+    "doc": "In special cases, the feed commodity preferences will be changed " \
+           "to the ones provided here. This feature is custom-made for a " \
+           "scenario of Pakistan's NFC developed by researchers from AMC, " \
+           "Uppsala University, and NVD, RWTH Aachen University." \
+  }
+  std::vector<double> alt_feed_commod_prefs;
+
   // Feed indices sorted s.t. highest preference comes first.
   std::vector<int> feed_idx_by_pref;
+  std::vector<int> alt_feed_idx_by_pref;
+
+  #pragma cyclus var { \
+    "tooltip": "Enrichment levels for alternative feed commodity preferences", \
+    "default": [-1, -1], \
+    "uilabel": "Enrichment levels for alternative feed commodity preferences", \
+    "doc": "Must be two numbers, each in the interval [0, 1] or [-1, -1]. If " \
+           "the requested enrichment level is inside this interval, then the " \
+           "alternative feed commodity preferences will be used for future " \
+           "feed material requests, until material outside of this " \
+           "enrichment level is enriched again. If this variable is omitted " \
+           "or defined as [-1, -1], then the functionality will not be used." \
+  }
+  std::vector<double> enrich_interval_alt_feed_prefs;
+  const std::vector<double> kDefaultEnrichIntervalAltFeedPrefs{-1, -1};
+  bool use_alt_feed_prefs;
 
   #pragma cyclus var { \
     "tooltip": "product commodity",	\
@@ -244,21 +277,6 @@ class PakistanEnrichment : public cyclus::Facility,
         '      </optional>'	\
   }
   double max_enrich;
-
-  #pragma cyclus var { \
-    "default": 1,	\
-    "userlevel": 10, \
-    "tooltip": "Rank Material Requests by U235 Content", \
-    "uilabel": "Prefer feed with higher U235 content, *RECOMMENDED TO SET IT TO FALSE*", \
-    "doc": "Turn on preference ordering for input material so that the " \
-           "enrichment facility chooses higher U235 content first. " \
-           "**PLEASE NOTE:** we advise you to set `order_prefs` to `false` " \
-           "due to an existing bug, see " \
-           "https://git.rwth-aachen.de/nvd/fuel-cycle/flexicamore/-/issues/4 ." \
-           "This is especially important if you are using non-unity " \
-           "`feed_commod_prefs`." \
-  }
-  bool order_prefs;
 
   #pragma cyclus var { \
     "default": 0.0, \

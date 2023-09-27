@@ -1,4 +1,4 @@
-#include "enrichment.h"
+#include "pakistan_enrichment.h"
 
 #include <cstring>  // std::memcpy
 
@@ -13,12 +13,14 @@ PakistanEnrichment::PakistanEnrichment(cyclus::Context* ctx)
     : cyclus::Facility(ctx),
       feed_commods(std::vector<std::string>({})),
       feed_commod_prefs(std::vector<double>({})),
+      alt_feed_commod_prefs(std::vector<double>({})),
+      enrich_interval_alt_feed_prefs(std::vector<double>({-1, -1})),
+      use_alt_feed_prefs(false),
       product_commod(""),
       tails_commod(""),
       tails_assay(0.003),
       max_feed_inventory(1e299),
       max_enrich(0.99),
-      order_prefs(true),
       latitude(0.),
       longitude(0.),
       coordinates(latitude, longitude),
@@ -68,7 +70,34 @@ void PakistanEnrichment::EnterNotify() {
        << " values, but expected " << feed_commods.size() << " values.";
     throw cyclus::ValueError(ss.str());
   }
-  FeedIdxByPreference_();
+  FeedIdxByPreference_(feed_idx_by_pref, feed_commod_prefs);
+
+  // Perform checks if alternative feed preferences are used.
+  if (enrich_interval_alt_feed_prefs != kDefaultEnrichIntervalAltFeedPrefs) {
+    if (feed_commod_prefs.size() != alt_feed_commod_prefs.size()) {
+      std::stringstream ss;
+      ss << "alt_feed_commod_prefs has " << alt_feed_commod_prefs.size()
+         << " values, but expected " << feed_commod_prefs.size() << " values.";
+      throw cyclus::ValueError(ss.str());
+    }
+    double lower = enrich_interval_alt_feed_prefs[0];
+    double upper = enrich_interval_alt_feed_prefs[1];
+    if (lower > upper) {
+      std::stringstream ss;
+      ss << "First value of enrich_interval_alt_feed_prefs must be <= than the "
+            "second value. The first value is " << lower
+            << " and the second value is " << upper << ".";
+      throw cyclus::ValueError(ss.str());
+    }
+    if (lower < 0 || lower > 1 || upper < 0 || upper > 1) {
+      std::stringstream ss;
+      ss << "Both values of enrich_interval_alt_feed_prefs must be in the "
+            "interval [0, 1].";
+      throw cyclus::ValueError(ss.str());
+    }
+    FeedIdxByPreference_(alt_feed_idx_by_pref, alt_feed_commod_prefs);
+  }
+
   // Needs to be initialised here, else one may get a segmentation fault.
   intra_timestep_feed = std::vector<double>(feed_commods.size(), 0.);
 
@@ -122,14 +151,14 @@ void PakistanEnrichment::AddFeedMat_(cyclus::Material::Ptr mat,
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void PakistanEnrichment::FeedIdxByPreference_() {
-  feed_idx_by_pref = std::vector<int>(feed_commod_prefs.size());
-  std::iota(feed_idx_by_pref.begin(), feed_idx_by_pref.end(), 0);
+void PakistanEnrichment::FeedIdxByPreference_(std::vector<int>& idx_vec, const std::vector<double>& pref_vec) {
+  idx_vec = std::vector<int>(pref_vec.size());
+  std::iota(idx_vec.begin(), idx_vec.end(), 0);
 
   // Sort s.t. the highest preference comes first!
   std::stable_sort(
-      feed_idx_by_pref.begin(), feed_idx_by_pref.end(),
-      [&](int i, int j) {return feed_commod_prefs[i] > feed_commod_prefs[j];}
+      idx_vec.begin(), idx_vec.end(),
+      [&](int i, int j) {return pref_vec.at(i) > pref_vec.at(j);}
   );
 }
 
@@ -148,6 +177,9 @@ void PakistanEnrichment::Tick() {
 
   swu_capacity = flexible_swu.UpdateValue(copy_ptr);
   current_swu_capacity = swu_capacity;
+
+  intra_timestep_swu = 0;
+  intra_timestep_feed = std::vector<double>(feed_commods.size(), 0.);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -191,7 +223,8 @@ PakistanEnrichment::GetMatlRequests() {
                              std::max(0.,feed_inv[i].space()));
     if (amount > cyclus::eps_rsrc()) {
       mat = cyclus::NewBlankMaterial(amount);
-      port->AddRequest(mat, this, feed_commods[i], feed_commod_prefs[i]);
+      double pref = use_alt_feed_prefs ? alt_feed_commod_prefs[i] : feed_commod_prefs[i];
+      port->AddRequest(mat, this, feed_commods[i], pref);
       at_least_one_request = true;
     }
   }
@@ -251,12 +284,26 @@ PakistanEnrichment::GetMatlBids(
                                      << " of " << tails_inv.quantity();
     ports.insert(tails_port);
   }
-
   // Bid on product requests if available. Note that one request receives at
   // most on bid (even if multiple feed commodities were available).
+  use_alt_feed_prefs = false;
   if (out_requests.count(product_commod) > 0) {
     std::vector<Request<Material>*>& commod_requests =
         out_requests[product_commod];
+    std::vector<Request<Material>*>::iterator it;
+    // Iterate through all requests to determine if at least one request is in
+    // the alternative feed preference enrichment range.
+    for (it = commod_requests.begin(); it != commod_requests.end(); it++) {
+      Request<Material>* req = *it;
+      Material::Ptr req_mat = req->target();
+      // Check if the feed priorities should get updated later.
+      if (ValidReq_(req_mat) && (enrich_interval_alt_feed_prefs != kDefaultEnrichIntervalAltFeedPrefs)) {
+        use_alt_feed_prefs = InAltFeedEnrichInterval_(req_mat);
+      }
+      if (use_alt_feed_prefs) {
+        break;
+      }
+    }
     // Iterate through feed inventory, use only the highest-preference but non-
     // empty inventory.
     for (int feed_idx : feed_idx_by_pref) {
@@ -331,6 +378,29 @@ cyclus::Material::Ptr PakistanEnrichment::Offer_(cyclus::Material::Ptr mat) {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+bool PakistanEnrichment::InAltFeedEnrichInterval_(const cyclus::Material::Ptr mat) {
+  if (enrich_interval_alt_feed_prefs == kDefaultEnrichIntervalAltFeedPrefs) {
+    return false;
+  }
+  cyclus::toolkit::MatQuery mq(mat);
+  std::set<cyclus::Nuc> nucs;
+  nucs.insert(922350000);
+  nucs.insert(922380000);
+  // Combined fraction of U235 and U238 in `mat`.
+  double uranium_frac = mq.atom_frac(nucs);
+  double enrichment_grade = mq.atom_frac(922350000) / uranium_frac;
+
+  bool in_interval = enrichment_grade >= enrich_interval_alt_feed_prefs[0]
+                     && enrichment_grade <= enrich_interval_alt_feed_prefs[1];
+
+  LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
+                                   << " has a material that is in the "
+                                   << "alternative enrichment interval: "
+                                   << in_interval;
+  return in_interval;
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 bool PakistanEnrichment::ValidReq_(const cyclus::Material::Ptr req_mat) {
   cyclus::toolkit::MatQuery mq(req_mat);
   std::set<cyclus::Nuc> nucs;
@@ -352,77 +422,12 @@ bool PakistanEnrichment::ValidReq_(const cyclus::Material::Ptr req_mat) {
 };
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// `SortBids` must not be a non-static member function of `PakistanEnrichment`
-// because of its usage in `std::sort` and it has to be defined *before*
-// `AdjustMatlPrefs` as it is not declared.
-bool SortBids(cyclus::Bid<cyclus::Material>* i,
-              cyclus::Bid<cyclus::Material>* j) {
-  cyclus::Material::Ptr mat_i = i->offer();
-  cyclus::Material::Ptr mat_j = j->offer();
-
-  cyclus::toolkit::MatQuery mq_i(mat_i);
-  cyclus::toolkit::MatQuery mq_j(mat_j);
-
-  double i_assay = mq_i.mass(922350000) / mq_i.mass(922380000);
-  double j_assay = mq_j.mass(922350000) / mq_j.mass(922380000);
-
-  return i_assay <= j_assay;
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-void PakistanEnrichment::AdjustMatlPrefs(
-    cyclus::PrefMap<cyclus::Material>::type& prefs) {
-  using cyclus::Bid;
-  using cyclus::Material;
-
-  if (order_prefs == false) {
-    return;
-  }
-
-  cyclus::PrefMap<cyclus::Material>::type::iterator reqit;
-  // Loop over all requests.
-  for (reqit = prefs.begin(); reqit != prefs.end(); ++reqit) {
-    std::vector<Bid<Material>*> bids_vector;
-    std::map<Bid<Material>*, double>::iterator mit;
-    // Loop over all bids per request.
-    for (mit = reqit->second.begin(); mit != reqit->second.end(); mit++) {
-      Bid<Material>* bid = mit->first;
-      bids_vector.push_back(bid);
-    }  // each bid
-    std::sort(bids_vector.begin(), bids_vector.end(), SortBids);
-
-    // The bids vector has already been sorted starting with lowest (or
-    // zero) U235 content. The following loop sets the preferences for
-    // every request with 0 U235 content to -1 such that they are ignored.
-    bool u235_mass = false;
-    // `bid_i` is an index, *not* an iterator over the bids!
-    for (int bid_i = 0; bid_i < bids_vector.size(); bid_i++) {
-      int new_pref = bid_i + 1;
-
-      if (!u235_mass) {
-        cyclus::Material::Ptr mat = bids_vector[bid_i]->offer();
-        cyclus::toolkit::MatQuery mq(mat);
-        if (mq.mass(922350000) == 0.) {
-          new_pref = -1;
-        } else {
-          u235_mass = true;
-        }
-      }
-      (reqit->second)[bids_vector[bid_i]] = new_pref;
-    }  // each bid
-  }  // each material request
-}
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void PakistanEnrichment::GetMatlTrades(
     const std::vector<cyclus::Trade<cyclus::Material> >& trades,
     std::vector<std::pair<cyclus::Trade<cyclus::Material>,
                           cyclus::Material::Ptr> >& responses) {
   using cyclus::Material;
   using cyclus::Trade;
-
-  intra_timestep_swu = 0;
-  intra_timestep_feed = std::vector<double>(feed_commods.size(), 0.);
 
   std::vector<Trade<Material> >::const_iterator it;
   for (it = trades.begin(); it != trades.end(); it++) {
@@ -580,7 +585,7 @@ cyclus::Material::Ptr PakistanEnrichment::Enrich_(
   RecordEnrichment_(feed_required, swu_required, feed_commods[feed_used_idx]);
 
   LOG(cyclus::LEV_INFO5, "FlxEnr") << prototype()
-                                   << " has performed an enrichment: ";
+                                   << " has performed an enrichment:";
   LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Qty: " << feed_required;
   LOG(cyclus::LEV_INFO5, "FlxEnr") << "   * Feed Commod.: "
                                    << feed_commods[feed_used_idx];
