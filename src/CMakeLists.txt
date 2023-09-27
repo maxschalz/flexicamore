@@ -1,5 +1,6 @@
 ### DO NOT DELETE THIS COMMENT: INSERT_ARCHETYPES_HERE ###
 USE_CYCLUS("flexicamore" "enrichment")
+USE_CYCLUS("flexicamore" "pakistan_enrichment")
 USE_CYCLUS("flexicamore" "sink")
 USE_CYCLUS("flexicamore" "source")
 USE_CYCLUS("flexicamore" "storage")
