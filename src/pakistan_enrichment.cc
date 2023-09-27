@@ -491,10 +491,11 @@ cyclus::Material::Ptr PakistanEnrichment::Enrich_(
     double feed_required = uranium_required / uranium_frac;
 
     // Try to find another inventory with sufficient uranium.
-    if (feed_inv_qty < uranium_required) {
+    if (feed_inv_qty < uranium_required
+        && !cyclus::AlmostEq(feed_inv_qty, uranium_required)) {
       LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "Not enough "
-                                        << feed_commods[feed_idx]
-                                        << " present.\n";
+          << feed_commods[feed_idx] << " present. Feed present: "
+          << feed_inv_qty << ". Feed needed: " << uranium_required << ".";
       continue;
     }
     LOG(cyclus::LEV_DEBUG5, "FlxEnr") << "using feed commod "
