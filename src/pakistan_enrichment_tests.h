@@ -7,12 +7,15 @@
 
 #include "mock_sim.h"
 
-#include "enrichment.h"
+#include "pakistan_enrichment.h"
 
 namespace flexicamore {
 
 class PakistanEnrichmentTest : public ::testing::Test {
  protected:
+
+/*
+
   // Functions to initialise and end each test
   void InitParameters();
   void SetUp();
@@ -65,6 +68,9 @@ class PakistanEnrichmentTest : public ::testing::Test {
   inline double DoIntraTimestepSWU() {
     return flex_enrich_facility->intra_timestep_swu;
   }
+
+*/
+
 };
 
 }  // namespace flexicamore

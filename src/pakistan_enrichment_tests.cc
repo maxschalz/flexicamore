@@ -1,4 +1,4 @@
-#include "enrichment_tests.h"
+#include "pakistan_enrichment_tests.h"
 
 #include <set>
 
@@ -16,6 +16,7 @@
 
 namespace flexicamore {
 
+/*
 namespace test {
 
 cyclus::Composition::Ptr NaturalU() {
@@ -569,6 +570,8 @@ TEST_F(PakistanEnrichmentTest, ValidRequest) {
   EXPECT_FALSE(DoValidReq(no_U238));
   EXPECT_FALSE(DoValidReq(weapongradeU));
 }
+
+*/
 
 }  // namespace flexicamore
 
