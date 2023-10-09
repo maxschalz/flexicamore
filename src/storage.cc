@@ -157,8 +157,13 @@ void FlexibleStorage::Tick() {
   max_inv_size = flexible_inv_size.UpdateValue(copy_ptr);
   inventory.capacity(current_capacity());
 
-  LOG(cyclus::LEV_INFO4, "FlxSto") << prototype() << " has capacity for "
-                                   << current_capacity() << " kg of material.";
+  LOG(cyclus::LEV_INFO4, "FlxSto")
+      << prototype() << "-" << id() << " has capacity for "
+      << current_capacity() << " of:";
+  for (int i = 0; i < in_commods.size(); i++) {
+    LOG(cyclus::LEV_INFO4, "FlxSto")
+        << "  * " << in_commods[i] << " with preference " << in_commod_prefs[i];
+  }
 }
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
