@@ -213,6 +213,9 @@ PakistanEnrichment::GetMatlRequests() {
   using cyclus::Request;
   // Also see branch 'enrich/GetMatlRequests'.
 
+  // Only return *one* RequestPortfolio with zero or more requests. Do *not*
+  // return, e.g., a set with two RequestPortfolio, each with one request.
+  // See https://groups.google.com/g/cyclus-dev/c/OE5sC_PSEug/m/23AMk9gElHcJ
   std::set<RequestPortfolio<Material>::Ptr> ports;
   RequestPortfolio<Material>::Ptr port(new RequestPortfolio<Material>());
 
