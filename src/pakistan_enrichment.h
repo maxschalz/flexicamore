@@ -164,7 +164,8 @@ class PakistanEnrichment : public cyclus::Facility,
   // Create a vector of indices that refer to the preferences in order.
   void FeedIdxByPreference_(std::vector<int>& idx_vec, const std::vector<double>& pref_vec);
 
-  void RecordEnrichment_(double feed_qty, double swu, std::string feed_commod);
+  void RecordEnrichment_(double feed_qty, double swu, std::string feed_commod,
+                         double leftover_feed);
   void RecordPosition();
 
   // TODO all variables below, notably things like `feed_commod` and
