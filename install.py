@@ -129,7 +129,7 @@ def main():
                         help='Set environment variable(s).')
 
     build_type = "the CMAKE_BUILD_TYPE"
-    parser.add_argument('--build_type', help=build_type)
+    parser.add_argument('--build-type', help=build_type)
 
     args = parser.parse_args()
     if args.uninstall:
