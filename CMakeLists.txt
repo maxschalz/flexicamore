@@ -26,7 +26,7 @@ ENDIF()
 # quiets fortify_source warnings when not compiling with optimizations
 # in linux distros where compilers were compiled with fortify_source enabled by
 # default (e.g. Arch linux).
-MESSAGE("${CMAKE_BUILD_TYPE}")
+MESSAGE("-- CMake Build Type: ${CMAKE_BUILD_TYPE}")
 STRING(TOLOWER "${CMAKE_BUILD_TYPE}" BUILD_TYPE)
 IF(NOT ${BUILD_TYPE} STREQUAL "release")
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=0")
@@ -84,7 +84,25 @@ ENDIF("${isSystemDir}" STREQUAL "-1")
 # Tell CMake where the modules are
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_INSTALL_PREFIX}/share/cyclus/cmake")
 SET(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${STUB_SOURCE_DIR}/cmake)
-MESSAGE("--CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}")
+MESSAGE("-- CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}")
+
+# get dependency hints
+if (NOT DEPS_ROOT_DIR)
+    get_filename_component(compdir ${CMAKE_CXX_COMPILER} DIRECTORY)
+    get_filename_component(DEPS_ROOT_DIR ${compdir} DIRECTORY)
+endif (NOT DEPS_ROOT_DIR)
+SET(DEPS_HINTS HINTS "${DEPS_ROOT_DIR}")
+SET(DEPS_BIN_HINTS ${DEPS_HINTS} "${DEPS_ROOT_DIR}/bin")
+SET(DEPS_LIB_HINTS ${DEPS_HINTS} "${DEPS_ROOT_DIR}/lib")
+SET(DEPS_INCLUDE_HINTS HINTS "${DEPS_ROOT_DIR}/include")
+MESSAGE("-- Dependency Root Dir (DEPS_ROOT_DIR): ${DEPS_ROOT_DIR}")
+MESSAGE("-- Dependency Hints (DEPS_HINTS): ${DEPS_HINTS}")
+MESSAGE("-- Dependency Binary Hints (DEPS_BIN_HINTS): ${DEPS_BIN_HINTS}")
+MESSAGE("-- Dependency Library Hints (DEPS_LIB_HINTS): ${DEPS_LIB_HINTS}")
+MESSAGE("-- Dependency Include Hints (DEPS_INCLUDE_HINTS): ${DEPS_INCLUDE_HINTS}")
+
+# Search pkg-config utility first
+FIND_PACKAGE(PkgConfig REQUIRED)
 
 # Find cyclus
 FIND_PACKAGE(Cyclus REQUIRED)
@@ -94,7 +112,16 @@ SET(LIBS ${LIBS} ${CYCLUS_CORE_LIBRARIES})
 # Include macros
 INCLUDE(UseCyclus)
 
-MESSAGE("--LD_LIBRARY_PATH: $ENV{LD_LIBRARY_PATH}")
+MESSAGE("-- LD_LIBRARY_PATH: $ENV{LD_LIBRARY_PATH}")
+
+# Find LibXML++ and dependencies
+pkg_check_modules(LIBXMLXX IMPORTED_TARGET libxml++-4.0)
+IF ( NOT LIBXMLXX_FOUND )
+   pkg_check_modules(LIBXMLXX REQUIRED IMPORTED_TARGET libxml++-2.6)
+ENDIF ( NOT LIBXMLXX_FOUND )
+SET(LIBS ${LIBS} PkgConfig::LIBXMLXX)
+message("-- LibXML++ Include Dir: ${LIBXMLXX_INCLUDE_DIRS}")
+message("-- LibXML++ Librarires: ${LIBXMLXX_LIBRARIES}")
 
 # Include the boost header files, system, and filesystem libraries
 SET(Boost_USE_STATIC_LIBS       OFF)
@@ -116,13 +143,16 @@ MESSAGE("--    HDF5 Libraries: ${HDF5_LIBRARIES}")
 
 # find Coin
 FIND_PACKAGE(COIN REQUIRED)
-SET(STUB_INCLUDE_DIRS ${STUB_INCLUDE_DIRS} ${COIN_INCLUDE_DIR})
-set(LIBS ${LIBS} ${COIN_LIBRARIES})
-
+if(COIN_FOUND)
+  SET(STUB_INCLUDE_DIRS ${STUB_INCLUDE_DIRS} ${COIN_INCLUDE_DIR})
+  SET(LIBS ${LIBS} ${COIN_LIBRARIES})
+endif()
+MESSAGE("--    COIN Root: ${COIN_ROOT}")
+MESSAGE("--    COIN Include directories: ${COIN_INCLUDE_DIRS}")
+MESSAGE("--    COIN Libraries: ${COIN_LIBRARIES}")
 
 # include all the directories we just found
 INCLUDE_DIRECTORIES(${STUB_INCLUDE_DIRS})
-
 
 # add the agents
 ADD_SUBDIRECTORY(src)
