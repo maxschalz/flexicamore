@@ -40,8 +40,7 @@ void FlexibleStorage::InitFrom(FlexibleStorage* m) {
 void FlexibleStorage::InitFrom(cyclus::QueryableBackend* b) {
 #pragma cyclus impl initfromdb flexicamore::FlexibleStorage
 
-  using cyclus::toolkit::Commodity;
-  Commodity commod = Commodity(out_commods.front());
+  cyclus::toolkit::Commodity commod = cyclus::toolkit::Commodity(out_commods.front());
   cyclus::toolkit::CommodityProducer::Add(commod);
   cyclus::toolkit::CommodityProducer::SetCapacity(commod, throughput);
 }
@@ -208,11 +207,6 @@ void FlexibleStorage::BeginProcessing_() {
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleStorage::ProcessMat_(double cap) {
-  using cyclus::Material;
-  using cyclus::ResCast;
-  using cyclus::toolkit::ResBuf;
-  using cyclus::toolkit::Manifest;
-
   if (!ready.empty()) {
     try {
       double max_pop = std::min(cap, ready.quantity());
@@ -244,8 +238,6 @@ void FlexibleStorage::ProcessMat_(double cap) {
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleStorage::ReadyMatl_(int time) {
-  using cyclus::toolkit::ResBuf;
-
   int to_ready = 0;
 
   while (!entry_times.empty() && entry_times.front() <= time) {
