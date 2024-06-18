@@ -24,6 +24,10 @@ namespace flexicamore {
 /// material will be ordered and the old material will get traded away (if
 /// possible). For more information, please refer to Cycamore's documentation.
 ///
+/// Also note that some of the features added to Cycamore's Storage in v.1.6.0
+/// (active/dormant random buying policies) are not or only partly integrated
+/// in this Storage.
+///
 /// Working principle:
 /// - 4 inventories:
 ///   * inventory (incoming material)
@@ -69,8 +73,13 @@ class FlexibleStorage
   void ReadyMatl_(int time);
 
   /// Current maximum amount that can be added to the facility.
-  inline double current_capacity() const {
-    return std::max(0., max_inv_size-processing.quantity()-stocks.quantity());
+  inline double current_capacity() {
+    return inventory_tracker.space();
+  }
+
+  /// Total capacity that can be kept in the facility.
+  inline double capacity() {
+    return inventory_tracker.capacity();
   }
 
   int ready_time() { return context()->time() - residence_time; }
@@ -151,7 +160,6 @@ class FlexibleStorage
   }
   std::vector<int> max_inv_size_times;
   FlexibleInput<double> flexible_inv_size;
-  double max_inv_size;
 
   #pragma cyclus var {"default": False,\
                       "tooltip": "How to handles batches (discrete or not)",\
@@ -182,6 +190,9 @@ class FlexibleStorage
 
   #pragma cyclus var {"tooltip": "Buffer for material still waiting for required residence_time"}
   cyclus::toolkit::ResBuf<cyclus::Material> processing;
+
+  #pragma cyclus var {"tooltip": "Total Inventory Tracker to restrict maximum agent inventory"}
+  cyclus::toolkit::TotalInvTracker inventory_tracker;
 
   //// A policy for requesting material
   cyclus::toolkit::MatlBuyPolicy buy_policy;
