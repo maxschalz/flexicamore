@@ -58,7 +58,6 @@ void FlexibleStorageTest::TestInitState(FlexibleStorage* fac) {
 
   EXPECT_EQ(residence_time, fac->residence_time);
   EXPECT_EQ(max_inv_size_vals, fac->max_inv_size_vals);
-  EXPECT_EQ(max_inv_size_vals, fac->max_inv_size_vals);
   EXPECT_EQ(max_inv_size_times, fac->max_inv_size_times);
   EXPECT_EQ(throughput, fac->throughput);
   EXPECT_EQ(in_r1, fac->in_recipe);
@@ -72,6 +71,11 @@ void FlexibleStorageTest::TestAddMat(FlexibleStorage* fac,
   fac->AddMat_(mat);
   double after = fac->inventory.quantity();
   EXPECT_EQ(amt, after - before);
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+void FlexibleStorageTest::TestRemoveMat(FlexibleStorage* fac, double qty) {
+  fac->inventory.Pop(qty);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -104,6 +108,16 @@ void FlexibleStorageTest::TestReadyTime(FlexibleStorage* fac, int t) {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+void FlexibleStorageTest::TestInvTrackerCapacity(FlexibleStorage* fac, double cap) {
+  EXPECT_EQ(cap, src_facility_->inventory_tracker.capacity());
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+void FlexibleStorageTest::TestInvTrackerQty(FlexibleStorage* fac, double qty) {
+  EXPECT_EQ(qty, src_facility_->inventory_tracker.quantity());
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -125,9 +139,6 @@ TEST_F(FlexibleStorageTest, InitialState) {
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 TEST_F(FlexibleStorageTest, CurrentCapacity) {
   TestCurrentCap(src_facility_, max_inv_size);
-  max_inv_size = 1e299;
-  SetUpFlexibleStorage();
-  TestInitState(src_facility_);
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -154,7 +165,6 @@ TEST_F(FlexibleStorageTest, Tick) {
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 TEST_F(FlexibleStorageTest, Tock) {
-
   // initially, nothing in the buffers
   TestBuffers(src_facility_, 0, 0, 0, 0);
 
@@ -188,7 +198,6 @@ TEST_F(FlexibleStorageTest, Tock) {
   TestReadyTime(src_facility_, 1);
   src_facility_->Tock();
   TestBuffers(src_facility_, 0, 0, 0, cap);
-
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -269,10 +278,47 @@ TEST_F(FlexibleStorageTest, MultipleSmallBatches) {
   TestBuffers(src_facility_, 0, 0, 0, 0.5*cap);
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+TEST_F(FlexibleStorageTest, ChangeMaxInvSize) {
+  double inv_size_0 = 10.;
+  double inv_size_1 = 40.;
+  max_inv_size_vals = std::vector<double>({inv_size_0});
+
+  // Test that TotalInvTracker's capacity is set correctly.
+  SetUpFlexibleStorage();
+  TestInvTrackerCapacity(src_facility_, inv_size_0);
+
+  // Add more material to buffer than allowed by TotalInvTracker (which we
+  // circumvent here).
+  cyclus::Composition::Ptr rec = tc_.get()->GetRecipe(in_r1);
+  cyclus::Material::Ptr mat1 = cyclus::Material::CreateUntracked(inv_size_1, rec);
+  TestAddMat(src_facility_, mat1);
+  TestInvTrackerQty(src_facility_, inv_size_1);
+
+  // Test that TotalInvTracker's capacity is now set to the quantity in the
+  // buffers (which is larger than the desired capacity).
+  EXPECT_NO_THROW(src_facility_->Tick());
+  TestInvTrackerCapacity(src_facility_, inv_size_1);
+
+  // Remove half of the material from the buffers, thus TotalInvTracker's
+  // capacity should also be reduced by half.
+  TestRemoveMat(src_facility_, inv_size_1 / 2.);
+  EXPECT_NO_THROW(src_facility_->Tick());
+  TestInvTrackerCapacity(src_facility_, inv_size_1 / 2.);
+  TestInvTrackerQty(src_facility_, inv_size_1 / 2.);
+
+  // Remove the remaining material, capacity should now be at the desired value.
+  TestRemoveMat(src_facility_, inv_size_1 / 2.);
+  EXPECT_NO_THROW(src_facility_->Tick());
+  TestInvTrackerCapacity(src_facility_, inv_size_0);
+  TestInvTrackerQty(src_facility_, 0.);
+}
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-TEST_F(FlexibleStorageTest, ChangeCapacity) {
-  // src_facility_->discrete_handling_(0);
+TEST_F(FlexibleStorageTest, MoveMaterialThroughBuffers) {
+  // This test checks if the material is sent correctly between the different
+  // buffers. It repeatedly adds material to the input buffer, and checks that
+  // the expected amount of material is in each inventory.
   max_inv_size_vals[0] = 10000;
   // Set throughput, add first batch
   throughput = 300;
@@ -321,7 +367,6 @@ TEST_F(FlexibleStorageTest, ChangeCapacity) {
   tc_.get()->time(residence_time+4);
   EXPECT_NO_THROW(src_facility_->Tock());
   TestBuffers(src_facility_, 0, 0, 0, cap1+cap2+cap2);
-
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -536,7 +581,7 @@ int ConnectAgentTests();
 static int cyclus_agent_tests_connected = ConnectAgentTests();
 #define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected
 #endif // CYCLUS_AGENT_TESTS_CONNECTED
-INSTANTIATE_TEST_CASE_P(FlexibleStorageFac, FacilityTests,
-                        ::testing::Values(&FlexibleStorageConstructor));
-INSTANTIATE_TEST_CASE_P(FlexibleStorageFac, AgentTests,
-                        ::testing::Values(&FlexibleStorageConstructor));
+INSTANTIATE_TEST_SUITE_P(FlexibleStorageFac, FacilityTests,
+                         ::testing::Values(&FlexibleStorageConstructor));
+INSTANTIATE_TEST_SUITE_P(FlexibleStorageFac, AgentTests,
+                         ::testing::Values(&FlexibleStorageConstructor));

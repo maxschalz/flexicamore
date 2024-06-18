@@ -28,6 +28,9 @@ class FlexibleStorageTest : public ::testing::Test {
   void TestStocks(FlexibleStorage* fac, cyclus::CompMap v);
   void TestReadyTime(FlexibleStorage* fac, int t);
   void TestCurrentCap(FlexibleStorage* fac, double inv);
+  void TestInvTrackerCapacity(FlexibleStorage* fac, double cap);
+  void TestInvTrackerQty(FlexibleStorage* fac, double qty);
+  void TestRemoveMat(FlexibleStorage* fac, double qty);
 
   std::vector<std::string> in_c1, out_c1;
   std::string in_r1;

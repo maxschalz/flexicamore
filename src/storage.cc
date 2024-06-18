@@ -7,10 +7,10 @@ FlexibleStorage::FlexibleStorage(cyclus::Context* ctx)
     : cyclus::Facility(ctx),
       max_inv_size_vals(std::vector<double>()),
       max_inv_size_times(std::vector<int>()),
-      max_inv_size(1e299),
       latitude(0.0),
       longitude(0.0),
       coordinates(latitude, longitude) {
+  inventory_tracker.Init({&inventory, &stocks, &ready, &processing}, 1e299);
   std::string msg("'FlexibleStorage' is based on the experimental Cycamore "
                   "storage facility.");
   cyclus::Warn<cyclus::EXPERIMENTAL_WARNING>(msg);
@@ -55,10 +55,12 @@ void FlexibleStorage::EnterNotify() {
     flexible_inv_size = FlexibleInput<double>(this, max_inv_size_vals,
                                               max_inv_size_times);
   }
-  max_inv_size = max_inv_size_vals[0];
-  inventory.capacity(current_capacity());
+  inventory_tracker.set_capacity(max_inv_size_vals[0]);
 
-  buy_policy.Init(this, &inventory, std::string("inventory"));
+  // For now, active and dormant policies are omitted.
+  buy_policy.Init(
+    this, &inventory, std::string("inventory"), &inventory_tracker, throughput
+  );
 
   // dummy comp, use in_recipe if provided
   cyclus::CompMap v;
@@ -125,7 +127,6 @@ std::string FlexibleStorage::str() {
 void FlexibleStorage::AddMat_(cyclus::Material::Ptr mat) {
   LOG(cyclus::LEV_INFO5, "FlxSto") << prototype() << " is initially holding "
                                    << inventory.quantity() << " total.";
-
   try {
     inventory.Push(mat);
   } catch (cyclus::Error& e) {
@@ -153,8 +154,18 @@ void FlexibleStorage::Tick() {
   cyclus::Agent* copy_ptr;
   cyclus::Agent* source_ptr = this;
   std::memcpy((void*) &copy_ptr, (void*) &source_ptr, sizeof(cyclus::Agent*));
-  max_inv_size = flexible_inv_size.UpdateValue(copy_ptr);
-  inventory.capacity(current_capacity());
+
+  // Set the current capacity.
+  // Here, a hack is needed: TotalInvTracker does not allow to set a capacity
+  // smaller than the current quantity.
+  // To account for this behaviour, FlexibleStorage does the following:
+  // If the current capacity is smaller than the current quantity, set current
+  // capacity to current quantity to ensure no new material gets requested.
+  // Then, try to set it to the desired capacity in the following time step(s).
+  double new_capacity = std::max(
+    flexible_inv_size.UpdateValue(copy_ptr),
+    inventory_tracker.quantity());
+  inventory_tracker.set_capacity(new_capacity);
 
   LOG(cyclus::LEV_INFO4, "FlxSto")
       << prototype() << "-" << id() << " has capacity for "
@@ -167,8 +178,6 @@ void FlexibleStorage::Tick() {
 
 //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 void FlexibleStorage::Tock() {
-  using cyclus::toolkit::RecordTimeSeries;
-
   BeginProcessing_();  // place unprocessed inventory into processing
 
   if (ready_time() >= 0 || residence_time == 0 && !inventory.empty()) {
