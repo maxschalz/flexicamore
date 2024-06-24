@@ -330,7 +330,7 @@ int ConnectAgentTests();
 static int cyclus_agent_tests_connected = ConnectAgentTests();
 #define CYCLUS_AGENT_TESTS_CONNECTED cyclus_agent_tests_connected
 #endif  // CYCLUS_AGENT_TESTS_CONNECTED
-INSTANTIATE_TEST_CASE_P(FlexibleSinkFac, FacilityTests,
-                        ::testing::Values(&FlexibleSinkConstructor));
-INSTANTIATE_TEST_CASE_P(FlexibleSinkFac, AgentTests,
-                        ::testing::Values(&FlexibleSinkConstructor));
+INSTANTIATE_TEST_SUITE_P(FlexibleSinkFac, FacilityTests,
+                         ::testing::Values(&FlexibleSinkConstructor));
+INSTANTIATE_TEST_SUITE_P(FlexibleSinkFac, AgentTests,
+                         ::testing::Values(&FlexibleSinkConstructor));
