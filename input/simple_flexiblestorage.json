@@ -1,0 +1,170 @@
+{
+ "simulation": {
+  "archetypes": {
+   "spec": [
+    {
+     "lib": "agents",
+     "name": "NullRegion"
+    },
+    {
+     "lib": "agents",
+     "name": "NullInst"
+    },
+    {
+     "lib": "cycamore",
+     "name": "Sink"
+    },
+    {
+     "lib": "cycamore",
+     "name": "Source"
+    },
+    {
+     "lib": "flexicamore",
+     "name": "FlexibleStorage"
+    }
+   ]
+  },
+  "commodity": [
+   {
+    "name": "NaturalU",
+    "solution_priority": 1
+   },
+   {
+    "name": "LEU",
+    "solution_priority": 1
+   },
+   {
+    "name": "WeapongradeU",
+    "solution_priority": 1
+   },
+   {
+    "name": "DepletedU",
+    "solution_priority": 1
+   }
+  ],
+  "control": {
+   "decay": "lazy",
+   "duration": 6,
+   "dt": 86400,
+   "explicit_inventory": true,
+   "explicit_inventory_compact": true,
+   "simhandle": "Flexicamore brief example",
+   "solver": {
+    "config": {
+      "greedy": null
+    }
+   },
+   "startmonth": 1,
+   "startyear": 2022
+  },
+  "facility": [
+   {
+    "name": "Mine",
+    "config": {
+     "Source": {
+      "outcommod": "LEU",
+      "outrecipe": "LEURecipe",
+      "inventory_size": 10
+     }
+    }
+   },
+   {
+    "name": "UraniumMine",
+    "config": {
+     "Source": {
+      "outcommod": "NaturalU",
+      "outrecipe": "NaturalURecipe",
+      "inventory_size": 1e+299
+     }
+    }
+   },
+   {
+    "name": "StorageFacility",
+    "config": {
+      "FlexibleStorage": {
+        "in_commods": {"val": ["LEU", "NaturalU"]},
+        "in_commod_prefs": {"val": [2, 1]},
+        "out_commods": {"val": "Uranium"},
+        "residence_time": 2,
+        "max_inv_size_vals": {"val": [10, 0, 100]},
+        "max_inv_size_times": {"val": [0, 1, 2]}
+      }
+    }
+   },
+   {
+    "name": "UraniumSink",
+    "config": {
+     "Sink": {
+      "in_commods": {"val": ["Uranium"]}
+     }
+    }
+   }
+  ],
+  "recipe": [
+   {
+    "name": "NaturalURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.0072
+     },
+     {
+      "id": "U238",
+      "comp": 0.9928
+     }
+    ]
+   },
+   {
+    "name": "LEURecipe",
+    "basis": "atom",
+    "nuclide": [
+     {
+      "id": "U235",
+      "comp": 0.03
+     },
+     {
+      "id": "U238",
+      "comp": 0.97
+     }
+    ]
+   }
+  ],
+  "region": [
+   {
+    "name": "Fleximonia",
+    "config": {
+     "NullRegion": null
+    },
+    "institution": [
+     {
+      "name": "FleximoniaAtomicEnergyCommission",
+      "config": {
+       "NullInst": null
+      },
+      "initialfacilitylist": {
+       "entry": [
+        {
+         "number": 1,
+         "prototype": "UraniumMine"
+        },
+        {
+         "number": 1,
+         "prototype": "Mine"
+        },
+        {
+         "number": 1,
+         "prototype": "UraniumSink"
+        },
+        {
+         "number": 1,
+         "prototype": "StorageFacility"
+        }
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ }
+}
