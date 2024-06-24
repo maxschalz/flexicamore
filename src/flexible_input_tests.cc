@@ -11,6 +11,8 @@
 
 namespace flexicamore {
 
+GTEST_ALLOW_UNINSTANTIATED_PARAMETERIZED_TEST(InstitutionTests);
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 FlexibleInputTest::FlexibleInputTest() {
   cyclus::PyStart();
