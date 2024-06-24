@@ -7,16 +7,12 @@
      "name": "NullRegion"
     },
     {
-     "lib": "cycamore",
-     "name": "DeployInst"
+     "lib": "agents",
+     "name": "NullInst"
     },
     {
      "lib": "cycamore",
      "name": "Sink"
-    },
-    {
-     "lib": "flexicamore",
-     "name": "FlexibleSink"
     },
     {
      "lib": "cycamore",
@@ -25,14 +21,6 @@
     {
      "lib": "flexicamore",
      "name": "FlexibleEnrichment"
-    },
-    {
-     "lib": "flexicamore",
-     "name": "FlexibleSource"
-    },
-    {
-     "lib": "flexicamore",
-     "name": "FlexibleStorage"
     }
    ]
   },
@@ -63,7 +51,9 @@
    "simhandle": "Flexicamore brief example",
    "solver": {
     "config": {
-     "greedy": null
+     "coin-or": {
+      "verbose": false
+     }
     }
    },
    "startmonth": 1,
@@ -76,68 +66,17 @@
      "Source": {
       "outcommod": "LEU",
       "outrecipe": "LEURecipe",
-      "inventory_size": 1e+299,
-      "throughput": 12
-     }
-    }
-   },
-   {
-    "name": "LEUStorage",
-    "lifetime": 1,
-    "config": {
-     "Source": {
-      "outcommod": "LEU",
-      "outrecipe": "LEURecipe",
-      "throughput": 50
+      "inventory_size": 1e+299
      }
     }
    },
    {
     "name": "UraniumMine",
     "config": {
-     "FlexibleSource": {
-      "out_commod": "NaturalU",
-      "out_recipe": "NaturalURecipe",
-      "inventory_size": 1e+299,
-      "throughput_times": {
-       "val": [
-        -1
-       ]
-      },
-      "throughput_vals": {
-       "val": [
-        100.,
-        100.,
-        120.,
-        130.,
-        150.,
-        150.,
-        20000.,
-        20000.,
-        30000.,
-        0.
-       ]
-      }
-     }
-    }
-   },
-   {
-    "name": "SecondLEU",
-    "config": {
-     "FlexibleSource": {
-      "out_commod": "LEU",
-      "out_recipe": "LEURecipe",
-      "inventory_size": 1e+299,
-      "throughput_times": {
-       "val": [
-        0
-       ]
-      },
-      "throughput_vals": {
-       "val": [
-        200.
-       ]
-      }
+     "Source": {
+      "outcommod": "NaturalU",
+      "outrecipe": "NaturalURecipe",
+      "inventory_size": 1e+299
      }
     }
    },
@@ -149,7 +88,7 @@
       "product_commod": "EnrichedU",
       "tails_commod": "DepletedU",
       "tails_assay": 0.003,
-      "max_feed_inventory": 1e+299,
+      "max_feed_inventory": 100,
       "max_enrich": 1.0,
       "order_prefs": false,
       "swu_capacity_times": {
@@ -170,49 +109,15 @@
     }
    },
    {
-    "name": "MyStorage",
-    "config": {
-     "FlexibleStorage": {
-      "in_commods": {"val": ["EnrichedU"]},
-      "out_commods": {"val": ["StoredU"]},
-      "in_recipe": "WeapongradeURecipe",
-      "residence_time": 3,
-      "max_inv_size_times": {"val": [0, 5]},
-      "max_inv_size_vals": {"val": [10000., 0.]}
-     }
-    }
-   },
-   {
-    "name": "StoredUSink",
-    "config": {
-     "FlexibleSink": {
-      "in_commods": {"val": ["StoredU"]},
-      "throughput_times": {"val": [0, 4]},
-      "throughput_vals": {"val": [1, 10000]}
-     }
-    }
-   },
-   {
     "name": "WeapongradeUSink",
-    "config": {
-     "FlexibleSink": {
-      "in_commods": {"val": ["EnrichedU"]},
-      "recipe_name": "WeapongradeURecipe",
-      "throughput_times": {"val": [0]},
-      "throughput_vals": {"val": [1e200]}
-     }
-    }
-   },
-   {
-    "name": "DepletedUSink",
     "config": {
      "Sink": {
       "in_commods": {
        "val": [
-        "DepletedU"
+        "EnrichedU"
        ]
       },
-      "recipe_name": "DepletedURecipe"
+      "recipe_name": "WeapongradeURecipe"
      }
     }
    }
@@ -285,20 +190,7 @@
      {
       "name": "FleximoniaAtomicEnergyCommission",
       "config": {
-       "DeployInst": {
-        "prototypes": {
-         "val": [
-          "SecondLEU",
-          "WeapongradeUSink"
-         ]
-        },
-        "build_times": {
-         "val": [5, 6]
-        },
-        "n_build": {
-         "val": [1, 1]
-        }
-       }
+       "NullInst": null
       },
       "initialfacilitylist": {
        "entry": [
@@ -312,27 +204,11 @@
         },
         {
          "number": 1,
-         "prototype": "LEUStorage"
-        },
-        {
-         "number": 1,
-         "prototype": "StoredUSink"
-        },
-        {
-         "number": 1,
-         "prototype": "MyStorage"
-        },
-        {
-         "number": 1,
          "prototype": "WeapongradeUSink"
         },
         {
          "number": 1,
          "prototype": "EnrichmentFacility"
-        },
-        {
-         "number": 1,
-         "prototype": "DepletedUSink"
         }
        ]
       }
