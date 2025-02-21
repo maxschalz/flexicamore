@@ -1,4 +1,6 @@
 # Flexible Cycamore
+[![doi:10.5281/zenodo.10974108](https://zenodo.org/badge/DOI/10.5281/zenodo.10974108.svg)](https://doi.org/10.5281/zenodo.10974108)
+
 This repository contains [Cyclus](https://github.com/cyclus/cyclus) archetypes,
 strongly based on Cyclus' [Cycamore](https://github.com/cyclus/cycamore)
 library.
